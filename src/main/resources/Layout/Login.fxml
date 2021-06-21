@@ -19,7 +19,7 @@
                 <Image url="@../Images/Logo.png" />
             </image>
         </ImageView>
-        <Text fill="#12646f" layoutX="290.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CENTRI VACCINALI">
+        <Text fill="#53b0bd" layoutX="290.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CENTRI VACCINALI">
             <font>
                 <Font name="Montserrat Bold" size="32.0" />
             </font>
@@ -92,7 +92,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="#12646f" layoutX="372.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COVID-19">
+      <Text fill="#53b0bd" layoutX="372.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COVID-19">
          <font>
             <Font name="Montserrat Bold" size="32.0" />
          </font>

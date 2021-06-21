@@ -59,7 +59,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Text fill="#53b0bd" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="REGISTRA VACCINATO" textAlignment="CENTER" wrappingWidth="900.0">
+        <Text fill="#53b0bd" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="REGISTRA VACCINATO" textAlignment="CENTER" wrappingWidth="900.0">
             <font>
                 <Font name="Montserrat Bold" size="32.0" />
             </font>
