@@ -1,13 +1,13 @@
 package clientCV.shared;
 
-public class PersonaRegistrata extends Persona{
+public class Utente extends Persona{
     private String username, password;
 
-    public PersonaRegistrata(String nome,
-                             String cognome,
-                             String username,
-                             String password,
-                             String CF) {
+    public Utente(String nome,
+                  String cognome,
+                  String username,
+                  String password,
+                  String CF) {
         super(nome, cognome, CF);
         this.username = username;
         this.password = password;

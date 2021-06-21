@@ -47,7 +47,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="15.0" layoutY="520.0" mnemonicParsing="false" onAction="#switchToLogoutScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
+        <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="20.0" layoutY="520.0" mnemonicParsing="false" onAction="#switchToLogoutScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>

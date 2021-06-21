@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapter.CercaAdapter">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapters.CercaAdapter">
     <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../Images/Background.jpg" />
     </ImageView>
@@ -47,7 +47,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="15.0" layoutY="520.0" mnemonicParsing="false" onAction="#switchToLogoutScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
+    <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="20.0" layoutY="520.0" mnemonicParsing="false" onAction="#switchToLogoutScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -98,7 +98,7 @@
             <Font name="Montserrat Regular" size="16.0" />
         </font>
     </RadioButton>
-    <TextField id="fieldNome" fx:id="nomeTextField" alignment="CENTER" layoutX="301.0" layoutY="134.0" prefWidth="200.0" promptText="Nome Centro" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
+    <TextField id="fieldNome" fx:id="nomeTextField" alignment="CENTER" editable="false" layoutX="301.0" layoutY="134.0" prefWidth="200.0" promptText="Nome Centro" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
         <padding>
             <Insets bottom="13.0" left="6.0" right="6.0" top="13.0" />
         </padding>

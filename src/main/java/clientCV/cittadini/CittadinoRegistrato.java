@@ -1,8 +1,8 @@
 package clientCV.cittadini;
 
-import clientCV.shared.PersonaRegistrata;
+import clientCV.shared.Utente;
 
-public class CittadinoRegistrato extends PersonaRegistrata {
+public class CittadinoRegistrato extends Utente {
     private String email;
     private int idVaccinazione;
 
