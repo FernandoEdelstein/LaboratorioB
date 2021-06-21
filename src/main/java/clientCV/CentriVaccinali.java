@@ -23,4 +23,8 @@ public class CentriVaccinali extends Application {
         stage.setTitle("Centri Vaccinali");
         stage.show();
     }
+
+    public static void main(String[] args) {
+        launch();
+    }
 }

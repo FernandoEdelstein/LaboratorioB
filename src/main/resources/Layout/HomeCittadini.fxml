@@ -17,18 +17,18 @@
                 <Image url="@../Images/Background.jpg" />
             </image>
         </ImageView>
-        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="542.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="411.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../Images/Logo.png" />
             </image>
         </ImageView>
-        <Rectangle arcWidth="5.0" fill="#12646f" height="600.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="261.0" />
-        <Text fx:id="welcomeTextField" fill="WHITE" layoutX="5.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ciao, " textAlignment="CENTER" wrappingWidth="250.78929138183594">
+        <Rectangle arcWidth="5.0" fill="#12646f" height="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="900.0" />
+        <Text fx:id="welcomeTextField" fill="WHITE" layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ciao, " wrappingWidth="202.78929138183594">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
         </Text>
-        <Button id="btnCerca" fx:id="btnCerca" alignment="CENTER" layoutX="20.0" layoutY="142.0" mnemonicParsing="false" onAction="#switchToCercaScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Cerca" textFill="#53b0bd">
+        <Button id="btnCerca" fx:id="btnCerca" alignment="CENTER" layoutX="223.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToCercaScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Cerca" textFill="#53b0bd">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
@@ -39,7 +39,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button id="btnRegistrati" fx:id="btnRegistrati" alignment="CENTER" layoutX="20.0" layoutY="217.0" mnemonicParsing="false" onAction="#switchToRegistratiScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Registrati" textFill="#53b0bd">
+        <Button id="btnRegistrati" fx:id="btnRegistrati" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToRegistratiScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Registrati" textFill="#53b0bd">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
@@ -50,7 +50,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="20.0" layoutY="520.0" mnemonicParsing="false" onAction="#switchToLogoutScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
+        <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToLogoutScene" prefWidth="126.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
@@ -61,12 +61,12 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Text fill="#12646f" layoutX="451.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CENTRI VACCINALI">
+        <Text fill="#12646f" layoutX="320.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CENTRI VACCINALI">
             <font>
                 <Font name="Montserrat Bold" size="28.0" />
             </font>
         </Text>
-        <Text layoutX="342.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utilizza il menù di sinistra per cercare un centro vaccinale, registrarti o creare una segnalazione per un effetto avverso della vaccinazione." textAlignment="CENTER" wrappingWidth="477.3622131347656">
+        <Text layoutX="211.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utilizza il menù di sinistra per cercare un centro vaccinale, registrarti o creare una segnalazione per un effetto avverso della vaccinazione." textAlignment="CENTER" wrappingWidth="477.3622131347656">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>

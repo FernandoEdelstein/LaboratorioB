@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
@@ -14,28 +16,36 @@ import java.util.Objects;
 public abstract class Adapter {
     public static final String path = "Layout/";
 
-    public void changeScene(String layout, ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(
-                Objects.requireNonNull(CentriVaccinali.class.getClassLoader().getResource(
-                        path + layout)));
+    public void changeShermata(String fxml, ActionEvent event) throws IOException {
+        Parent root = FXMLLoader
+                .load(Objects.requireNonNull(CentriVaccinali.class.getClassLoader()
+                .getResource(path + fxml)));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void changeSceneAndSetValues(String layout, Utente utente, ActionEvent event) throws IOException {
-        FXMLLoader loader = new
-                FXMLLoader(CentriVaccinali.class.getClassLoader().getResource(path + layout));
-        Parent root = loader.load();
+    public void cambiaSchermataConUtente(String fxml, Utente utente, ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
+                .getClassLoader().getResource(path + fxml));
 
-        Adapter adapter = loader.getController();
+        Parent root = fxmlLoader.load();
+
+        Adapter adapter = fxmlLoader.getController();
         adapter.setUtente(utente);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void mostraWarning(String title, String body) {
+        Alert warning = new Alert(Alert.AlertType.WARNING, "", ButtonType.CLOSE);
+        warning.setHeaderText(title);
+        warning.setContentText(body);
+        warning.show();
     }
 
     public abstract void setUtente(Utente utente);

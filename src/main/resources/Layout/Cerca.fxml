@@ -19,13 +19,13 @@
     <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../Images/Background.jpg" />
     </ImageView>
-    <Rectangle arcWidth="5.0" fill="#12646f" height="600.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="261.0" />
-    <Text fx:id="welcomeTextField" fill="WHITE" layoutX="5.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ciao, " textAlignment="CENTER" wrappingWidth="250.78929138183594">
+    <Rectangle arcWidth="5.0" fill="#12646f" height="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="900.0" />
+    <Text fx:id="welcomeTextField" fill="WHITE" layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ciao, " wrappingWidth="210.78929138183594">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
     </Text>
-    <Button id="btnCerca" fx:id="btnCerca" alignment="CENTER" layoutX="20.0" layoutY="142.0" mnemonicParsing="false" onAction="#switchToCercaScene" prefWidth="220.0" style="-fx-background-color: #53B0BD; -fx-background-radius: 30;" text="Cerca" textFill="WHITE">
+    <Button id="btnCerca" fx:id="btnCerca" alignment="CENTER" layoutX="222.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToCercaScene" prefWidth="220.0" style="-fx-background-color: #53B0BD; -fx-background-radius: 30;" text="Cerca" textFill="WHITE">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -36,7 +36,7 @@
             <Cursor fx:constant="CLOSED_HAND" />
         </cursor>
     </Button>
-    <Button id="btnRegistrati" fx:id="btnRegistrati" alignment="CENTER" layoutX="20.0" layoutY="217.0" mnemonicParsing="false" onAction="#switchToRegistratiScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Registrati" textFill="#53b0bd">
+    <Button id="btnRegistrati" fx:id="btnRegistrati" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToRegistratiScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Registrati" textFill="#53b0bd">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -47,7 +47,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="20.0" layoutY="520.0" mnemonicParsing="false" onAction="#switchToLogoutScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
+    <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToLogoutScene" prefHeight="53.0" prefWidth="117.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -58,12 +58,12 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Text fill="#12646f" layoutX="261.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="CERCA" textAlignment="CENTER" wrappingWidth="627.1627502441406">
+    <Text fill="#12646f" layoutX="51.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="CERCA" textAlignment="CENTER" wrappingWidth="799.0">
         <font>
             <Font name="Montserrat Bold" size="35.0" />
         </font>
     </Text>
-    <Button id="btnVisualizza" fx:id="btnVisualizza" layoutX="488.0" layoutY="535.0" mnemonicParsing="false" onAction="#switchToVisualizzaScene" style="-fx-background-color: #53B0BD; -fx-background-radius: 30;" text="VISUALIZZA" textFill="WHITE">
+    <Button id="btnVisualizza" fx:id="btnVisualizza" layoutX="353.0" layoutY="533.0" mnemonicParsing="false" onAction="#switchToVisualizzaScene" style="-fx-background-color: #53B0BD; -fx-background-radius: 30;" text="VISUALIZZA" textFill="WHITE">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -74,7 +74,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Button id="btnRisultati" layoutX="495.0" layoutY="208.0" mnemonicParsing="false" onAction="#mostraCentriVaccinali" style="-fx-background-color: #53B0BD; -fx-background-radius: 30;" text="CERCA ORA" textFill="WHITE">
+    <Button id="btnRisultati" layoutX="671.0" layoutY="221.0" mnemonicParsing="false" onAction="#mostraCentriVaccinali" style="-fx-background-color: #53B0BD; -fx-background-radius: 30;" text="CERCA ORA" textFill="WHITE">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -85,7 +85,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <RadioButton id="radNome" fx:id="filtraNomeRadio" layoutX="300.0" layoutY="96.0" mnemonicParsing="false" onAction="#enableFiltering" selected="true" text="Filtra per nome:">
+    <RadioButton id="radNome" fx:id="filtraNomeRadio" layoutX="51.0" layoutY="181.0" mnemonicParsing="false" onAction="#enableFiltering" selected="true" text="Filtra per nome:">
         <font>
             <Font name="Montserrat Regular" size="16.0" />
         </font>
@@ -93,12 +93,12 @@
             <ToggleGroup fx:id="filtra" />
         </toggleGroup>
     </RadioButton>
-    <RadioButton id="radComuneTipologia" fx:id="filtraComuneRadio" layoutX="562.0" layoutY="96.0" mnemonicParsing="false" onAction="#enableFiltering" text="Filtra per comune e tipologia:" toggleGroup="$filtra">
+    <RadioButton id="radComuneTipologia" fx:id="filtraComuneRadio" layoutX="332.0" layoutY="181.0" mnemonicParsing="false" onAction="#enableFiltering" text="Filtra per comune e tipologia:" toggleGroup="$filtra">
         <font>
             <Font name="Montserrat Regular" size="16.0" />
         </font>
     </RadioButton>
-    <TextField id="fieldNome" fx:id="nomeTextField" alignment="CENTER" editable="false" layoutX="301.0" layoutY="134.0" prefWidth="200.0" promptText="Nome Centro" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
+    <TextField id="fieldNome" fx:id="nomeTextField" alignment="CENTER" editable="false" layoutX="52.0" layoutY="219.0" prefHeight="49.0" prefWidth="238.0" promptText="Nome Centro" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
         <padding>
             <Insets bottom="13.0" left="6.0" right="6.0" top="13.0" />
         </padding>
@@ -109,7 +109,7 @@
             <Cursor fx:constant="TEXT" />
         </cursor>
     </TextField>
-    <ComboBox id="cmbTipologia" fx:id="tipologiaComboBox" accessibleText="Seleziona tipologia" disable="true" layoutX="740.0" layoutY="135.0" maxHeight="43.0" prefHeight="43.0" prefWidth="110.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
+    <ComboBox id="cmbTipologia" fx:id="tipologiaComboBox" accessibleText="Seleziona tipologia" disable="true" layoutX="510.0" layoutY="220.0" maxHeight="43.0" prefHeight="43.0" prefWidth="110.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
         <cursor>
             <Cursor fx:constant="HAND" />
         </cursor>
@@ -117,7 +117,7 @@
             <Insets bottom="10.0" left="6.0" right="6.0" top="10.0" />
         </padding>
     </ComboBox>
-    <TextField id="fieldComune" fx:id="comuneTextField" alignment="CENTER" disable="true" layoutX="562.0" layoutY="134.0" prefHeight="51.0" prefWidth="163.0" promptText="Comune" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
+    <TextField id="fieldComune" fx:id="comuneTextField" alignment="CENTER" disable="true" layoutX="332.0" layoutY="219.0" prefHeight="51.0" prefWidth="163.0" promptText="Comune" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
         <padding>
             <Insets bottom="13.0" left="6.0" right="6.0" top="13.0" />
         </padding>
@@ -128,5 +128,5 @@
             <Cursor fx:constant="TEXT" />
         </cursor>
     </TextField>
-    <ListView id="listCentri" fx:id="centriListView" layoutX="300.0" layoutY="268.0" prefHeight="255.0" prefWidth="550.0" style="-fx-background-radius: 23; -fx-padding: 15;" stylesheets="@style/Generic.css" />
+    <ListView id="listCentri" fx:id="centriListView" layoutX="51.0" layoutY="291.0" prefHeight="232.0" prefWidth="799.0" style="-fx-background-radius: 23; -fx-padding: 15;" stylesheets="@style/Generic.css" />
 </Pane>

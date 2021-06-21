@@ -2,11 +2,11 @@ package clientCV.cittadini;
 
 import clientCV.shared.Utente;
 
-public class CittadinoRegistrato extends Utente {
+public class Cittadino extends Utente {
     private String email;
     private int idVaccinazione;
 
-    public CittadinoRegistrato(
+    public Cittadino(
             String username,
             String password,
             String nome,

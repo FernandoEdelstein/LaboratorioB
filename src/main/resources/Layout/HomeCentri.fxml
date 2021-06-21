@@ -14,16 +14,16 @@
     <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../Images/Background.jpg" />
     </ImageView>
-    <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="532.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="404.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../Images/Logo.png" />
     </ImageView>
-    <Rectangle arcWidth="5.0" fill="#12646f" height="600.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="261.0" />
-    <Text fx:id="welcomeTextField" fill="WHITE" layoutX="5.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ciao, " textAlignment="CENTER" wrappingWidth="250.78929138183594">
+    <Rectangle arcWidth="5.0" fill="#12646f" height="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="900.0" />
+    <Text fx:id="welcomeTextField" fill="WHITE" layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ciao, " wrappingWidth="191.78929138183594">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
     </Text>
-    <Button id="btnRegistraCentro" fx:id="btnRegistraCentro" alignment="CENTER" layoutX="20.0" layoutY="142.0" mnemonicParsing="false" onAction="#switchToRegistraCentroScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Registra Centro" textFill="#53b0bd">
+    <Button id="btnRegistraCentro" fx:id="btnRegistraCentro" alignment="CENTER" layoutX="223.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToRegistraCentroScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Registra Centro" textFill="#53b0bd">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -34,7 +34,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Button id="btnRegistraVaccinato" fx:id="btnRegistraVaccinato" alignment="CENTER" layoutX="20.0" layoutY="217.0" mnemonicParsing="false" onAction="#switchToRegistraVaccinatoScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Registra Vaccinato" textFill="#53b0bd">
+    <Button id="btnRegistraVaccinato" fx:id="btnRegistraVaccinato" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToRegistraVaccinatoScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Registra Vaccinato" textFill="#53b0bd">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -45,7 +45,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="20.0" layoutY="520.0" mnemonicParsing="false" onAction="#switchToLogoutScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
+    <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToLogoutScene" prefWidth="126.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -56,12 +56,12 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Text fill="#12646f" layoutX="427.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CENTRI VACCINALI">
+    <Text fill="#12646f" layoutX="298.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CENTRI VACCINALI">
         <font>
             <Font name="Montserrat Bold" size="29.0" />
         </font>
     </Text>
-    <Text layoutX="332.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registra un nuovo centro o un nuovo vaccinato utilizzando il menù." textAlignment="CENTER" wrappingWidth="477.3622131347656">
+    <Text layoutX="204.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registra un nuovo centro o un nuovo vaccinato utilizzando il menù." textAlignment="CENTER" wrappingWidth="477.3622131347656">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
