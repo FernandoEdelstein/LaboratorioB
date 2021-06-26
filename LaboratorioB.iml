@@ -56,5 +56,23 @@
     <orderEntry type="library" name="Maven: org.iq80.snappy:snappy:0.4" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.tukaani:xz:1.8" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-utils:3.3.0" level="project" />
+    <orderEntry type="library" name="postgresql-42.2.22" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file:///Library/Java/javafx-sdk-16/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <NATIVE>
+          <root url="file:///Library/Java/javafx-sdk-16/lib" />
+        </NATIVE>
+        <SOURCES>
+          <root url="file:///Library/Java/javafx-sdk-16/lib" />
+        </SOURCES>
+        <jarDirectory url="file:///Library/Java/javafx-sdk-16/lib" recursive="false" />
+        <jarDirectory url="file:///Library/Java/javafx-sdk-16/lib" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>

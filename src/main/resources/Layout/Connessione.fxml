@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapters.ConnessioneAdapter">
     <children>
@@ -36,7 +36,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <Button id="btnRisultati" fx:id="btnConferma" layoutX="340.0" layoutY="309.0" mnemonicParsing="false" onAction="#tryConnection" style="-fx-background-color: #12646F; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);" text="CONFERMA" textFill="WHITE">
+        <Button id="btnRisultati" fx:id="btnConferma" layoutX="340.0" layoutY="309.0" mnemonicParsing="false" style="-fx-background-color: #12646F; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);" text="CONFERMA" textFill="WHITE">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
@@ -47,7 +47,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="btnDefault" layoutX="175.0" layoutY="307.0" mnemonicParsing="false" onAction="#setDefaultValue" style="-fx-background-color: white; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);" text="DEFAULT" textFill="#12646f">
+        <Button fx:id="btnDefault" layoutX="175.0" layoutY="307.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);" text="DEFAULT" textFill="#12646f">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>

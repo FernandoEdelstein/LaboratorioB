@@ -1,14 +1,20 @@
 package clientCV.centriVaccinali.adapters;
 
+import clientCV.CentriVaccinali;
 import clientCV.cittadini.Cittadino;
 import clientCV.shared.Utente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class LogInAdapter extends Adapter{
     @FXML
@@ -18,7 +24,21 @@ public class LogInAdapter extends Adapter{
 
     private Utente utente;
 
-    public void switchRegistra(ActionEvent event) throws IOException, SQLException {
+    public void vaiAImpostazioni() throws IOException {
+        Parent root = FXMLLoader.load(
+                Objects.requireNonNull(CentriVaccinali.class.getClassLoader().getResource(
+                        "Layout/Connessione.fxml")));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle("Impostazioni connessione");
+        stage.show();
+    }
+
+    public void vaiARegistra(ActionEvent event) throws IOException, SQLException {
         /*
         if(!tryConnection())
             return;*/
@@ -26,7 +46,7 @@ public class LogInAdapter extends Adapter{
         cambiaSchermataConUtente("RegistraCittadino.fxml", null, event);
     }
 
-    public void logInGuest(ActionEvent event) throws IOException, SQLException {
+    public void logInOspite(ActionEvent event) throws IOException, SQLException {
         /*
         if(!tryConnection())
             return;*/

@@ -10,18 +10,15 @@ import java.util.Objects;
 
 public class CentriVaccinali extends Application {
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(
-                Objects.requireNonNull(CentriVaccinali.class.getClassLoader().getResource(
-                        "Layout/Login.fxml")));
+        Parent root = FXMLLoader.load(getClass().getResource("../Layout/Login.fxml"));
 
-        Scene scene = new Scene(root, 900, 600);
+        primaryStage.setScene(new Scene(root, 900, 600));
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Centri Vaccinali");
+        primaryStage.show();
 
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setTitle("Centri Vaccinali");
-        stage.show();
     }
 
     public static void main(String[] args) {

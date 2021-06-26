@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapters.RegistraCentroVaccinaleAdapter">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapters.RegistraCentroVaccinaleAdapter">
     <children>
         <ImageView fitHeight="600.0" fitWidth="900.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -25,7 +21,7 @@
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
         </Text>
-        <Button id="btnRegistraCentro" fx:id="btnRegistraCentro" alignment="CENTER" layoutX="223.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToRegistraCentroScene" prefWidth="220.0" style="-fx-background-color: #53B0BD; -fx-background-radius: 30;" text="Registra Centro" textFill="WHITE">
+        <Button id="btnRegistraCentro" fx:id="btnRegistraCentro" alignment="CENTER" layoutX="223.0" layoutY="23.0" mnemonicParsing="false" prefWidth="220.0" style="-fx-background-color: #53B0BD; -fx-background-radius: 30;" text="Registra Centro" textFill="WHITE">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
@@ -36,7 +32,7 @@
                 <Cursor fx:constant="CLOSED_HAND" />
             </cursor>
         </Button>
-        <Button id="btnRegistraVaccinato" fx:id="btnRegistraVaccinato" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToRegistraVaccinatoScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Registra Vaccinato" textFill="#53b0bd">
+        <Button id="btnRegistraVaccinato" fx:id="btnRegistraVaccinato" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Registra Vaccinato" textFill="#53b0bd">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
@@ -47,7 +43,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToLogoutScene" prefWidth="126.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
+        <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" prefWidth="126.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
@@ -63,7 +59,7 @@
                 <Font name="Montserrat Bold" size="35.0" />
             </font>
         </Text>
-        <TextField id="fieldNomeCentro" fx:id="fieldNome" alignment="CENTER" layoutX="156.0" layoutY="212.0" prefHeight="53.0" prefWidth="322.0" promptText="Nome" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
+        <TextField id="fieldNomeCentro" fx:id="fieldNome" alignment="CENTER" layoutX="156.0" layoutY="212.0" prefHeight="53.0" prefWidth="322.0" promptText="Nome" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
             <padding>
                 <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
             </padding>
@@ -84,18 +80,18 @@
                 <Font name="Montserrat Bold" size="17.0" />
             </font>
         </Text>
-        <Button id="btnRegistraCentro" layoutX="347.0" layoutY="484.0" mnemonicParsing="false" onAction="#registraCentro" style="-fx-background-color: #53B0BD; -fx-background-radius: 30;" text="REGISTRA ORA" textFill="WHITE">
+        <Button id="btnRegistraCentro" layoutX="347.0" layoutY="484.0" mnemonicParsing="false" style="-fx-background-color: #53B0BD; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 2, 2);" text="REGISTRA ORA" textFill="WHITE">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
             <padding>
-                <Insets bottom="15.0" left="35.0" right="35.0" top="15.0" />
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
             </padding>
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <TextField id="fieldIndirizzo" fx:id="fieldStrada" alignment="CENTER" layoutX="319.0" layoutY="322.0" prefHeight="53.0" prefWidth="261.0" promptText="Strada" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
+        <TextField id="fieldIndirizzo" fx:id="fieldStrada" alignment="CENTER" layoutX="319.0" layoutY="322.0" prefHeight="53.0" prefWidth="261.0" promptText="Strada" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
             <padding>
                 <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
             </padding>
@@ -111,7 +107,7 @@
                 <Font name="Montserrat Bold" size="17.0" />
             </font>
         </Text>
-        <ComboBox id="comboTipologia" fx:id="tipologiaComboBox" accessibleText="Seleziona tipologia" layoutX="506.0" layoutY="211.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="57.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
+        <ComboBox id="comboTipologia" fx:id="tipologiaComboBox" accessibleText="Seleziona tipologia" layoutX="506.0" layoutY="211.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="57.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -119,7 +115,7 @@
                 <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
             </padding>
         </ComboBox>
-        <ComboBox id="comboTipologia" fx:id="qualificatoreComboBox" accessibleText="Seleziona tipologia" layoutX="166.0" layoutY="323.0" prefHeight="49.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
+        <ComboBox id="comboTipologia" fx:id="qualificatoreComboBox" accessibleText="Seleziona tipologia" layoutX="166.0" layoutY="323.0" prefHeight="49.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -127,7 +123,7 @@
                 <Insets bottom="11.0" left="10.0" right="10.0" top="13.0" />
             </padding>
         </ComboBox>
-        <TextField id="fieldIndirizzo" fx:id="fieldCivico" alignment="CENTER" layoutX="606.0" layoutY="322.0" prefHeight="53.0" prefWidth="130.0" promptText="Civico" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
+        <TextField id="fieldIndirizzo" fx:id="fieldCivico" alignment="CENTER" layoutX="606.0" layoutY="322.0" prefHeight="53.0" prefWidth="130.0" promptText="Civico" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
             <padding>
                 <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
             </padding>
@@ -138,7 +134,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <TextField id="fieldIndirizzo" fx:id="fieldComune" alignment="CENTER" layoutX="166.0" layoutY="405.0" prefHeight="53.0" prefWidth="275.0" promptText="Comune" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
+        <TextField id="fieldIndirizzo" fx:id="fieldComune" alignment="CENTER" layoutX="166.0" layoutY="405.0" prefHeight="53.0" prefWidth="275.0" promptText="Comune" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
             <padding>
                 <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
             </padding>
@@ -149,7 +145,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <TextField id="fieldIndirizzo" fx:id="fieldProvincia" alignment="CENTER" layoutX="464.0" layoutY="405.0" prefHeight="51.0" prefWidth="102.0" promptText="Provincia" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
+        <TextField id="fieldIndirizzo" fx:id="fieldProvincia" alignment="CENTER" layoutX="464.0" layoutY="405.0" prefHeight="51.0" prefWidth="102.0" promptText="Provincia" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
             <padding>
                 <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
             </padding>
@@ -160,7 +156,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <TextField id="fieldIndirizzo" fx:id="fieldCap" alignment="CENTER" layoutX="587.0" layoutY="405.0" prefHeight="51.0" prefWidth="149.0" promptText="CAP" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
+        <TextField id="fieldIndirizzo" fx:id="fieldCap" alignment="CENTER" layoutX="587.0" layoutY="405.0" prefHeight="51.0" prefWidth="149.0" promptText="CAP" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);">
             <padding>
                 <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
             </padding>

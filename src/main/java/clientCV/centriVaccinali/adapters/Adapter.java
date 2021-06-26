@@ -16,7 +16,7 @@ import java.util.Objects;
 public abstract class Adapter {
     public static final String path = "Layout/";
 
-    public void changeShermata(String fxml, ActionEvent event) throws IOException {
+    public void cambiaSchermata(String fxml, ActionEvent event) throws IOException {
         Parent root = FXMLLoader
                 .load(Objects.requireNonNull(CentriVaccinali.class.getClassLoader()
                 .getResource(path + fxml)));
@@ -27,8 +27,8 @@ public abstract class Adapter {
     }
 
     public void cambiaSchermataConUtente(String fxml, Utente utente, ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
-                .getClassLoader().getResource(path + fxml));
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getClassLoader()
+                .getResource( path + fxml));
 
         Parent root = fxmlLoader.load();
 

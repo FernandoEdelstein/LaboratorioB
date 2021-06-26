@@ -17,8 +17,12 @@ public class HomeCittadiniAdapter extends Adapter {
 
     private Utente utente;
 
-    public void switchToCercaScene(ActionEvent event) throws IOException {
+    public void vaiACercaScene(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("Cerca.fxml", utente, event);
+    }
+
+    public void vaiARegistratiScene(ActionEvent event) throws IOException {
+        cambiaSchermata("RegistraCittadino.fxml", event);
     }
 
     @Override
