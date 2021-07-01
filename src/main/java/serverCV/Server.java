@@ -13,7 +13,7 @@ public class Server {
             System.out.println("Server Ready");
 
         }catch (Exception e){
-            System.out.println("TTYChatServer err: " + e.getMessage());
+            System.out.println("Server err: " + e.getMessage());
         }
     }
 }

@@ -21,7 +21,7 @@
             <Font name="Montserrat Regular" size="18.0" />
         </font>
     </Text>
-    <Button id="btnRegistraCentro" fx:id="btnRegistraCentro" alignment="CENTER" layoutX="223.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiARegistraCentroScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Registra Centro" textFill="#53b0bd">
+    <Button id="btnRegistraCentro" fx:id="btnRegistraCentro" alignment="CENTER" layoutX="223.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiARegistraCentroScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Registra Centro" textFill="#53b0bd">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -32,7 +32,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Button id="btnRegistraVaccinato" fx:id="btnRegistraVaccinato" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiARegistraVaccinatoScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Registra Vaccinato" textFill="#53b0bd">
+    <Button id="btnRegistraVaccinato" fx:id="btnRegistraVaccinato" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiARegistraVaccinatoScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Registra Vaccinato" textFill="#53b0bd">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -43,7 +43,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" prefWidth="126.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Logout" textFill="#12646f">
+    <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" prefWidth="126.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Logout" textFill="#12646f">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>

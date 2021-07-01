@@ -1,6 +1,7 @@
 package clientCV.shared;
 
 public class ServerInfo {
+
     private static String PGUSERNAME = "postgres";
 
     private static String PGPASSWORD = "pass";
@@ -9,9 +10,27 @@ public class ServerInfo {
 
     private static final String DBNAME = "centrivaccinali";
 
-    private static int PORT = 8888;
+    private static int PORT = 5432;
 
     private static String IPSERVER = "localhost";
+
+    //Setters
+
+    public static void setPGUSERNAME(String PGUSERNAME) {
+        ServerInfo.PGUSERNAME = PGUSERNAME;
+    }
+
+    public static void setPGPASSWORD(String PGPASSWORD) {
+        ServerInfo.PGPASSWORD = PGPASSWORD;
+    }
+
+    public static void setPORT(int PORT) {
+        ServerInfo.PORT = PORT;
+    }
+
+    public static void setIPSERVER(String IPSERVER) {
+        ServerInfo.IPSERVER = IPSERVER;
+    }
 
     //Getters
     public static int getDBPORT() {

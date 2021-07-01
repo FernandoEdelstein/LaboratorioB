@@ -70,7 +70,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button id="btnReset" layoutX="28.0" layoutY="548.0" mnemonicParsing="false" onAction="#vaiAImpostazioni" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);" text="Impostazioni" textAlignment="CENTER" textFill="#53b0bd">
+        <Button id="btnReset" layoutX="28.0" layoutY="548.0" mnemonicParsing="false" onAction="#vaiAImpostazioni" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);" text="Impostazioni" textAlignment="CENTER" textFill="#53b0bd">
             <font>
                 <Font name="Microsoft Sans Serif" size="11.0" />
             </font>

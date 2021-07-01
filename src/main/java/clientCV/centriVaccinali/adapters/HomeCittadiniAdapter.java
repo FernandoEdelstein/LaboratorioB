@@ -11,7 +11,7 @@ import java.io.IOException;
 public class HomeCittadiniAdapter extends Adapter {
 
     @FXML
-    private Text welcomeTextField;
+    private Text benvenutoText;
     @FXML
     private Button btnLogout, btnRegistrati;
 
@@ -29,12 +29,12 @@ public class HomeCittadiniAdapter extends Adapter {
     public void setUtente(Utente utente) {
         this.utente = utente;
         if (utente == null) {
-            welcomeTextField.setText("Accesso come ospite");
+            benvenutoText.setText("Accesso come ospite");
             btnRegistrati.setDisable(false);
             btnLogout.setText("Accedi");
         }
         else {
-            welcomeTextField.setText("Ciao, " + utente.getUsername());
+            benvenutoText.setText("Ciao, " + utente.getUsername());
             btnRegistrati.setDisable(true);
             btnLogout.setText("Logout");
         }
