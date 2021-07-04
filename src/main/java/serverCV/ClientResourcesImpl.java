@@ -8,12 +8,18 @@ import clientCV.centriVaccinali.models.Vaccinato;
 import clientCV.shared.Utente;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ClientResourcesImpl implements ClientResources {
-    public ClientResourcesImpl(){ }
+public class ClientResourcesImpl extends UnicastRemoteObject implements ClientResources {
+    private static final long serialVersionUID = 1L;
 
+
+    public ClientResourcesImpl() throws RemoteException {
+
+    }
 
     @Override
     public Utente login(String query, String user) throws IOException {

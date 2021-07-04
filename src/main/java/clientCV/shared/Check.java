@@ -1,29 +1,82 @@
 package clientCV.shared;
 
+import serverCV.Proxy;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Check {
 
-    public boolean cfValido(String cf) {
-        return cf.matches("^(?:[A-Z][AEIOU][AEIOUX]|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]" +
-                "|[15MR][\\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|" +
-                "[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]+$");
-    }
 
-    public boolean emailValido(String mail) {
+    public boolean emailValido(String email) {
+
         String EMAIL_PATTERN = ("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher(mail);
+        Matcher matcher = pattern.matcher(email);
 
         return matcher.matches();
     }
 
+
+    public boolean cfValido(String CF) {
+        return CF.matches("^(?:[A-Z][AEIOU][AEIOUX]|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]" +
+                "|[15MR][\\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|" +
+                "[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]+$");
+    }
+
+
     public String lowercaseNotFirst(String str) {
         if (str.isBlank())
             return "";
+
         return str.substring(0, 1).toUpperCase() + str.substring(1, str.length()).toLowerCase();
+    }
+
+
+    public String formatTableName(String tableName) {
+        StringBuilder name = new StringBuilder();
+        for (int i = 0; i < tableName.length(); i++) {
+            if(tableName.charAt(i) != ' ')
+                name.append(tableName.charAt(i));
+            else
+                name.append('_');
+        }
+        return name.toString();
+    }
+
+
+    public boolean populateDatabase() throws IOException, SQLException {
+        Proxy proxyCheck = new Proxy();
+        Proxy proxyPopulate = new Proxy();
+
+        String queryCheck = "SELECT idsegnalazione FROM segnalazione";
+        ArrayList<String> segnalazioni = proxyCheck.getSingleValues(queryCheck, "idsegnalazione");
+
+        if(segnalazioni.size() > 9)
+            return false;
+
+        StringBuilder queryPopulate = new StringBuilder();
+        try {
+            File entriesFile = new File("src/main/java/clientCV/shared/DefaultEntries.sql");
+            Scanner scanner = new Scanner(entriesFile);
+            while (scanner.hasNextLine())
+                queryPopulate.append(scanner.nextLine());
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        proxyPopulate.insertDb(queryPopulate.toString());
+
+        System.out.println("> First launch: default data generated.");
+        return true;
     }
 
 }

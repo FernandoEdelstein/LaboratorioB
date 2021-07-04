@@ -2,6 +2,7 @@ package clientCV.centriVaccinali.adapters;
 
 import clientCV.CentriVaccinali;
 import clientCV.cittadini.Cittadino;
+import clientCV.shared.Check;
 import clientCV.shared.Utente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,8 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import serverCV.Proxy;
+import serverCV.ServerInfo;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -39,26 +44,26 @@ public class LogInAdapter extends Adapter{
     }
 
     public void vaiARegistra(ActionEvent event) throws IOException, SQLException {
-        /*
+
         if(!tryConnection())
-            return;*/
+            return;
 
         cambiaSchermataConUtente("RegistraCittadino.fxml", null, event);
     }
 
     public void logInOspite(ActionEvent event) throws IOException, SQLException {
-        /*
+
         if(!tryConnection())
-            return;*/
+            return;
 
         cambiaSchermataConUtente("HomeCittadini.fxml", null, event);
     }
 
     public void controllaLogIn(ActionEvent event) throws IOException, SQLException {
 
-        /*
+
         if(!tryConnection())
-            return;*/
+            return;
 
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -68,9 +73,10 @@ public class LogInAdapter extends Adapter{
             return;
         }
 
-        /*Proxy proxy = new Proxy();
+
+        Proxy proxy = new Proxy();
         String query = "select * from utentiregistrati where userid = '" + username+ "'and pword = '" + password +"'";
-        utente = proxy.login(query, username);*/
+        utente = proxy.login(query, username);
 
         if(utente == null) {
             mostraWarning("Utente inesistente", "Username e Password non corrispondono a nessun utente\nregistrato");
@@ -87,6 +93,32 @@ public class LogInAdapter extends Adapter{
     @Override
     public void setUtente(Utente utente) {
         this.utente = utente;
+    }
+
+    public boolean tryConnection() throws IOException, SQLException {
+        boolean connected;
+
+        connected = pingHost(ServerInfo.getIPSERVER(), ServerInfo.getPORT());
+        System.out.println(connected);
+        if (!connected) {
+            vaiAImpostazioni();
+            return false;
+        }
+
+        Check util = new Check();
+        util.populateDatabase();
+
+        return true;
+
+    }
+
+    private static boolean pingHost(String host, int port) {
+        try (Socket socket = new Socket()) {
+            socket.connect(new InetSocketAddress(host, port), 1500);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
 
 }
