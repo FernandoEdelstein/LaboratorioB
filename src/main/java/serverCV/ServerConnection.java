@@ -39,7 +39,7 @@ public class ServerConnection extends Thread{
             Connection c = DriverManager.getConnection(
                     "jdbc:postgresql://" +
                             ServerInfo.getIPSERVER() +
-                            ":" +5432+ "/" +
+                            ":" +ServerInfo.getDBPORT()+ "/" +
                             ServerInfo.getDBNAME(),
                             username,
                             password);

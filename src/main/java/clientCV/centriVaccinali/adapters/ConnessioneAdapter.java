@@ -45,6 +45,6 @@ public class ConnessioneAdapter extends Adapter{
 
     public void setDefault() {
         ipField.setText("localhost");
-        portField.setText("5432");
+        portField.setText("7070");
     }
 }

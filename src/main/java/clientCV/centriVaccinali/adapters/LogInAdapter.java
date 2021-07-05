@@ -61,7 +61,6 @@ public class LogInAdapter extends Adapter{
 
     public void controllaLogIn(ActionEvent event) throws IOException, SQLException {
 
-
         if(!tryConnection())
             return;
 

@@ -21,7 +21,7 @@ public class Proxy{
 
     public Proxy() throws IOException {
 
-        socket = new Socket("localhost", 7070);
+        socket = new Socket(ServerInfo.getIPSERVER(), ServerInfo.getPORT());
 
         try {
             in = new BufferedReader(

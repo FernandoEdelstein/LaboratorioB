@@ -13,7 +13,7 @@ public class Server {
     public static void main(String[] args) {
         try{
             Semaphore sem= new Semaphore(100);
-            ServerSocket server = new ServerSocket(7070);
+            ServerSocket server = new ServerSocket(ServerInfo.getPORT());
 
             System.out.println("Server Ready");
             try {
