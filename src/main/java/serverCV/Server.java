@@ -21,7 +21,7 @@ public class Server {
 
                 while(true) {
                     Socket socket = server.accept();
-                    //Cambiare username e password con server info
+
                     new ServerConnection(socket, sem, ServerInfo.getPGUSERNAME(), ServerInfo.getPGPASSWORD());
                 }
             } catch(Exception e)  {

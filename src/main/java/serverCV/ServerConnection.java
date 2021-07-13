@@ -10,7 +10,7 @@ import java.util.concurrent.Semaphore;
 public class ServerConnection extends Thread{
 
     private Semaphore sem;
-    private Socket socket = new Socket("localhost", 5432);
+    private Socket socket;
     private BufferedReader in = null;
     private PrintWriter out = null;
     private String username, password;
@@ -36,13 +36,9 @@ public class ServerConnection extends Thread{
             e.printStackTrace();
         }
         try {
-            Connection c = DriverManager.getConnection(
-                    "jdbc:postgresql://" +
-                            ServerInfo.getIPSERVER() +
-                            ":" +ServerInfo.getDBPORT()+ "/" +
-                            ServerInfo.getDBNAME(),
-                            username,
-                            password);
+            Connection c = DriverManager.getConnection("jdbc:postgresql://" + ServerInfo.getIPSERVER() + ":" + ServerInfo.getDBPORT() + "/" + ServerInfo.getDBNAME(),
+                    ServerInfo.getPGUSERNAME(),
+                    ServerInfo.getPGPASSWORD());
             try {
                 in = new BufferedReader(
                         new InputStreamReader(socket.getInputStream()));
@@ -69,30 +65,30 @@ public class ServerConnection extends Thread{
 
     private void serveClient(BufferedReader in, PrintWriter out, Connection c) throws IOException, SQLException {
         String operation;
-        ServerResourcesImpl dBhelper = new ServerResourcesImpl(in, out, c);
+        ServerResourcesImpl resources = new ServerResourcesImpl(in, out, c);
 
         while((operation = in.readLine())!= null) {
 
             switch (operation) {
-                case "insertDb" : dBhelper.insertDb();
+                case "insertDb" : resources.insertDb();
                     break;
-                case "populateCentriVaccinali" : dBhelper.populateCentriVaccinali();
+                case "populateCentriVaccinali" : resources.populateCentriVaccinali();
                     break;
-                case "filter" : dBhelper.filter();
+                case "filter" : resources.filter();
                     break;
-                case "searchSintomi" : dBhelper.getSintomi();
+                case "searchSintomi" : resources.getSintomi();
                     break;
-                case "getSingleValues" : dBhelper.getSingleValues();
+                case "getSingleValues" : resources.getSingleValues();
                     break;
-                case "login" : dBhelper.login();
+                case "login" : resources.login();
                     break;
-                case "getSegnalazione" : dBhelper.getSegnalazione();
+                case "getSegnalazione" : resources.getSegnalazione();
                     break;
-                case "getVaccinati" : dBhelper.getVaccinati();
+                case "getVaccinati" : resources.getVaccinati();
                     break;
                 default: break;
             }
-            dBhelper.close(socket);
+            resources.close(socket);
         }
         sem.release();
     }

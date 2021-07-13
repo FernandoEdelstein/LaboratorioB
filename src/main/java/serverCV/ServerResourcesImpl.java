@@ -29,9 +29,9 @@ public class ServerResourcesImpl{
             eRegistrato = true;
 
         if(eRegistrato) {
-            String query1 = "SELECT * FROM cittadiniregistrati " +
-                    "JOIN utentiregistrati ON cittadiniregistrati.userid = utentiregistrati.userid " +
-                    "WHERE utentiregistrati.userid = '" + userid + "'";
+            String query1 = "SELECT * FROM cittadinivaccinati " +
+                    "JOIN utenti ON cittadinivaccinati.userid = utenti.userid " +
+                    "WHERE utenti.userid = '" + userid + "'";
             Statement st = connection.createStatement();
             ResultSet r = st.executeQuery(query1);
 

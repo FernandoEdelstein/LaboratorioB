@@ -74,7 +74,7 @@ public class LogInAdapter extends Adapter{
 
 
         Proxy proxy = new Proxy();
-        String query = "select * from utentiregistrati where userid = '" + username+ "'and pword = '" + password +"'";
+        String query = "select * from utenti where userid = '" + username+ "'and pword = '" + password +"'";
         utente = proxy.login(query, username);
 
         if(utente == null) {
@@ -104,8 +104,8 @@ public class LogInAdapter extends Adapter{
             return false;
         }
 
-        Check util = new Check();
-        util.populateDatabase();
+        Check check = new Check();
+        check.populateDatabase();
 
         return true;
 
@@ -116,6 +116,7 @@ public class LogInAdapter extends Adapter{
             socket.connect(new InetSocketAddress(host, port), 1500);
             return true;
         } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
     }

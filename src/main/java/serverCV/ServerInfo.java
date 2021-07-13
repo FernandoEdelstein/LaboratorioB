@@ -10,7 +10,7 @@ public class ServerInfo {
 
         private static final String DBNAME = "centrivaccinali";
 
-        private static int PORT = 8888;
+        private static int PORT = 7070;
 
         private static String IPSERVER = "localhost";
 

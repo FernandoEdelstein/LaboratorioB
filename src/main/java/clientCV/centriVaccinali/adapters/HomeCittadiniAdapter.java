@@ -13,7 +13,7 @@ public class HomeCittadiniAdapter extends Adapter {
     @FXML
     private Text benvenutoText;
     @FXML
-    private Button btnLogout, btnRegistrati;
+    private Button btnLogout, btnRegistrati, btnCerca;
 
     private Utente utente;
 

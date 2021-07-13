@@ -57,7 +57,7 @@ public class Check {
         Proxy proxyCheck = new Proxy();
         Proxy proxyPopulate = new Proxy();
 
-        String queryCheck = "SELECT idsegnalazione FROM segnalazione";
+        String queryCheck = "SELECT idsegnalazione FROM segnalazioni";
         ArrayList<String> segnalazioni = proxyCheck.getSingleValues(queryCheck, "idsegnalazione");
 
         if(segnalazioni.size() > 9)
