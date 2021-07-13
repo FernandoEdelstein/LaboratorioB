@@ -51,7 +51,7 @@ public class ServerResourcesImpl{
             out.println(result.getString("cognome"));
             out.println(result.getString("codicefiscale"));
             out.println(result.getString("userid"));
-            out.println(result.getString("pword"));
+            out.println(result.getString("pass"));
 
             if(eCittadino)
                 out.println(r.getString("email"));

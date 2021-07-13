@@ -74,7 +74,7 @@ public class LogInAdapter extends Adapter{
 
 
         Proxy proxy = new Proxy();
-        String query = "select * from utenti where userid = '" + username+ "'and pword = '" + password +"'";
+        String query = "select * from utenti where userid = '" + username+ "'and pass = '" + password +"'";
         utente = proxy.login(query, username);
 
         if(utente == null) {
