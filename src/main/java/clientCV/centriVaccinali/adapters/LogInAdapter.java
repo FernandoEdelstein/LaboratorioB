@@ -81,10 +81,10 @@ public class LogInAdapter extends Adapter{
             mostraWarning("Utente inesistente", "Username e Password non corrispondono a nessun utente\nregistrato");
         } else {
             if(utente instanceof Cittadino) {
-                cambiaSchermataConUtente("HomeCittadino.fxml", utente, event);
+                cambiaSchermataConUtente("HomeCittadini.fxml", utente, event);
             }
             else {
-                cambiaSchermataConUtente("HomeOperatore.fxml", utente, event);
+                cambiaSchermataConUtente("HomeCentri.fxml", utente, event);
             }
         }
     }

@@ -57,7 +57,7 @@ public class ServerResourcesImpl{
                 out.println(r.getString("email"));
 
             if(eCittadino)
-                out.println(r.getString("idvacc"));
+                out.println(r.getString("idvaccinazione"));
         }
         else
             out.println("false");
@@ -149,7 +149,7 @@ public class ServerResourcesImpl{
                 out.println(rs.getString("cognomecittadino"));
                 out.println(rs.getString("codicefiscale"));
                 out.println(rs.getString("vaccino"));
-                out.println(rs.getString("idvacc"));
+                out.println(rs.getString("idvaccinazione"));
             }
             out.println("exit");
         }

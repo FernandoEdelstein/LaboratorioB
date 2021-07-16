@@ -78,7 +78,7 @@ public class RegistraCittadinoAdapter extends Adapter{
 
         int IDUnivocoVaccinazione = Integer.parseInt(id);
         ArrayList<String> ids;
-        String query = "SELECT * FROM idunivoci WHERE idvacc = '"+IDUnivocoVaccinazione+"'";
+        String query = "SELECT * FROM idunivoci WHERE idvaccinazione = '"+IDUnivocoVaccinazione+"'";
 
         /*
         Proxy proxy = new Proxy();

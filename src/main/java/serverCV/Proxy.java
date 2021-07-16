@@ -135,7 +135,7 @@ public class Proxy{
                 String cognomecittadino = in.readLine();
                 String codfisc = in.readLine();
                 String vaccino = in.readLine();
-                int idvacc = Integer.parseInt(in.readLine());
+                int idvaccinazione = Integer.parseInt(in.readLine());
 
                 vaccinati.add(new Vaccinato(
                         nomecittadino,
@@ -144,7 +144,7 @@ public class Proxy{
                         null,
                         null,
                         Vaccino.valueOf(vaccino),
-                        idvacc
+                        idvaccinazione
                 ));
             }
         }
@@ -168,9 +168,9 @@ public class Proxy{
                 "cognomecittadino VARCHAR(50), " +
                 "codicefiscale VARCHAR(50), " +
                 "data DATE, vaccino VARCHAR(20), " +
-                "idvacc SMALLINT, " +
+                "idvaccinazione SMALLINT, " +
                 "PRIMARY KEY(codicefiscale), " +
-                "FOREIGN KEY(idvacc) REFERENCES idunivoci(idvacc), " +
+                "FOREIGN KEY(idvaccinazione) REFERENCES idunivoci(idvaccinazione), " +
                 "FOREIGN KEY(codicefiscale) REFERENCES idunivoci(codicefiscale)" +
                 ")");
     }
@@ -236,9 +236,9 @@ public class Proxy{
                 Utente u = new Utente(
                         nome,
                         cognome,
-                        CF,
                         username,
-                        password
+                        password,
+                        CF
                 );
                 return u;
             }
@@ -249,16 +249,16 @@ public class Proxy{
                 String username = in.readLine();
                 String password = in.readLine();
                 String email = in.readLine();
-                int idvacc = Integer.parseInt(in.readLine());
+                int idvaccinazione = Integer.parseInt(in.readLine());
 
                 Cittadino u = new Cittadino(
-                        nome,
-                        cognome,
-                        CF,
-                        email,
                         username,
                         password,
-                        idvacc
+                        nome,
+                        cognome,
+                        email,
+                        CF,
+                        idvaccinazione
                 );
                 return u;
             }
