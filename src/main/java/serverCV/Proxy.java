@@ -244,17 +244,17 @@ public class Proxy{
             }
             else {
                 String nome = in.readLine();
-                    System.out.println("NOME " + nome);
+
                 String cognome = in.readLine();
-                    System.out.println("COGNOME " + cognome);
+
                 String CF = in.readLine();
-                    System.out.println("CF " + CF);
+
                 String username = in.readLine();
-                    System.out.println("USERNAME " + username);
+
                 String password = in.readLine();
-                    System.out.println("PASS " + password);
+
                 String email = in.readLine();
-                    System.out.println("EMAIL " + email);
+
                 int idvaccinazione = Integer.parseInt(in.readLine());
 
                 Cittadino u = new Cittadino(
@@ -266,9 +266,7 @@ public class Proxy{
                         username,
                         idvaccinazione
                 );
-                System.out.println("Proxy - Username: " + u.getUsername() + " Pass: " + u.getPassword() + " Nome: " + u.getNome() + " Cognome: " +
-                        u.getCognome() + " email: " + u.getEmail() + " CF: " + u.getCF() +
-                        " idvac: " + u.getIdVaccinazione());
+
                 return u;
             }
         }
