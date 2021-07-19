@@ -18,6 +18,18 @@ public class Cittadino extends Utente {
         super(nome, cognome, CF, username, password);
         this.email = email;
         this.idVaccinazione = idVaccinazione;
+
+    }
+
+    @Override
+    public String toString(){
+        return " Cittadino to String -> Username: " + getUsername()
+                + " , password: " + getPassword()
+                + " , nome: " + getNome()
+                + " , cognome: " + getCognome()
+                + " , email: " + email
+                + " , CF: " + getCF()
+                + " , IDVac: " + getIdVaccinazione();
     }
 
     public String getEmail() {
@@ -27,5 +39,7 @@ public class Cittadino extends Utente {
     public int getIdVaccinazione() {
         return idVaccinazione;
     }
+
+
 
 }

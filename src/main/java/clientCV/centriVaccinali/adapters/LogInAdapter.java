@@ -82,9 +82,11 @@ public class LogInAdapter extends Adapter{
         } else {
             if(utente instanceof Cittadino) {
                 cambiaSchermataConUtente("HomeCittadini.fxml", utente, event);
+                System.out.println(utente.toString());
             }
             else {
                 cambiaSchermataConUtente("HomeCentri.fxml", utente, event);
+
             }
         }
     }
