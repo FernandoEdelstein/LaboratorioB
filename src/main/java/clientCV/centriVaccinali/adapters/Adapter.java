@@ -9,12 +9,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
 public abstract class Adapter {
     public static final String path = "Layout/";
+
+    public void impostaComboBox(ComboBox<String> comboBox) {
+        comboBox.setStyle("-fx-font: 13px \"Montserrat\";" +
+                "    -fx-border-radius: 30;\n" +
+                "    -fx-background-radius: 30;\n" +
+                "    -fx-border-style: solid;\n" +
+                "    -fx-border-color: silver;\n" +
+                "    -fx-border-width: 1.5;\n" +
+                "    -fx-background-color: rgba(255,255,255,0.75);");
+    }
 
     public void cambiaSchermata(String fxml, ActionEvent event) throws IOException {
         Parent root = FXMLLoader

@@ -1,8 +1,12 @@
 package clientCV.centriVaccinali.models;
 
+import clientCV.shared.Check;
+
 public class Indirizzo {
     private String strada, civico, comune, provincia, CAP;
     private Qualificatore qualificatore;
+
+        private Check check = new Check();
 
     public Indirizzo(Qualificatore qualificatore,
                      String strada,
@@ -49,5 +53,19 @@ public class Indirizzo {
     }
 
     //To String
+    @Override
+    public String toString() {
+        return check.lowercaseNotFirst(qualificatore.toString()) +
+                " " +
+                strada +
+                " " +
+                civico +
+                " - " +
+                comune +
+                " (" +
+                provincia +
+                "), " +
+                CAP;
+    }
 
 }

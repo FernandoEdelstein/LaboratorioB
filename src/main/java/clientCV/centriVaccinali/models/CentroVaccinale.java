@@ -35,4 +35,6 @@ public class CentroVaccinale {
         this.tipologia = tipologia;
     }
 
+
+
 }
