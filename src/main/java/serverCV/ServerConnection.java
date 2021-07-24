@@ -36,7 +36,9 @@ public class ServerConnection extends Thread{
             e.printStackTrace();
         }
         try {
-            Connection c = DriverManager.getConnection("jdbc:postgresql://" + ServerInfo.getIPSERVER() + ":" + ServerInfo.getDBPORT() + "/" + ServerInfo.getDBNAME(),
+            Connection c = DriverManager.getConnection("jdbc:postgresql://" + ServerInfo.getIPSERVER()
+                            + ":" + ServerInfo.getDBPORT() + "/"
+                            + ServerInfo.getDBNAME(),
                     ServerInfo.getPGUSERNAME(),
                     ServerInfo.getPGPASSWORD());
             try {
