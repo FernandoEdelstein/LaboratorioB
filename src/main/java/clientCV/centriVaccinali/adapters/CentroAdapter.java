@@ -91,7 +91,6 @@ public class CentroAdapter extends Adapter{
         String querySegnalazione = "SELECT * " +
                                     "FROM segnalazioni JOIN eventiavversi ON (eventiavversi.idevento = segnalazioni.idevento)" +
                                     "WHERE centrovaccinale = '" + centro.toLowerCase() + "'";
-        StringBuilder descrizioni = new StringBuilder();
         StringBuilder severita = new StringBuilder();
 
         int totaleSegnalazioni = 0;
@@ -107,7 +106,6 @@ public class CentroAdapter extends Adapter{
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
-
 
             for (int i = 0; i<segnalazioni.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass()
