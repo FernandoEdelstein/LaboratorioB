@@ -82,7 +82,7 @@ public class RegistraCittadinoAdapter extends Adapter{
 
         /*
         Proxy proxy = new Proxy();
-        ids = proxy.getSingleValues(query, "idvacc");
+        ids = proxy.getSingleValues(query, "idvaccinazione");
 
             return !ids.isEmpty();
          */

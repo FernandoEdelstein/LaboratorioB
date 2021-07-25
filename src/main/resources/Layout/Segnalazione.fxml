@@ -18,7 +18,7 @@
             <Font name="Montserrat Regular" size="18.0" />
         </font>
     </Text>
-    <Button id="btnCerca" fx:id="btnCerca" alignment="CENTER" layoutX="223.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiACerca" prefWidth="220.0" style="-fx-background-color: #53B0BD; -fx-background-radius: 10;" text="Cerca" textFill="#ffffff">
+    <Button id="btnCerca" fx:id="cercaBtn" alignment="CENTER" layoutX="223.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiACerca" prefWidth="220.0" style="-fx-background-color: #53B0BD; -fx-background-radius: 10;" text="Cerca" textFill="#ffffff">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -40,7 +40,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" prefWidth="126.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Logout" textFill="#12646f">
+    <Button id="btnLogout" fx:id="logoutBtn" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" prefWidth="126.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Logout" textFill="#12646f">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>

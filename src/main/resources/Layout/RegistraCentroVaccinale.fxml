@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapters.RegistraCentroVaccinaleAdapter">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapters.RegistraCentroVaccinaleAdapter">
     <children>
         <ImageView fitHeight="600.0" fitWidth="900.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -25,7 +21,7 @@
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
         </Text>
-        <Button id="btnRegistraCentro" fx:id="btnRegistraCentro" alignment="CENTER" layoutX="223.0" layoutY="23.0" mnemonicParsing="false" prefWidth="220.0" style="-fx-background-color: #53B0BD; -fx-background-radius: 10;" text="Registra Centro" textFill="WHITE">
+        <Button id="btnRegistraCentro" fx:id="registraCentroBtn" alignment="CENTER" layoutX="223.0" layoutY="23.0" mnemonicParsing="false" prefWidth="220.0" style="-fx-background-color: #53B0BD; -fx-background-radius: 10;" text="Registra Centro" textFill="WHITE">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
@@ -36,7 +32,7 @@
                 <Cursor fx:constant="CLOSED_HAND" />
             </cursor>
         </Button>
-        <Button id="btnRegistraVaccinato" fx:id="btnRegistraVaccinato" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiARegistraVaccinatoScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Registra Vaccinato" textFill="#53b0bd">
+        <Button id="btnRegistraVaccinato" fx:id="registraVaccinatoBtn" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiARegistraVaccinatoScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Registra Vaccinato" textFill="#53b0bd">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
@@ -47,7 +43,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" prefWidth="126.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Logout" textFill="#12646f">
+        <Button id="btnLogout" fx:id="logoutBtn" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" prefWidth="126.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Logout" textFill="#12646f">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
@@ -84,7 +80,7 @@
                 <Font name="Montserrat Bold" size="17.0" />
             </font>
         </Text>
-        <Button id="btnRegistraCentro" layoutX="347.0" layoutY="484.0" mnemonicParsing="false" style="-fx-background-color: #53B0BD; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 2, 2);" text="REGISTRA ORA" textFill="WHITE">
+        <Button id="btnRegistraCentro" fx:id="registratiBtn" layoutX="347.0" layoutY="484.0" mnemonicParsing="false" style="-fx-background-color: #53B0BD; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 2, 2);" text="REGISTRA ORA" textFill="WHITE">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>

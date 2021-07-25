@@ -8,14 +8,19 @@ import clientCV.cittadini.Cittadino;
 import clientCV.shared.Check;
 import clientCV.shared.Utente;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import serverCV.Proxy;
@@ -35,7 +40,10 @@ public class CentroAdapter extends Adapter{
     @FXML
     private Label indirizzoText;
     @FXML
-    private TextArea labelSegnalazioni;
+    private GridPane segnalazioniGrid;
+    @FXML
+    private ScrollPane segnalazioniScroll;
+
 
     public void vaiARegistrati(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCittadino.fxml", utente, event);
@@ -57,6 +65,16 @@ public class CentroAdapter extends Adapter{
             benvenutoText.setText("Accesso come ospite");
             segnalaBtn.setDisable(true);
             logoutBtn.setText("Accedi");
+            logoutBtn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    try {
+                        vaiALogin(actionEvent);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
         else {
             benvenutoText.setText("Ciao, " + utente.getUsername());
@@ -90,33 +108,36 @@ public class CentroAdapter extends Adapter{
             e.printStackTrace();
         }
 
-        for (Segnalazione s : segnalazioni) {
-            for(int i = 1; i <= 5; i++) {
-                if (i <= s.getSeverita())
-                    severita.append("●");
-                else
-                    severita.append("○");
+
+            for (int i = 0; i<segnalazioni.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass()
+                        .getClassLoader()
+                        .getResource(path + "SegnalazioneItem.fxml"));
+
+                AnchorPane anchorPane = null;
+                try {
+                    anchorPane = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                segnalazioneItemAdapter segnalazioneAdapter = fxmlLoader.getController();
+                segnalazioneAdapter.setData(segnalazioni.get(i));
+
+                segnalazioniGrid.add(anchorPane, 0, i);
+
+                GridPane.setMargin(anchorPane, new Insets(10, 0, 0, 0));
+
+                totaleSegnalazioni += segnalazioni.get(i).getSeverita();
+
+                severita.delete(0, severita.length());
             }
-
-            descrizioni
-                    .append("Sintomo: ")
-                    .append(s.getSintomo())
-                    .append("\nSeverità: ")
-                    .append(severita)
-                    .append("\nDescrizione: ")
-                    .append(s.getDescrizione())
-                    .append("\n\n");
-            totaleSegnalazioni += s.getSeverita();
-
-            severita.delete(0, severita.length());
-        }
 
         nomeText.setText(check.lowercaseNotFirst(centroVaccinale.getNome()));
         tipologiaText.setText("Tipologia: " + centroVaccinale.getTipologia().toString());
         indirizzoText.setText("Indirizzo: " + centroVaccinale.getIndirizzo().toString());
 
         numSegnalazioni.setText(String.valueOf(segnalazioni.size()));
-        labelSegnalazioni.setText(String.valueOf(descrizioni));
 
         double media = ((double) totaleSegnalazioni) / segnalazioni.size();
         if (Double.isNaN(media))
