@@ -19,7 +19,6 @@ public abstract class Adapter {
 
     public void impostaComboBox(ComboBox<String> comboBox) {
         comboBox.setStyle("-fx-font: 13px \"Montserrat\";" +
-                "    -fx-border-radius: 30;\n" +
                 "    -fx-background-radius: 30;\n" +
                 "    -fx-border-style: solid;\n" +
                 "    -fx-border-color: silver;\n" +
