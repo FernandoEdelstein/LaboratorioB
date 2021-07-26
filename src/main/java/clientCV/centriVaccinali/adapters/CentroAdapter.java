@@ -84,6 +84,10 @@ public class CentroAdapter extends Adapter{
     }
 
     public void setCentro(String centro){
+        //Imposta il background dello Scroll Pane
+        segnalazioniScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
+        segnalazioniGrid.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
+
         Proxy proxy, proxy2;
         Check check = new Check();
 
@@ -94,7 +98,6 @@ public class CentroAdapter extends Adapter{
         StringBuilder severita = new StringBuilder();
 
         int totaleSegnalazioni = 0;
-
             ArrayList<Segnalazione> segnalazioni = new ArrayList<>();
 
         try {

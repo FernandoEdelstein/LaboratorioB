@@ -136,10 +136,10 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
 
         while(true) {
             idvacc = r.nextInt(Short.MAX_VALUE);
-            String getIDquery = "SELECT idvacc FROM idunivoci WHERE idvacc = '"+idvacc+"'";
+            String getIDquery = "SELECT idvaccinazione FROM idunivoci WHERE idvaccinazione = '"+idvacc+"'";
             try {
                 proxyID = new Proxy();
-                tmpID = proxyID.getSingleValues(getIDquery, "idvacc");
+                tmpID = proxyID.getSingleValues(getIDquery, "idvaccinazione");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -159,8 +159,10 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
         ArrayList<String> nomiCentri;
         String query = "SELECT * FROM centrivaccinali";
 
-        String[] vaccini = {Vaccino.ASTRAZENECA.toString(), Vaccino.JOHNSONANDJOHNSON.toString(),
-                Vaccino.MODERNA.toString(), Vaccino.PFIZER.toString()};
+        String[] vaccini = {Vaccino.ASTRAZENECA.toString(),
+                Vaccino.JOHNSONANDJOHNSON.toString(),
+                Vaccino.MODERNA.toString(),
+                Vaccino.PFIZER.toString()};
 
         vaccinoCombo.getItems().addAll(vaccini);
 
