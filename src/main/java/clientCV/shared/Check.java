@@ -65,7 +65,7 @@ public class Check {
 
         StringBuilder queryPopulate = new StringBuilder();
         try {
-            File entriesFile = new File("src/main/java/clientCV/shared/DefaultEntries.sql");
+            File entriesFile = new File("src/main/resources/Database/tablesInsertions_centrivaccinali.sql");
             Scanner scanner = new Scanner(entriesFile);
             while (scanner.hasNextLine())
                 queryPopulate.append(scanner.nextLine());
