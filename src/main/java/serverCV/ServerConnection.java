@@ -66,12 +66,12 @@ public class ServerConnection extends Thread{
     }
 
     private void serveClient(BufferedReader in, PrintWriter out, Connection c) throws IOException, SQLException {
-        String operation;
+        String richiesta;
         ServerResourcesImpl resources = new ServerResourcesImpl(in, out, c);
 
-        while((operation = in.readLine())!= null) {
+        while((richiesta = in.readLine())!= null) {
 
-            switch (operation) {
+            switch (richiesta) {
                 case "insertDb" : resources.insertDb();
                     break;
                 case "populateCentriVaccinali" : resources.populateCentriVaccinali();

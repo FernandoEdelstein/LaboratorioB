@@ -80,7 +80,7 @@ public class RegistraCittadinoAdapter extends Adapter{
         Proxy proxyCittadini = new Proxy();
         proxyCittadini.insertDb(insertAsCittadino);
 
-        mostraWarning("Sei registrato!", "Accedi!");
+        mostraWarning("Sei registrato!", "Adesso puoi accedere");
 
 
     }

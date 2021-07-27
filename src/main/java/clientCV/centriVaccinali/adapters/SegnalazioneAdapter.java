@@ -21,10 +21,7 @@ import serverCV.Proxy;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SegnalazioneAdapter extends Adapter implements Initializable {
     private CentroVaccinale centroVaccinale;
@@ -83,8 +80,8 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         }
 
         if(isNew)
-            query = "INSERT INTO segnalazioni (idevento, userid, centrovaccinale, severita, descrizione) " +
-                    "VALUES("+idevento.get(sintomo)+", '"+utente.getUsername()+"', '"+nomeCentro+"', "+severita+",'"+descrizione+"')";
+            query = "INSERT INTO segnalazioni " +
+                    "VALUES("+generaIdSegnalazione()+", " +idevento.get(sintomo)+", '"+utente.getUsername()+"', '"+nomeCentro+"', "+severita+",'"+descrizione+"')";
         else
             query = "UPDATE segnalazioni " +
                     "SET idevento = "+idevento.get(sintomo)+", severita = "+severita+", descrizione = '"+descrizione+"' " +
@@ -193,5 +190,33 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
 
         noteAggiuntiveTextArea.setTextFormatter(new TextFormatter<String>(change ->
                 change.getControlNewText().length() <= MAX_CARATTERI ? change : null));
+
+    }
+
+    private int generaIdSegnalazione() {
+        ArrayList<String> tmpID = new ArrayList<>();
+        Random r = new Random();
+        int uIDSegnalazione = -1;
+        int counter = 1;
+        Proxy proxyID;
+
+        while(true) {
+            uIDSegnalazione = r.nextInt(Short.MAX_VALUE);
+            String getIDquery = "SELECT idsegnalazione FROM segnalazioni WHERE idsegnalazione = '"+uIDSegnalazione+"'";
+            try {
+                proxyID = new Proxy();
+                tmpID = proxyID.getSingleValues(getIDquery, "idsegnalazione");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Tentativo numero " + counter + ": " + uIDSegnalazione);
+
+            if (tmpID.isEmpty())
+                break;
+
+            counter++;
+        }
+
+        return uIDSegnalazione;
     }
 }

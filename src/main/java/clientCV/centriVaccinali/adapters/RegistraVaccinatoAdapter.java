@@ -92,7 +92,7 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
 
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
 
-        int idvaccino = generateUniqueID();
+        int idvaccino = generaUID();
 
         if(isNewVaccinato(CF)) {
             String insertIntoIdunivoci = "INSERT INTO idunivoci VALUES('"+idvaccino+"', '"+CF+"')";
@@ -127,7 +127,7 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
         return tmpCF.isEmpty();
     }
 
-    private int generateUniqueID() {
+    private int generaUID() {
         ArrayList<String> tmpID = new ArrayList<>();
         Random r = new Random();
         int idvacc = -1;
