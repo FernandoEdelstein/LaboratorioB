@@ -3,11 +3,13 @@ package clientCV.centriVaccinali.adapters;
 import clientCV.CentriVaccinali;
 import clientCV.shared.Utente;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -47,6 +49,7 @@ public abstract class Adapter {
         warning.setContentText(body);
         warning.show();
     }
+
 
     public abstract void setUtente(Utente utente);
 

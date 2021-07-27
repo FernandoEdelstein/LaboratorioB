@@ -38,7 +38,7 @@
             <Cursor fx:constant="CLOSED_HAND" />
         </cursor>
     </Button>
-    <Button id="btnRegistrati" fx:id="btnRegistrati" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiARegistrati" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Registrati" textFill="#53b0bd">
+    <Button id="btnRegistrati" fx:id="registratiBtn" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiARegistrati" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Registrati" textFill="#53b0bd">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -49,7 +49,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Button id="btnLogout" fx:id="btnLogout" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="117.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Logout" textFill="#12646f">
+    <Button id="btnLogout" fx:id="logoutBtn" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" onAction="#logoutBtnImpl" prefHeight="53.0" prefWidth="117.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Logout" textFill="#12646f">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
@@ -121,7 +121,7 @@
     </TextField>
    <ScrollPane fx:id="centriScroll" fitToWidth="true" hbarPolicy="NEVER" layoutX="52.0" layoutY="291.0" maxHeight="294.0" maxWidth="799.0" minHeight="232.0" minWidth="799.0" prefHeight="287.0" prefWidth="799.0" style="-fx-opacity: 50; -fx-border-radius: 0; -fx-background: #FFFFFF; -fx-background-color: #FFFFFF;">
       <content>
-         <GridPane fx:id="grid" style="-fx-opacity: 50; -fx-background-color: #FFFFFF;">
+         <GridPane fx:id="centriGrid" style="-fx-opacity: 50; -fx-background-color: #FFFFFF;">
            <columnConstraints>
              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
            </columnConstraints>

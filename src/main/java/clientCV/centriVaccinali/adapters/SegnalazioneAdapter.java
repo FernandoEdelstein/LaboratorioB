@@ -6,6 +6,8 @@ import clientCV.centriVaccinali.models.Segnalazione;
 import clientCV.centriVaccinali.models.Sintomo;
 import clientCV.shared.Check;
 import clientCV.shared.Utente;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,13 +30,13 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
     private Utente utente;
 
     private Map<String, Integer> idevento;
-    private boolean isNew = true;
+    private boolean nuovaSegnalazione = true;
     public static final int MAX_CARATTERI = 256;
 
     @FXML
     private Text benvenutoText, nomeCentroText;
     @FXML
-    private Button registratiBtn;
+    private Button registratiBtn, logoutBtn;
     @FXML
     private ComboBox<String> sintomoCombo, severitaCombo;
     @FXML
@@ -48,6 +50,29 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
 
     public void vaiARegistrati(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCittadino.fxml", utente, event);
+    }
+
+    public void logoutBtnImpl(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Conferma LogOut");
+        alert.setHeaderText("Stai per eseguire il LogOut");
+        alert.setContentText("Vuoi Continuare?");
+        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+        ButtonType okButton = new ButtonType("Si", ButtonBar.ButtonData.YES);
+
+        alert.getButtonTypes().setAll(okButton, noButton);
+        alert.showAndWait().ifPresent(type -> {
+            if (type == okButton) {
+                try {
+                    cambiaSchermataConUtente("Login.fxml", null, event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (type == noButton) {
+                alert.close();
+            } else {
+            }
+        });
     }
 
     public void vaiAVisualizzaCentro(ActionEvent event) throws IOException {
@@ -78,7 +103,7 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
             return;
         }
 
-        if(isNew)
+        if(nuovaSegnalazione)
             query = "INSERT INTO segnalazioni " +
                     "VALUES("+generaIdSegnalazione()+", " +idevento.get(sintomo)+", '"+utente.getUsername()+"', '"+nomeCentro+"', "+severita+",'"+descrizione+"')";
         else
@@ -96,7 +121,7 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
             throwables.printStackTrace();
         }
 
-        isNew = false;
+        nuovaSegnalazione = false;
 
             mostraWarning("Successo!", "La tua segnalazione è stata pubblicata!");
 
@@ -133,7 +158,7 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
                     severitaCombo.setValue(Integer.toString(segnalazione.get(0).getSeverita()));
                 noteAggiuntiveTextArea.setText(segnalazione.get(0).getDescrizione());
                 stampaDescrizioneSintomo();
-                isNew = false;
+                nuovaSegnalazione = false;
             }
         } catch (IOException e){
             e.printStackTrace();
@@ -141,11 +166,8 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
     }
 
     public void stampaDescrizioneSintomo() {
-        String nomeSintomo = sintomoCombo.getValue();
-
-        String query = "SELECT * " +
-                "FROM eventiavversi " +
-                "WHERE sintomo = '" + nomeSintomo + "'";
+        String sintomoComboTxt = sintomoCombo.getValue();
+        String query = "SELECT * FROM eventiavversi WHERE sintomo = '" + sintomoComboTxt + "'";
         Proxy proxy;
         ArrayList<Sintomo> sintomi;
 
@@ -188,6 +210,12 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         noteAggiuntiveTextArea.setTextFormatter(new TextFormatter<String>(change ->
                 change.getControlNewText().length() <= MAX_CARATTERI ? change : null));
 
+        sintomoCombo.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                stampaDescrizioneSintomo();
+            }
+        });
     }
 
     private int generaIdSegnalazione() {
@@ -199,7 +227,9 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
 
         while(true) {
             uIDSegnalazione = r.nextInt(Short.MAX_VALUE);
-            String getIDquery = "SELECT idsegnalazione FROM segnalazioni WHERE idsegnalazione = '"+uIDSegnalazione+"'";
+            String getIDquery = "SELECT idsegnalazione " +
+                    "FROM segnalazioni " +
+                    "WHERE idsegnalazione = '"+uIDSegnalazione+"'";
             try {
                 proxyID = new Proxy();
                 tmpID = proxyID.getSingleValues(getIDquery, "idsegnalazione");

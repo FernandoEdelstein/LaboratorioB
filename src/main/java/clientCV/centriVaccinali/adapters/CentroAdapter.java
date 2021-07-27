@@ -15,10 +15,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -55,6 +52,29 @@ public class CentroAdapter extends Adapter{
 
     public void vaiACerca(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("Cerca.fxml", utente, event);
+    }
+
+    public void logoutBtnImpl(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Conferma LogOut");
+        alert.setHeaderText("Stai per eseguire il LogOut");
+        alert.setContentText("Vuoi Continuare?");
+        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+        ButtonType okButton = new ButtonType("Si", ButtonBar.ButtonData.YES);
+
+        alert.getButtonTypes().setAll(okButton, noButton);
+        alert.showAndWait().ifPresent(type -> {
+            if (type == okButton) {
+                try {
+                    cambiaSchermataConUtente("Login.fxml", null, event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (type == noButton) {
+                alert.close();
+            } else {
+            }
+        });
     }
 
     @Override

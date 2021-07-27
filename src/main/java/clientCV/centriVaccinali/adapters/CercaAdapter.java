@@ -45,13 +45,11 @@ public class CercaAdapter extends Adapter implements Initializable {
     @FXML
     private Text benvenutoText;
     @FXML
-    private Button btnRegistrati, btnLogout, btnVisualizza;
-    @FXML
-    private ListView<String> listaCentri;
+    private Button registratiBtn, logoutBtn;
     @FXML
     private ScrollPane centriScroll;
     @FXML
-    private GridPane grid;
+    private GridPane centriGrid;
 
     public void vaiARegistrati(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCittadino.fxml", utente, event);
@@ -59,6 +57,29 @@ public class CercaAdapter extends Adapter implements Initializable {
 
     public void vaiALogIn(ActionEvent event) throws IOException {
         cambiaSchermata("Login.fxml", event);
+    }
+
+    public void logoutBtnImpl(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Conferma LogOut");
+        alert.setHeaderText("Stai per eseguire il LogOut");
+        alert.setContentText("Vuoi Continuare?");
+        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+        ButtonType okButton = new ButtonType("Si", ButtonBar.ButtonData.YES);
+
+        alert.getButtonTypes().setAll(okButton, noButton);
+        alert.showAndWait().ifPresent(type -> {
+            if (type == okButton) {
+                try {
+                    cambiaSchermataConUtente("Login.fxml", null, event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (type == noButton) {
+                alert.close();
+            } else {
+            }
+        });
     }
 
     public void mostraCentriVaccinali() throws IOException, SQLException {
@@ -82,7 +103,7 @@ public class CercaAdapter extends Adapter implements Initializable {
                 mostraWarning("Nessun centro trovato", "Non ci sono centri vaccinali registrati con questo nome");
 
 
-            grid.getChildren().clear();
+            centriGrid.getChildren().clear();
             //Creazione dei Risultati
                 for (int i = 0; i<centrivaccinali.size(); i++) {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass()
@@ -94,7 +115,7 @@ public class CercaAdapter extends Adapter implements Initializable {
                     CentroSearchItemAdapter centroSearchItemAdapter = fxmlLoader.getController();
                     centroSearchItemAdapter.setData(centrivaccinali.get(i), utente);
 
-                    grid.add(anchorPane,0, i);
+                    centriGrid.add(anchorPane,0, i);
 
                     GridPane.setMargin(anchorPane, new Insets(10,0,0,0));
 
@@ -123,7 +144,7 @@ public class CercaAdapter extends Adapter implements Initializable {
             if(centrivaccinali.size() == 0)
                 mostraWarning("Nessun centro trovato", "Non esistono centri vaccinali registrati \n corrispondenti ai criteri di ricerca");
 
-            grid.getChildren().clear();
+            centriGrid.getChildren().clear();
             for (int i = 0; i<centrivaccinali.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass()
                         .getClassLoader()
@@ -134,7 +155,7 @@ public class CercaAdapter extends Adapter implements Initializable {
                 CentroSearchItemAdapter centroSearchItemAdapter = fxmlLoader.getController();
                 centroSearchItemAdapter.setData(centrivaccinali.get(i), utente);
 
-                grid.add(anchorPane,0, i);
+                centriGrid.add(anchorPane,0, i);
 
                 GridPane.setMargin(anchorPane, new Insets(10,0,0,0));
 
@@ -153,9 +174,9 @@ public class CercaAdapter extends Adapter implements Initializable {
         this.utente = utente;
         if (utente == null) {
             benvenutoText.setText("Accesso come ospite");
-            btnRegistrati.setDisable(false);
-            btnLogout.setText("Accedi");
-            btnLogout.setOnAction(new EventHandler<ActionEvent>() {
+            registratiBtn.setDisable(false);
+            logoutBtn.setText("Accedi");
+            logoutBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
                     try {
@@ -168,7 +189,7 @@ public class CercaAdapter extends Adapter implements Initializable {
         }
         else {
             benvenutoText.setText("Ciao, " + utente.getUsername());
-            btnRegistrati.setVisible(false);
+            registratiBtn.setVisible(false);
         }
 
         populateListView();
@@ -191,7 +212,7 @@ public class CercaAdapter extends Adapter implements Initializable {
                 CentroSearchItemAdapter centroSearchItemAdapter = fxmlLoader.getController();
                 centroSearchItemAdapter.setData(centrivaccinali.get(i), utente);
 
-                grid.add(anchorPane,0, i);
+                centriGrid.add(anchorPane,0, i);
 
                 GridPane.setMargin(anchorPane, new Insets(10,0,0,0));
 
@@ -208,7 +229,7 @@ public class CercaAdapter extends Adapter implements Initializable {
         String[] tipo = {Tipologia.OSPEDALIERO.toString(), Tipologia.HUB.toString(), Tipologia.AZIENDALE.toString()};
         tipologiaCBox.getItems().addAll(tipo);
         centriScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
-        grid.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
+        centriGrid.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
     }
 
     private String extractName(String centro) {

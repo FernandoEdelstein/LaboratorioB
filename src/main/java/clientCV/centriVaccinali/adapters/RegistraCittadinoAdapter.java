@@ -5,8 +5,7 @@ import clientCV.shared.Utente;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import serverCV.Proxy;
 
 import java.io.IOException;
@@ -29,6 +28,29 @@ public class RegistraCittadinoAdapter extends Adapter{
 
     public void vaiALogin(ActionEvent event) throws IOException {
         cambiaSchermata("Login.fxml", event);
+    }
+
+    public void logoutBtnImpl(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Conferma LogOut");
+        alert.setHeaderText("Stai per eseguire il LogOut");
+        alert.setContentText("Vuoi Continuare?");
+        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+        ButtonType okButton = new ButtonType("Si", ButtonBar.ButtonData.YES);
+
+        alert.getButtonTypes().setAll(okButton, noButton);
+        alert.showAndWait().ifPresent(type -> {
+            if (type == okButton) {
+                try {
+                    cambiaSchermataConUtente("Login.fxml", null, event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (type == noButton) {
+                alert.close();
+            } else {
+            }
+        });
     }
 
     @Override
