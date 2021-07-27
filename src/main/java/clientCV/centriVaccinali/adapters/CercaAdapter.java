@@ -207,8 +207,8 @@ public class CercaAdapter extends Adapter implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] tipo = {Tipologia.OSPEDALIERO.toString(), Tipologia.HUB.toString(), Tipologia.AZIENDALE.toString()};
         tipologiaCBox.getItems().addAll(tipo);
-
-
+        centriScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
+        grid.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
     }
 
     private String extractName(String centro) {

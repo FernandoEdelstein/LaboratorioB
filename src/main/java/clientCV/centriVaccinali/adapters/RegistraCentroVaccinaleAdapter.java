@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializable {
     private Utente utente;
-    private Check check;
+    private Check check = new Check();
 
     @FXML
     private TextField nomeField, stradaField, civicoField, provField, comuneField, capField;
@@ -97,7 +97,7 @@ public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializ
         else {
             proxy.insertDb(query);
             proxy1.populateCentriVaccinali(nomeCentro);
-            mostraWarning("Successo", "Centro registrato!");
+            mostraWarning("Successo", "Centro registrato correttamente!");
         }
 
     }

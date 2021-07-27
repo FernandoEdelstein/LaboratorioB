@@ -68,17 +68,19 @@ public class LogInAdapter extends Adapter{
         String password = passwordField.getText();
 
         if (username.isBlank() || password.isBlank()) {
-            mostraWarning("Campi vuoti", "Inserisci username e password validi per accedere");
+            mostraWarning("Campi vuoti", "Inserire username e password per accedere");
             return;
         }
 
-
         Proxy proxy = new Proxy();
-        String query = "select * from utenti where userid = '" + username+ "'and pass = '" + password +"'";
+        String query = "SELECT * " +
+                "FROM utenti " +
+                "WHERE userid = '" + username+
+                "'AND pass = '" + password +"'";
         utente = proxy.login(query, username);
 
         if(utente == null) {
-            mostraWarning("Utente inesistente", "Username e Password non corrispondono a nessun utente\nregistrato");
+            mostraWarning("Utente non trovato", "Username e Password non corrispondono a nessun utente");
         } else {
             if(utente instanceof Cittadino) {
                 cambiaSchermataConUtente("HomeCittadini.fxml", utente, event);
@@ -100,7 +102,6 @@ public class LogInAdapter extends Adapter{
         boolean connected;
 
         connected = pingHost(ServerInfo.getIPSERVER(), ServerInfo.getPORT());
-        System.out.println(connected);
         if (!connected) {
             vaiAImpostazioni();
             return false;

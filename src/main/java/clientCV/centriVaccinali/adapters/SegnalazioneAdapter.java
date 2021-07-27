@@ -33,6 +33,7 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
     private Map<String, Integer> idevento;
     private boolean isNew = true;
     public static final int MAX_CARATTERI = 256;
+    private int ultimoIdSegnalazione;
 
     @FXML
     private Text benvenutoText, nomeCentroText;
@@ -69,7 +70,7 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         stage.show();
     }
 
-    public void pubblicaSegnalazione(ActionEvent event) throws IOException {
+    public void inviaSegnalazione(ActionEvent event) throws IOException {
         String nomeCentro = centroVaccinale.getNome();
         String descrizione = noteAggiuntiveTextArea.getText().trim();
         String sintomo = sintomoCombo.getValue();
@@ -77,14 +78,17 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         String query;
 
         if(descrizione.isBlank() || sintomoCombo.getValue() == null) {
-            mostraWarning("Campi mancanti", "Inserire tutti i campi richiesti");
+            mostraWarning("Campi vuoti", "Inserire una nota aggiuntiva");
             return;
         }
 
         if(isNew)
-            query = "INSERT INTO segnalazioni (idevento, userid, centrovaccinale, severita, descrizione) VALUES("+idevento.get(sintomo)+", '"+utente.getUsername()+"', '"+nomeCentro+"', "+severita+",'"+descrizione+"')";
+            query = "INSERT INTO segnalazioni (idevento, userid, centrovaccinale, severita, descrizione) " +
+                    "VALUES("+idevento.get(sintomo)+", '"+utente.getUsername()+"', '"+nomeCentro+"', "+severita+",'"+descrizione+"')";
         else
-            query = "UPDATE segnalazioni SET idevento = "+idevento.get(sintomo)+", severita = "+severita+", descrizione = '"+descrizione+"' WHERE userid = '"+utente.getUsername()+"'";
+            query = "UPDATE segnalazioni " +
+                    "SET idevento = "+idevento.get(sintomo)+", severita = "+severita+", descrizione = '"+descrizione+"' " +
+                    "WHERE userid = '"+utente.getUsername()+"'";
 
         System.out.println(query);
         Proxy proxy;
@@ -97,7 +101,9 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         }
 
         isNew = false;
-            //showSuccessDialog("Successo", "Segnalazione avvenuta con successo!");
+
+            mostraWarning("Successo!", "La tua segnalazione è stata pubblicata!");
+
         vaiAVisualizzaCentro(event);
     }
 
@@ -118,11 +124,14 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
 
         try {
             proxy = new Proxy();
-            String query = "SELECT * FROM segnalazioni join eventiavversi on (eventiavversi.idevento = segnalazioni.idevento) WHERE userid = '" + utente.getUsername() + "'";
+            String query = "SELECT * " +
+                    "FROM segnalazioni " +
+                    "JOIN eventiavversi ON (eventiavversi.idevento = segnalazioni.idevento) " +
+                    "WHERE userid = '" + utente.getUsername() + "'";
             segnalazione = proxy.getSegnalazione(query);
 
             if (segnalazione.size() > 0) {
-                mostraWarning("Hai già fatto una segnalazione", "Se modifichi la tua segnalazione, quella precedente \nsarà rimossa");
+                mostraWarning("Hai già fatto una segnalazione in precedenza", "Se modifichi la tua segnalazione, quella precedente \nsarà rimossa");
                 sintomoCombo.setValue(segnalazione.get(0).getSintomo());
 
                     severitaCombo.setValue(Integer.toString(segnalazione.get(0).getSeverita()));
@@ -137,7 +146,10 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
 
     public void stampaDescrizioneSintomo() {
         String sintomoComboBox = sintomoCombo.getValue();
-        String query = "SELECT * FROM eventiavversi WHERE sintomo = '" + sintomoComboBox + "'";
+
+        String query = "SELECT * " +
+                "FROM eventiavversi " +
+                "WHERE sintomo = '" + sintomoComboBox + "'";
         Proxy proxy;
         ArrayList<Sintomo> sintomi;
 
@@ -154,13 +166,12 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String query = "SELECT * FROM eventiavversi";
+
+        String query = "SELECT * " +
+                        "FROM eventiavversi";
         ArrayList<Sintomo> sintomi;
         Proxy proxy;
         idevento = new HashMap<>();
-
-        impostaComboBox(sintomoCombo);
-        impostaComboBox(severitaCombo);
 
         try {
             proxy = new Proxy();
@@ -178,5 +189,9 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
+
+
+        noteAggiuntiveTextArea.setTextFormatter(new TextFormatter<String>(change ->
+                change.getControlNewText().length() <= MAX_CARATTERI ? change : null));
     }
 }

@@ -3,9 +3,11 @@ package clientCV.centriVaccinali.adapters;
 import clientCV.shared.Check;
 import clientCV.shared.Utente;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import serverCV.Proxy;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -67,6 +69,18 @@ public class RegistraCittadinoAdapter extends Adapter{
             return;
         }
 
+        String insertAsUtente = "INSERT INTO utenti VALUES('"+user+"','"+password+"','"+CF+"','"+nome+"','"+cognome+"')";
+        Proxy proxyUtenti = new Proxy();
+        proxyUtenti.insertDb(insertAsUtente);
+
+        Thread.sleep(100);
+
+        int IDvaccinazione = Integer.parseInt(id);
+        String insertAsCittadino = "INSERT INTO cittadinivaccinati VALUES('"+user+"','"+email+"','"+IDvaccinazione+"')";
+        Proxy proxyCittadini = new Proxy();
+        proxyCittadini.insertDb(insertAsCittadino);
+
+        mostraWarning("Sei registrato!", "Accedi!");
 
 
     }
@@ -80,13 +94,12 @@ public class RegistraCittadinoAdapter extends Adapter{
         ArrayList<String> ids;
         String query = "SELECT * FROM idunivoci WHERE idvaccinazione = '"+IDUnivocoVaccinazione+"'";
 
-        /*
+
         Proxy proxy = new Proxy();
         ids = proxy.getSingleValues(query, "idvaccinazione");
 
             return !ids.isEmpty();
-         */
-        return true; //TO BE CHANGED
+
         }
 
 }
