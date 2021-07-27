@@ -19,7 +19,7 @@
         <Image url="@../Images/Background.jpg" />
     </ImageView>
     <Rectangle arcWidth="5.0" fill="#12646f" height="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="900.0" />
-    <Text fx:id="benvenutoText" fill="WHITE" layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ciao, " wrappingWidth="177.78929138183594">
+    <Text fx:id="benvenutoText" fill="WHITE" layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ciao, " wrappingWidth="196.78929138183594">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>

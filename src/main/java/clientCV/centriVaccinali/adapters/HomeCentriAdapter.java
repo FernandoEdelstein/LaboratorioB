@@ -27,6 +27,7 @@ public class HomeCentriAdapter extends Adapter {
     public void setUtente(Utente utente) {
         this.utente = utente;
         benvenutoText.setText("Ciao, " + utente.getUsername());
+
     }
 
 }

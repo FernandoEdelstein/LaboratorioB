@@ -168,7 +168,7 @@ public class CercaAdapter extends Adapter implements Initializable {
         }
         else {
             benvenutoText.setText("Ciao, " + utente.getUsername());
-            btnRegistrati.setDisable(true);
+            btnRegistrati.setVisible(false);
         }
 
         populateListView();

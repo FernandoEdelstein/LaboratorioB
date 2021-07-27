@@ -94,7 +94,7 @@
          <Font name="Montserrat Regular" size="18.0" />
       </font>
    </Text>
-   <Label fx:id="descrizioneText" alignment="TOP_LEFT" layoutX="29.0" layoutY="385.0" prefHeight="128.0" prefWidth="285.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);" text="Sintomo" textFill="#000000c6">
+   <Label fx:id="descrizioneText" alignment="TOP_LEFT" layoutX="29.0" layoutY="385.0" prefHeight="128.0" prefWidth="285.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);" text="Sintomo" textFill="#000000c6" wrapText="true">
       <font>
          <Font name="Montserrat Regular" size="15.0" />
       </font>

@@ -61,9 +61,14 @@
             <Font name="Montserrat Bold" size="29.0" />
         </font>
     </Text>
-    <Text layoutX="204.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registra un nuovo centro o un nuovo vaccinato utilizzando il menù." textAlignment="CENTER" wrappingWidth="477.3622131347656">
+    <Text layoutX="204.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registra un nuovo centro o un nuovo vaccinato utilizzando il menù." textAlignment="CENTER" wrappingWidth="477.3622131347656">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
     </Text>
+   <Text fill="#12646f" layoutX="354.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OPERATORI" textAlignment="CENTER">
+      <font>
+         <Font name="Montserrat Regular" size="29.0" />
+      </font>
+   </Text>
 </Pane>

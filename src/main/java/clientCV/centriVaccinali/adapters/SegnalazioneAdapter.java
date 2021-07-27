@@ -30,7 +30,6 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
     private Map<String, Integer> idevento;
     private boolean isNew = true;
     public static final int MAX_CARATTERI = 256;
-    private int ultimoIdSegnalazione;
 
     @FXML
     private Text benvenutoText, nomeCentroText;
@@ -114,7 +113,7 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
     public void setUtente(Utente utente) {
         this.utente = utente;
         benvenutoText.setText("Ciao, " + utente.getUsername());
-        registratiBtn.setDisable(true);
+        registratiBtn.setVisible(false);
 
         Proxy proxy;
         ArrayList<Segnalazione> segnalazione;
@@ -142,11 +141,11 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
     }
 
     public void stampaDescrizioneSintomo() {
-        String sintomoComboBox = sintomoCombo.getValue();
+        String nomeSintomo = sintomoCombo.getValue();
 
         String query = "SELECT * " +
                 "FROM eventiavversi " +
-                "WHERE sintomo = '" + sintomoComboBox + "'";
+                "WHERE sintomo = '" + nomeSintomo + "'";
         Proxy proxy;
         ArrayList<Sintomo> sintomi;
 
@@ -179,14 +178,12 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
                 idevento.put(sintomo.getNome(), sintomo.getIdevento());
             }
 
-            for(int i = 1; i <= 5 ; i++){
-                severitaCombo.getItems().add(String.valueOf(i));
-            }
-
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
 
+        String[] livelliSeverita = {"1","2","3","4","5"};
+        severitaCombo.getItems().addAll(livelliSeverita);
 
         noteAggiuntiveTextArea.setTextFormatter(new TextFormatter<String>(change ->
                 change.getControlNewText().length() <= MAX_CARATTERI ? change : null));

@@ -59,7 +59,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Text fill="#53b0bd" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="REGISTRA VACCINATO" textAlignment="CENTER" wrappingWidth="900.0">
+        <Text fill="#53b0bd" layoutX="67.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="REGISTRA VACCINATO" textAlignment="CENTER" wrappingWidth="766.0">
             <font>
                 <Font name="Montserrat Bold" size="32.0" />
             </font>
@@ -75,7 +75,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <Button id="btnRegistraCentro" layoutX="369.0" layoutY="516.0" mnemonicParsing="false" onAction="#registraVaccinato" style="-fx-background-color: #53B0BD#53B0BD; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1) dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1);" text="REGISTRA" textFill="WHITE">
+        <Button id="btnRegistraCentro" layoutX="377.0" layoutY="519.0" mnemonicParsing="false" onAction="#registraVaccinato" style="-fx-background-color: #53B0BD#53B0BD; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1) dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1);" text="REGISTRA" textFill="WHITE">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
@@ -86,7 +86,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <TextField id="fieldCodiceFsicale" fx:id="codFiscaleField" alignment="CENTER" layoutX="475.0" layoutY="192.0" prefHeight="39.0" prefWidth="318.0" promptText="Codice Fiscale" style="-fx-background-color: rgb(255,255,255); -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1) dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1);">
+        <TextField id="fieldCodiceFsicale" fx:id="codFiscaleField" alignment="CENTER" layoutX="108.0" layoutY="303.0" prefHeight="39.0" prefWidth="318.0" promptText="Codice Fiscale" style="-fx-background-color: rgb(255,255,255); -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1) dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1);">
             <padding>
                 <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
             </padding>
@@ -97,7 +97,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <ComboBox id="cmbCentro" fx:id="centrivaccinaliCombo" accessibleText="Seleziona tipologia" layoutX="106.0" layoutY="424.0" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1) dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1);">
+        <ComboBox id="cmbCentro" fx:id="centrivaccinaliCombo" accessibleText="Seleziona tipologia" layoutX="475.0" layoutY="303.0" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1) dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1);">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -105,7 +105,7 @@
                 <Insets bottom="14.0" left="10.0" right="10.0" top="13.0" />
             </padding>
         </ComboBox>
-        <Text fill="#14636e" layoutX="113.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Centro vaccinale:" textAlignment="CENTER" wrappingWidth="181.3680705936302">
+        <Text fill="#14636e" layoutX="482.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Centro vaccinale:" textAlignment="CENTER" wrappingWidth="181.3680705936302">
             <font>
                 <Font name="Montserrat Bold" size="17.0" />
             </font>
@@ -115,7 +115,7 @@
                 <Font name="Montserrat Bold" size="17.0" />
             </font>
         </Text>
-        <ComboBox id="cmbVaccino" fx:id="vaccinoCombo" accessibleText="Seleziona tipologia" layoutX="475.0" layoutY="303.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1) dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1);">
+        <ComboBox id="cmbVaccino" fx:id="vaccinoCombo" accessibleText="Seleziona tipologia" layoutX="108.0" layoutY="422.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1) dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1);">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -123,12 +123,12 @@
                 <Insets bottom="14.0" left="10.0" right="10.0" top="13.0" />
             </padding>
         </ComboBox>
-        <Text fill="#14636e" layoutX="490.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vaccino somministrato:" textAlignment="CENTER" wrappingWidth="220.0">
+        <Text fill="#14636e" layoutX="123.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vaccino somministrato:" textAlignment="CENTER" wrappingWidth="220.0">
             <font>
                 <Font name="Montserrat Bold" size="17.0" />
             </font>
         </Text>
-        <TextField id="fieldCognome" fx:id="cognomeField" alignment="CENTER" layoutX="106.0" layoutY="302.0" prefHeight="53.0" prefWidth="318.0" promptText="Cognome" style="-fx-background-color: rgb(255,255,255); -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1) dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1);">
+        <TextField id="fieldCognome" fx:id="cognomeField" alignment="CENTER" layoutX="477.0" layoutY="192.0" prefHeight="53.0" prefWidth="318.0" promptText="Cognome" style="-fx-background-color: rgb(255,255,255); -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1) dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 1, 1);">
             <padding>
                 <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
             </padding>

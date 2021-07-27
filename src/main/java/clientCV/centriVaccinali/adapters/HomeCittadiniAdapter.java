@@ -49,8 +49,8 @@ public class HomeCittadiniAdapter extends Adapter {
         }
         else {
             benvenutoText.setText("Ciao, " + utente.getUsername());
-            registratiBtn.setDisable(true);
             logoutBtn.setText("Logout");
+            registratiBtn.setVisible(false);
         }
 
     }

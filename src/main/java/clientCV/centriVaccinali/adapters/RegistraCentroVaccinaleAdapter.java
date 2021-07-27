@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.text.Text;
 import serverCV.Proxy;
 
@@ -136,6 +137,15 @@ public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializ
                 Qualificatore.CORSO.toString() };
         qualificatoreCombo.getItems().addAll(qualificatore);
 
+        //Imposta limiti di caratteri
+        provField.setTextFormatter(new TextFormatter<String>(change ->
+                change.getControlNewText().length() <= 2 ? change : null));
+
+        capField.setTextFormatter(new TextFormatter<String>(change ->
+                change.getControlNewText().length() <= 5 ? change : null));
+
+        civicoField.setTextFormatter(new TextFormatter<String>(change ->
+                change.getControlNewText().length() <= 4 ? change : null));
     }
 
 }

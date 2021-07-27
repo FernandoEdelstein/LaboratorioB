@@ -79,7 +79,7 @@ public class CentroAdapter extends Adapter{
         else {
             benvenutoText.setText("Ciao, " + utente.getUsername());
             segnalaBtn.setDisable(false);
-            registratiBtn.setDisable(true);
+            registratiBtn.setVisible(false);
         }
     }
 
