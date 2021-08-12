@@ -34,7 +34,7 @@ public class CercaAdapter extends Adapter implements Initializable {
     private Check check = new Check();
     private Proxy proxy;
     private ArrayList<CentroVaccinale> centrivaccinali;
-    private ObservableList<String> data;
+
 
     @FXML
     private ComboBox<String> tipologiaCBox;
@@ -192,16 +192,15 @@ public class CercaAdapter extends Adapter implements Initializable {
             registratiBtn.setVisible(false);
         }
 
-        populateListView();
+        fillGridPane();
     }
 
-    private void populateListView() {
+    private void fillGridPane() {
         String query = "SELECT * FROM centrivaccinali";
 
         try {
             proxy = new Proxy();
             centrivaccinali = proxy.filter(query);
-            data = FXCollections.observableArrayList();
             for (int i = 0; i<centrivaccinali.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass()
                         .getClassLoader()
@@ -230,18 +229,5 @@ public class CercaAdapter extends Adapter implements Initializable {
         tipologiaCBox.getItems().addAll(tipo);
         centriScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
         centriGrid.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
-    }
-
-    private String extractName(String centro) {
-        StringBuilder name = new StringBuilder();
-
-        for(int i = 0; i < centro.length(); i++) {
-            if(centro.charAt(i + 2) == '•')
-                break;
-            else if(centro.charAt(i) != '"')
-                name.append(centro.charAt(i));
-        }
-
-        return name.toString();
     }
 }

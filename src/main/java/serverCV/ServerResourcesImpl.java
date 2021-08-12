@@ -1,6 +1,5 @@
 package serverCV;
 
-import javax.swing.plaf.nimbus.State;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -71,9 +70,6 @@ public class ServerResourcesImpl{
         socket.close();
     }
 
-    public void filtra() throws IOException, SQLException {
-
-    }
 
 
     public void getSintomi() throws IOException, SQLException {
@@ -186,8 +182,8 @@ public class ServerResourcesImpl{
     public void getSegnalazione() throws IOException, SQLException {
         String query = in.readLine();
         Statement stmt= connection.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
 
+        ResultSet rs = stmt.executeQuery(query);
         try {
             while (rs.next()) {
                 out.println(rs.getString("centrovaccinale"));

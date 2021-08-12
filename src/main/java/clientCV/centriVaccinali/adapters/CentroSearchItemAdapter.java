@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CentroSearchItemAdapter {
-    CentroVaccinale centro;
+    private CentroVaccinale centro;
 
     private Check check = new Check();
 
