@@ -5,6 +5,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Scanner;
 import java.util.concurrent.Semaphore;
 
 import serverCV.ServerConnection;
@@ -15,9 +19,29 @@ public class Server {
             Semaphore sem= new Semaphore(100);
             ServerSocket server = new ServerSocket(ServerInfo.getPORT());
 
-            System.out.println("Server Ready");
+            Scanner scan = new Scanner(System.in);
+
+            System.out.println("DB Username: ");
+                ServerInfo.setPGUSERNAME(scan.nextLine());
+            System.out.println("DB Password: ");
+                ServerInfo.setPGPASSWORD(scan.nextLine());
+
+            while(!tryConnection(ServerInfo.getPGUSERNAME(),
+                    ServerInfo.getPGPASSWORD(),
+                    ServerInfo.getDBNAME(),
+                    ServerInfo.getIPSERVER(),
+                    ServerInfo.getDBPORT())){
+                System.out.println("Errore nel inserimento di credenziali, riprova");
+
+                System.out.println("DB Username: ");
+                    ServerInfo.setPGUSERNAME(scan.nextLine());
+                System.out.println("DB Password: ");
+                    ServerInfo.setPGPASSWORD(scan.nextLine());
+            }
+
+            System.out.println("Connesso!");
             try {
-                System.out.println("Started " + server);
+                System.out.println("Server: " + server);
 
                 while(true) {
                     Socket socket = server.accept();
@@ -31,5 +55,21 @@ public class Server {
         }catch (Exception e){
             System.out.println("Server err: " + e.getMessage());
         }
+    }
+
+    public static Boolean tryConnection(String username, String password, String database, String ipAddress, int port) throws ClassNotFoundException{
+        Class.forName("org.postgresql.Driver");
+        try{
+            Connection connection = DriverManager
+                    .getConnection("jdbc:postgresql://" + ipAddress + ":" +
+                            port + "/" +
+                            database +
+                            "?&useUnicode=true&characterEncoding=utf8",
+                            username,
+                            password);
+        }catch (SQLException e){
+            return false;
+        }
+        return true;
     }
 }

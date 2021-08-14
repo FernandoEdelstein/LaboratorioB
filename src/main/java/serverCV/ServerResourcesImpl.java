@@ -21,43 +21,46 @@ public class ServerResourcesImpl{
     public void login() throws IOException, SQLException {
         String query = in.readLine();
         String userid = in.readLine();
-        Statement stmt = connection.createStatement();
 
-        ResultSet result = stmt.executeQuery(query);
-        boolean eRegistrato = false;
-        if(result.next())
-            eRegistrato = true;
+            Statement statement = connection.createStatement();
 
-        if(eRegistrato) {
+        ResultSet resultSet = statement.executeQuery(query);
+        boolean registrato = false;
+
+        if(resultSet.next())
+            registrato = true;
+
+        if(registrato) {
             String query1 = "SELECT * FROM cittadinivaccinati " +
-                    "JOIN utenti ON cittadinivaccinati.userid = utenti.userid " +
-                    "WHERE utenti.userid = '" + userid + "'";
-            Statement st = connection.createStatement();
-            ResultSet r = st.executeQuery(query1);
+                            "JOIN utenti ON cittadinivaccinati.userid = utenti.userid " +
+                            "WHERE utenti.userid = '" + userid + "'";
 
-            boolean eCittadino = false;
+                Statement statement1 = connection.createStatement();
+                ResultSet resultSet1 = statement1.executeQuery(query1);
+
+            boolean cittadino = false;
             out.println("true");
 
-            if (r.next()) {
-                // Operatore? > No
+            if (resultSet1.next()) {
+                // Non e operatore
                 out.println("false");
-                eCittadino = true;
-
-            } else
-                // Operatore? > Si
+                cittadino = true;
+            } else {
+                // Se e operatore
                 out.println("true");
+            }
 
-            out.println(result.getString("nome"));
-            out.println(result.getString("cognome"));
-            out.println(result.getString("codicefiscale"));
-            out.println(result.getString("userid"));
-            out.println(result.getString("pass"));
+                out.println(resultSet.getString("nome"));
+                out.println(resultSet.getString("cognome"));
+                out.println(resultSet.getString("codicefiscale"));
+                out.println(resultSet.getString("userid"));
+                out.println(resultSet.getString("pass"));
 
-            if(eCittadino)
-                out.println(r.getString("email"));
+            if(cittadino)
+                out.println(resultSet1.getString("email"));
 
-            if(eCittadino)
-                out.println(r.getString("idvaccinazione"));
+            if(cittadino)
+                out.println(resultSet1.getString("idvaccinazione"));
         }
         else
             out.println("false");
@@ -72,14 +75,15 @@ public class ServerResourcesImpl{
 
 
 
-    public void getSintomi() throws IOException, SQLException {
+    public void riceviSintomi() throws IOException, SQLException {
         String query= in.readLine();
         Statement statement= connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
+
         try {
             while (resultSet.next()) {
                 out.println(resultSet.getString("sintomo"));
-                out.println(resultSet.getInt("idevento"));
+                out.println(resultSet.getInt("idsintomo"));
                 out.println(resultSet.getString("descrizione"));
             }
             out.println("exit");
@@ -90,42 +94,46 @@ public class ServerResourcesImpl{
     }
 
 
-    public void insertDb() throws IOException, SQLException {
+    public void inserireInDb() throws IOException, SQLException {
         String query = in.readLine();
-        Statement stmt = connection.createStatement();
+
+        Statement statement = connection.createStatement();
+
         try {
-            stmt.executeUpdate(query);
+            statement.executeUpdate(query);
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void populateCentriVaccinali() throws IOException, SQLException {
+    public void registraNuovoCentro() throws IOException, SQLException {
         String nomeCentro = in.readLine();
         String createTableQuery= in.readLine();
 
-        Statement stmt = connection.createStatement();
+        Statement statement = connection.createStatement();
+
         try {
             DatabaseMetaData dbm = connection.getMetaData();
-            // check if "vaccinati_nomecentro" table exist
+            // Verifica se esiste la tabella vaccinati-"nome-centro"
             ResultSet tables = dbm.getTables(null, null, "vaccinati_" +nomeCentro, null);
             if (!tables.next()) {
-                // Table does no exists
-                stmt.executeUpdate(createTableQuery);
+                // Se la tabella non esiste
+                statement.executeUpdate(createTableQuery);
             }
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void getSingleValues() throws IOException, SQLException {
+    public void riceviValoriIndividuali() throws IOException, SQLException {
         String query= in.readLine();
         String columnLabel = in.readLine();
-        Statement stmt= connection.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
+
+        Statement statement= connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
         try {
-            while (rs.next()) {
-                out.println(rs.getString(columnLabel));
+            while (resultSet.next()) {
+                out.println(resultSet.getString(columnLabel));
             }
             out.println("exit");
         }
@@ -135,18 +143,18 @@ public class ServerResourcesImpl{
 
     }
 
-    public void getVaccinati() throws IOException, SQLException {
+    public void riceviVaccinati() throws IOException, SQLException {
         String query = in.readLine();
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
 
         try {
-            while (rs.next()) {
-                out.println(rs.getString("nomecittadino"));
-                out.println(rs.getString("cognomecittadino"));
-                out.println(rs.getString("codicefiscale"));
-                out.println(rs.getString("vaccino"));
-                out.println(rs.getString("idvaccinazione"));
+            while (resultSet.next()) {
+                out.println(resultSet.getString("nomecittadino"));
+                out.println(resultSet.getString("cognomecittadino"));
+                out.println(resultSet.getString("codicefiscale"));
+                out.println(resultSet.getString("vaccino"));
+                out.println(resultSet.getString("idvaccinazione"));
             }
             out.println("exit");
         }
@@ -155,22 +163,21 @@ public class ServerResourcesImpl{
         }
     }
 
-    public void filter() throws IOException, SQLException {
+    public void filtra() throws IOException, SQLException {
         String query= in.readLine();
-        Statement stmt= connection.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
+        Statement statement= connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
 
         try {
-            while (rs.next()) {
-                //Mando in output al Proxy.filter i campi per CentroVaccinale
-                out.println(rs.getString("nome"));
-                out.println(rs.getString("tipologia"));
-                out.println(rs.getString("qualificatore"));
-                out.println(rs.getString("strada"));
-                out.println(rs.getString("civico"));
-                out.println(rs.getString("comune"));
-                out.println(rs.getString("provincia"));
-                out.println(rs.getString("cap"));
+            while (resultSet.next()) {
+                out.println(resultSet.getString("nome"));
+                out.println(resultSet.getString("tipologia"));
+                out.println(resultSet.getString("qualificatore"));
+                out.println(resultSet.getString("strada"));
+                out.println(resultSet.getString("civico"));
+                out.println(resultSet.getString("comune"));
+                out.println(resultSet.getString("provincia"));
+                out.println(resultSet.getString("cap"));
             }
             out.println("exit");
         }
@@ -179,18 +186,18 @@ public class ServerResourcesImpl{
         }
 
     }
-    public void getSegnalazione() throws IOException, SQLException {
+    public void riceviSegnalazione() throws IOException, SQLException {
         String query = in.readLine();
-        Statement stmt= connection.createStatement();
+        Statement statement= connection.createStatement();
 
-        ResultSet rs = stmt.executeQuery(query);
+        ResultSet resultSet = statement.executeQuery(query);
         try {
-            while (rs.next()) {
-                out.println(rs.getString("centrovaccinale"));
-                out.println(rs.getString("userid"));
-                out.println(rs.getString("sintomo"));
-                out.println(rs.getString("severita"));
-                out.println(rs.getString("descrizione"));
+            while (resultSet.next()) {
+                out.println(resultSet.getString("centrovaccinale"));
+                out.println(resultSet.getString("userid"));
+                out.println(resultSet.getString("sintomo"));
+                out.println(resultSet.getString("severita"));
+                out.println(resultSet.getString("descrizione"));
             }
             out.println("exit");
         }
@@ -199,6 +206,5 @@ public class ServerResourcesImpl{
         }
 
     }
-
 
 }

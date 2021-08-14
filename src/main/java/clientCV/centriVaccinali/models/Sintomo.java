@@ -2,10 +2,10 @@ package clientCV.centriVaccinali.models;
 
 public class Sintomo {
     private String nome, descrizione;
-    private int idevento;
+    private int idsintomo;
 
     public Sintomo(int idevento, String nome, String descrizione) {
-        this.idevento = idevento;
+        this.idsintomo = idevento;
         this.nome = nome;
         this.descrizione = descrizione;
     }
@@ -18,7 +18,7 @@ public class Sintomo {
         return descrizione;
     }
 
-    public int getIdevento() {
-        return idevento;
+    public int getIdsintomo() {
+        return idsintomo;
     }
 }

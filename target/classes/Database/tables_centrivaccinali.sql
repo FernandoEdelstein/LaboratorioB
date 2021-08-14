@@ -10,17 +10,17 @@ CREATE TABLE centrivaccinali (
 );
 
 
-CREATE TABLE idunivoci (
-	  idvaccinazione SMALLINT PRIMARY KEY,
-	  codicefiscale varchar UNIQUE
-);
-
 CREATE TABLE utenti (
 	  userid varchar PRIMARY KEY,
 	  pass varchar NOT NULL,
 	  codicefiscale varchar NOT NULL,
 	  nome varchar NOT NULL,
 	  cognome varchar NOT NULL
+);
+
+CREATE TABLE idunivoci (
+	  idvaccinazione SMALLINT PRIMARY KEY,
+	  codicefiscale varchar UNIQUE
 );
 
 CREATE TABLE cittadinivaccinati (
@@ -31,21 +31,26 @@ CREATE TABLE cittadinivaccinati (
 	        FOREIGN KEY(idvaccinazione) REFERENCES idunivoci(idvaccinazione)
 );
 
-CREATE TABLE eventiavversi (
-	  idevento SERIAL PRIMARY KEY,
+
+
+CREATE TABLE sintomi (
+	  idsintomo SERIAL PRIMARY KEY,
 	  sintomo varchar NOT NULL,
 	  descrizione varchar NOT NULL
 );
 
-
 CREATE TABLE segnalazioni (
       idsegnalazione SERIAL PRIMARY KEY,
-	  idevento SMALLINT,
+	  idsintomo SMALLINT,
 	  userid varchar,
 	  centrovaccinale varchar,
 	  severita SMALLINT CHECK(severita BETWEEN 1 AND 5) NOT NULL,
 	  descrizione varchar(256),
-	       FOREIGN KEY(idevento) REFERENCES eventiavversi(idevento),
+	       FOREIGN KEY(idsintomo) REFERENCES sintomi(idsintomo),
            FOREIGN KEY(userid) REFERENCES cittadinivaccinati(userid),
 	       FOREIGN KEY(centrovaccinale) REFERENCES centrivaccinali(nome)
 );
+
+
+
+

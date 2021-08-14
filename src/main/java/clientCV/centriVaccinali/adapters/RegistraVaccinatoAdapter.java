@@ -9,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import serverCV.Proxy;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -49,6 +48,10 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
         cambiaSchermataConUtente("RegistraCentroVaccinale.fxml", utente, event);
     }
 
+    public void vaiAHome(ActionEvent event) throws IOException {
+        cambiaSchermataConUtente("HomeCentri.fxml", utente, event);
+    }
+
     public void logoutBtnImpl(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma LogOut");
@@ -79,25 +82,29 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
         benvenutoText.setText("Ciao, " + utente.getUsername());
     }
 
-    public void registraVaccinato() throws ParseException, IOException, SQLException, InterruptedException {
+    public void registraVaccinato(ActionEvent event) throws ParseException, IOException, SQLException, InterruptedException {
         String nome = nomeField.getText();
         String cognome = cognomeField.getText();
         String CF = codFiscaleField.getText();
         String vaccino = (String) vaccinoCombo.getValue();
         String centrovaccinale = (String) centrivaccinaliCombo.getValue();
+
         LocalDate date = dataField.getValue();
+
         Check check = new Check();
 
         //Controllo del nome, cognome e CF
         if(nome.isBlank() || cognome.isBlank() || CF.isBlank()
                 || vaccino == null || centrovaccinale == null || date == null) {
-            mostraWarning("Campi mancanti", "Inserire tutti i campi richiesti");
+            mostraWarning("Campi mancanti",
+                    "Inserire tutti i campi richiesti");
             return;
         }
 
         //Controllo della data
         if(date.isAfter(LocalDate.now())) {
-            mostraWarning("Data errata", "Inserire una data corretta");
+            mostraWarning("Data errata",
+                    "Inserire una data corretta");
             return;
         }
 
@@ -106,41 +113,45 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
             return;
         }
 
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String data = date.toString();
-        Date myDate = formatter.parse(data);
+        Date myDate = dateFormat.parse(data);
 
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
 
         int idvaccino = generaUID();
 
-        if(isNewVaccinato(CF)) {
+        if(nuovoVaccinato(CF)) {
             String insertIntoIdunivoci = "INSERT INTO idunivoci VALUES('"+idvaccino+"', '"+CF+"')";
             Proxy proxy1 = new Proxy();
-            proxy1.insertDb(insertIntoIdunivoci);
+            proxy1.inserireInDb(insertIntoIdunivoci);
 
             Thread.sleep(100);
 
-            String query = "INSERT INTO vaccinati_" + check.formatTableName(centrovaccinale.toLowerCase()) + " VALUES('"+nome+"', '"+cognome+"','"+CF+"','"+sqlDate+"','"+vaccino+"', '"+idvaccino+"')";
+            String query = "INSERT INTO vaccinati_" + check.nomeTabella(centrovaccinale.toLowerCase()) + " VALUES('"+nome+"', '"+cognome+"','"+CF+"','"+sqlDate+"','"+vaccino+"', '"+idvaccino+"')";
             Proxy proxy = new Proxy();
-            proxy.insertDb(query);
+            proxy.inserireInDb(query);
 
             mostraWarning("Cittadino registrato", "Cittadino si è registrato con ID: " + idvaccino);
+
+                vaiAHome(event);
         }
         else
             mostraWarning("Errore", "Questo cittadino è già stato registrato");
     }
 
-    private boolean isNewVaccinato(String codfisc) {
+    private boolean nuovoVaccinato(String codfisc) {
 
-        String getCFquery = "SELECT codicefiscale FROM idunivoci WHERE codicefiscale = '"+codfisc+"'";
+        String getCF = "SELECT codicefiscale " +
+                        "FROM idunivoci " +
+                        "WHERE codicefiscale = '"+codfisc+"'";
         ArrayList<String> tmpCF = new ArrayList<>();
 
-        Proxy proxyCF;
+        Proxy proxy;
 
         try {
-            proxyCF = new Proxy();
-            tmpCF = proxyCF.getSingleValues(getCFquery, "codicefiscale");
+            proxy = new Proxy();
+            tmpCF = proxy.riceviValoriIndividuali(getCF, "codicefiscale");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -149,26 +160,28 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
 
     private int generaUID() {
         ArrayList<String> tmpID = new ArrayList<>();
-        Random r = new Random();
+        Random rand = new Random();
         int idvacc = -1;
-        int counter = 1;
-        Proxy proxyID;
+        Proxy proxy;
 
         while(true) {
-            idvacc = r.nextInt(Short.MAX_VALUE);
-            String getIDquery = "SELECT idvaccinazione FROM idunivoci WHERE idvaccinazione = '"+idvacc+"'";
+            idvacc = rand.nextInt(Short.MAX_VALUE);
+            String getIDquery = "SELECT idvaccinazione " +
+                                "FROM idunivoci " +
+                                "WHERE idvaccinazione = '"+idvacc+"'";
             try {
-                proxyID = new Proxy();
-                tmpID = proxyID.getSingleValues(getIDquery, "idvaccinazione");
+                proxy = new Proxy();
+                tmpID = proxy.riceviValoriIndividuali(getIDquery, "idvaccinazione");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println("Tentativo numero " + counter + ": " + idvacc);
+
+            System.out.println("Vaccinato Registrato! Id Vaccinazione: " + ": " + idvacc);
 
             if (tmpID.isEmpty())
                 break;
 
-            counter++;
+
         }
         return idvacc;
     }
@@ -188,7 +201,7 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
 
         try {
             proxy = new Proxy();
-            nomiCentri = proxy.getSingleValues(query, "nome");
+            nomiCentri = proxy.riceviValoriIndividuali(query, "nome");
             centrivaccinaliCombo.getItems().addAll(nomiCentri);
         } catch (IOException e) {
             e.printStackTrace();

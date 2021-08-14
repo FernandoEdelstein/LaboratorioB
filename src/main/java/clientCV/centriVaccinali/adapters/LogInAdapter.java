@@ -14,14 +14,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import serverCV.Proxy;
 import serverCV.ServerInfo;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class LogInAdapter extends Adapter{
+public class LogInAdapter extends Adapter {
     @FXML
     private TextField usernameField;
     @FXML
@@ -108,19 +107,21 @@ public class LogInAdapter extends Adapter{
         }
 
         Check check = new Check();
-        check.populateDatabase();
+
+            //Se non ci sono valori sul database, allora riempi i database con i dati di default
+        check.databaseVuoto();
 
         return true;
-
     }
 
     private static boolean pingHost(String host, int port) {
         try (Socket socket = new Socket()) {
-            socket.connect(new InetSocketAddress(host, port), 1500);
-            return true;
+            socket.connect(new InetSocketAddress(host, port), 2000);
+
+                return true;
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
+                return false;
         }
     }
 

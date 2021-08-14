@@ -11,12 +11,14 @@ import clientCV.shared.Check;
 import clientCV.shared.Utente;
 
 
-public class Proxy{
+public class Proxy {
 
     private final Socket socket;
+    private boolean operatore = false;
+
     private BufferedReader in = null;
     private PrintWriter out = null;
-    private boolean isOperatore = false;
+
 
 
     public Proxy() throws IOException {
@@ -31,7 +33,6 @@ public class Proxy{
                             new OutputStreamWriter(socket.getOutputStream())),
                     true);
         } catch (IOException e) {
-
             if (out != null) {
                 out.close();
             }
@@ -42,142 +43,64 @@ public class Proxy{
         }
     }
 
-
-    public ArrayList<Sintomo> getSintomi(String query) throws IOException, SQLException {
-
-        ArrayList<Sintomo> sintomi = new ArrayList<>();
-
-        out.println("searchSintomi");
-        out.println(query);
-
-        while (true) {
-
-            String nomeSintomo = in.readLine();
-
-            if (nomeSintomo.equals("exit"))
-                break;
-            else {
-                int idevento = Integer.parseInt(in.readLine());
-                String descrizione = in.readLine();
-                sintomi.add(new Sintomo(
-                        idevento,
-                        nomeSintomo,
-                        descrizione
-                ));
-            }
-        }
-
-        return sintomi;
+    public void close() throws IOException {
+        out.close();
+        in.close();
+        socket.close();
     }
 
-
-    public ArrayList<String> getSingleValues(String query, String columnLabel) throws IOException {
-        ArrayList<String> values = new ArrayList<>();
-
-        out.println("getSingleValues");
+    public Utente login(String query, String User) throws IOException {
+        out.println("login");
         out.println(query);
-        out.println(columnLabel);
+        out.println(User);
 
-        while (true) {
-            String value = in.readLine();
-            if (value.equals("exit"))
-                break;
-            else {
-                values.add(value);
+        boolean find = Boolean.parseBoolean(in.readLine());
+
+        if(!find)
+            return null;
+        else {
+            operatore = Boolean.parseBoolean(in.readLine());
+            if(operatore) {
+                String nome = in.readLine();
+                String cognome = in.readLine();
+                String CF = in.readLine();
+                String username = in.readLine();
+                String password = in.readLine();
+
+                Utente u = new Utente(
+                        nome,
+                        cognome,
+                        username,
+                        password,
+                        CF
+                );
+                return u;
             }
-        }
-        return values;
-    }
-
-
-    public ArrayList<Segnalazione> getSegnalazione(String query) throws IOException {
-        ArrayList<Segnalazione> segnalazioni = new ArrayList<>();
-
-        out.println("getSegnalazione");
-        out.println(query);
-
-        while (true) {
-            String centroVaccinale = in.readLine();
-
-            if (centroVaccinale.equals("exit"))
-                break;
             else {
-                String userid = in.readLine();
-                String sintomo = in.readLine();
-                int severita = Integer.parseInt(in.readLine());
-                String descrizione = in.readLine();
-
-                segnalazioni.add(new Segnalazione(
-                        userid,
-                        sintomo,
-                        severita,
-                        descrizione,
-                        centroVaccinale
-                ));
-            }
-        }
-        return segnalazioni;
-    }
-
-
-    public ArrayList<Vaccinato> getVaccinati(String query) throws IOException, SQLException {
-        ArrayList<Vaccinato> vaccinati = new ArrayList<>();
-
-        out.println("getVaccinati");
-        out.println(query);
-
-        while (true) {
-            String nomecittadino = in.readLine();
-
-            if (nomecittadino.equals("exit"))
-                break;
-            else {
-                String cognomecittadino = in.readLine();
-                String codfisc = in.readLine();
-                String vaccino = in.readLine();
+                String nome = in.readLine();
+                String cognome = in.readLine();
+                String CF = in.readLine();
+                String username = in.readLine();
+                String password = in.readLine();
+                String email = in.readLine();
                 int idvaccinazione = Integer.parseInt(in.readLine());
 
-                vaccinati.add(new Vaccinato(
-                        nomecittadino,
-                        cognomecittadino,
-                        codfisc,
-                        null,
-                        null,
-                        Vaccino.valueOf(vaccino),
+                Cittadino u = new Cittadino(
+                        password,
+                        CF,
+                        nome,
+                        cognome,
+                        email,
+                        username,
                         idvaccinazione
-                ));
+                );
+                return u;
             }
         }
-        return vaccinati;
     }
 
-
-    public void insertDb(String query) throws IOException, SQLException {
-        out.println("insertDb");
-        out.println(query);
-    }
-
-
-    public void populateCentriVaccinali(String nomeCentro) throws IOException, SQLException {
-        Check util = new Check();
-        out.println("populateCentriVaccinali");
-        out.println(nomeCentro);
-        out.println("CREATE TABLE vaccinati_" + util.formatTableName(nomeCentro) +
-                " (" +
-                "nomecittadino VARCHAR(50), " +
-                "cognomecittadino VARCHAR(50), " +
-                "codicefiscale VARCHAR(50), " +
-                "data DATE, vaccino VARCHAR(20), " +
-                "idvaccinazione SMALLINT, " +
-                "PRIMARY KEY(codicefiscale), " +
-                "FOREIGN KEY(idvaccinazione) REFERENCES idunivoci(idvaccinazione), " +
-                "FOREIGN KEY(codicefiscale) REFERENCES idunivoci(codicefiscale)" +
-                ")");
-    }
-
-
-    public ArrayList<CentroVaccinale> filter(String query) throws IOException, SQLException {
-        out.println("filter");
+    public ArrayList<CentroVaccinale> filtra(String query) throws IOException, SQLException {
+        out.println("filtra");
         out.println(query);
         ArrayList<CentroVaccinale> centrivaccinali = new ArrayList<>();
 
@@ -214,77 +137,132 @@ public class Proxy{
         return centrivaccinali;
     }
 
+    public void registraNuovoCentro(String nomeCentro) throws IOException, SQLException {
+        Check check = new Check();
+        out.println("registraNuovoCentro");
+        out.println(nomeCentro);
+        out.println("CREATE TABLE vaccinati_" + check.nomeTabella(nomeCentro) +
+                " (" +
+                "nomecittadino VARCHAR(50), " +
+                "cognomecittadino VARCHAR(50), " +
+                "codicefiscale VARCHAR(50), " +
+                "data DATE, vaccino VARCHAR(20), " +
+                "idvaccinazione SMALLINT, " +
+                "PRIMARY KEY(codicefiscale), " +
+                "FOREIGN KEY(idvaccinazione) REFERENCES idunivoci(idvaccinazione), " +
+                "FOREIGN KEY(codicefiscale) REFERENCES idunivoci(codicefiscale)" +
+                ")");
+    }
 
-    public Utente login(String query, String User) throws IOException {
-        out.println("login");
+    public void inserireInDb(String query) throws IOException, SQLException {
+        out.println("inserireInDb");
         out.println(query);
-        out.println(User);
+    }
 
-        boolean find = Boolean.parseBoolean(in.readLine());
+    public ArrayList<Vaccinato> riceviVaccinati(String query) throws IOException, SQLException {
+        ArrayList<Vaccinato> vaccinati = new ArrayList<>();
 
-        if(!find)
-            return null;
-        else {
-            isOperatore = Boolean.parseBoolean(in.readLine());
-            if(isOperatore) {
-                String nome = in.readLine();
-                String cognome = in.readLine();
-                String CF = in.readLine();
-                String username = in.readLine();
-                String password = in.readLine();
+        out.println("riceviVaccinati");
+        out.println(query);
 
-                Utente u = new Utente(
-                        nome,
-                        cognome,
-                        username,
-                        password,
-                        CF
-                );
-                return u;
-            }
+        while (true) {
+            String nomecittadino = in.readLine();
+
+            if (nomecittadino.equals("exit"))
+                break;
             else {
-                String nome = in.readLine();
-
-                String cognome = in.readLine();
-
-                String CF = in.readLine();
-
-                String username = in.readLine();
-
-                String password = in.readLine();
-
-                String email = in.readLine();
-
+                String cognomecittadino = in.readLine();
+                String codfisc = in.readLine();
+                String vaccino = in.readLine();
                 int idvaccinazione = Integer.parseInt(in.readLine());
 
-                Cittadino u = new Cittadino(
-                        password,
-                        CF,
-                        nome,
-                        cognome,
-                        email,
-                        username,
+                vaccinati.add(new Vaccinato(
+                        nomecittadino,
+                        cognomecittadino,
+                        codfisc,
+                        null,
+                        null,
+                        Vaccino.valueOf(vaccino),
                         idvaccinazione
-                );
-
-                return u;
+                ));
             }
         }
+        return vaccinati;
     }
 
+    public ArrayList<Sintomo> riceviSintomi(String query) throws IOException, SQLException {
 
-    public void close() throws IOException {
-        out.close();
-        in.close();
-        socket.close();
+        ArrayList<Sintomo> sintomi = new ArrayList<>();
+
+        out.println("riceviSintomi");
+        out.println(query);
+
+        while (true) {
+
+            String nomeSintomo = in.readLine();
+
+            if (nomeSintomo.equals("exit"))
+                break;
+            else {
+                int idevento = Integer.parseInt(in.readLine());
+                String descrizione = in.readLine();
+                sintomi.add(new Sintomo(
+                        idevento,
+                        nomeSintomo,
+                        descrizione
+                ));
+            }
+        }
+
+        return sintomi;
     }
 
-    public Socket getSocket() {
-        return socket;
+    public ArrayList<Segnalazione> riceviSegnalazione(String query) throws IOException {
+        ArrayList<Segnalazione> segnalazioni = new ArrayList<>();
+
+        out.println("riceviSegnalazione");
+        out.println(query);
+
+        while (true) {
+            String centroVaccinale = in.readLine();
+
+            if (centroVaccinale.equals("exit"))
+                break;
+            else {
+                String userid = in.readLine();
+                String sintomo = in.readLine();
+                int severita = Integer.parseInt(in.readLine());
+                String descrizione = in.readLine();
+
+                segnalazioni.add(new Segnalazione(
+                        userid,
+                        sintomo,
+                        severita,
+                        descrizione,
+                        centroVaccinale
+                ));
+            }
+        }
+        return segnalazioni;
     }
 
-    public boolean getOperatore() {
-        return isOperatore;
+    public ArrayList<String> riceviValoriIndividuali(String query, String columnLabel) throws IOException {
+        ArrayList<String> values = new ArrayList<>();
+
+        out.println("riceviValoriIndividuali");
+        out.println(query);
+        out.println(columnLabel);
+
+        while (true) {
+            String value = in.readLine();
+            if (value.equals("exit"))
+                break;
+            else {
+                values.add(value);
+            }
+        }
+        return values;
     }
+
 }
 

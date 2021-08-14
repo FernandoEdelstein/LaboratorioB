@@ -33,7 +33,7 @@ public class ConnessioneAdapter extends Adapter{
 
     private static boolean pingHost(String host, int port) {
         try (Socket socket = new Socket()) {
-            socket.connect(new InetSocketAddress(host, port), 1500);
+            socket.connect(new InetSocketAddress(host, port), 2000);
             return true;
         } catch (IOException e) {
             return false;

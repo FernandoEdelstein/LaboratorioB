@@ -19,7 +19,6 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import serverCV.Proxy;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -29,7 +28,7 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
     private CentroVaccinale centroVaccinale;
     private Utente utente;
 
-    private Map<String, Integer> idevento;
+    private Map<String, Integer> idSintomo;
     private boolean nuovaSegnalazione = true;
     public static final int MAX_CARATTERI = 256;
 
@@ -105,20 +104,21 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
 
         if(nuovaSegnalazione)
             query = "INSERT INTO segnalazioni " +
-                    "VALUES("+generaIdSegnalazione()+", " +idevento.get(sintomo)+", '"+utente.getUsername()+"', '"+nomeCentro+"', "+severita+",'"+descrizione+"')";
+                    "VALUES("+generaIdSegnalazione()+", " + idSintomo.get(sintomo)+", '"+utente.getUsername()+"', '"+nomeCentro+"', "+severita+",'"+descrizione+"')";
         else
             query = "UPDATE segnalazioni " +
-                    "SET idevento = "+idevento.get(sintomo)+", severita = "+severita+", descrizione = '"+descrizione+"' " +
+                    "SET idsintomo = "+ idSintomo.get(sintomo)+", severita = "+severita+", descrizione = '"+descrizione+"' " +
                     "WHERE userid = '"+utente.getUsername()+"'";
 
-        System.out.println(query);
+
         Proxy proxy;
 
         try {
             proxy = new Proxy();
-            proxy.insertDb(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+                proxy.inserireInDb(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         nuovaSegnalazione = false;
@@ -131,7 +131,7 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
     public void setCentro(CentroVaccinale centroVaccinale) {
         Check check = new Check();
         this.centroVaccinale = centroVaccinale;
-        nomeCentroText.setText(check.lowercaseNotFirst(centroVaccinale.getNome()));
+        nomeCentroText.setText(check.primaMaiuscola(centroVaccinale.getNome()));
     }
 
     @Override
@@ -147,9 +147,9 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
             proxy = new Proxy();
             String query = "SELECT * " +
                     "FROM segnalazioni " +
-                    "JOIN eventiavversi ON (eventiavversi.idevento = segnalazioni.idevento) " +
+                    "JOIN sintomi ON (sintomi.idsintomo = segnalazioni.idsintomo) " +
                     "WHERE userid = '" + utente.getUsername() + "'";
-            segnalazione = proxy.getSegnalazione(query);
+            segnalazione = proxy.riceviSegnalazione(query);
 
             if (segnalazione.size() > 0) {
                 mostraWarning("Hai già fatto una segnalazione in precedenza", "Se modifichi la tua segnalazione, quella precedente \nsarà rimossa");
@@ -167,13 +167,13 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
 
     public void stampaDescrizioneSintomo() {
         String sintomoComboTxt = sintomoCombo.getValue();
-        String query = "SELECT * FROM eventiavversi WHERE sintomo = '" + sintomoComboTxt + "'";
+        String query = "SELECT * FROM sintomi WHERE sintomo = '" + sintomoComboTxt + "'";
         Proxy proxy;
         ArrayList<Sintomo> sintomi;
 
         try {
             proxy = new Proxy();
-            sintomi = proxy.getSintomi(query);
+            sintomi = proxy.riceviSintomi(query);
             if(sintomi.size() > 0)
                 descrizioneText.setText(sintomi.get(0).getDescrizione());
 
@@ -186,18 +186,18 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         String query = "SELECT * " +
-                        "FROM eventiavversi";
+                        "FROM sintomi";
         ArrayList<Sintomo> sintomi;
         Proxy proxy;
-        idevento = new HashMap<>();
+        idSintomo = new HashMap<>();
 
         try {
             proxy = new Proxy();
-            sintomi = proxy.getSintomi(query);
+            sintomi = proxy.riceviSintomi(query);
 
             for (Sintomo sintomo: sintomi) {
                 sintomoCombo.getItems().add(sintomo.getNome());
-                idevento.put(sintomo.getNome(), sintomo.getIdevento());
+                idSintomo.put(sintomo.getNome(), sintomo.getIdsintomo());
             }
 
         } catch (IOException | SQLException e) {
@@ -220,28 +220,25 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
 
     private int generaIdSegnalazione() {
         ArrayList<String> tmpID = new ArrayList<>();
-        Random r = new Random();
+        Random rand = new Random();
         int uIDSegnalazione = -1;
-        int counter = 1;
-        Proxy proxyID;
+
+        Proxy proxy;
 
         while(true) {
-            uIDSegnalazione = r.nextInt(Short.MAX_VALUE);
+            uIDSegnalazione = rand.nextInt(Short.MAX_VALUE);
             String getIDquery = "SELECT idsegnalazione " +
                     "FROM segnalazioni " +
                     "WHERE idsegnalazione = '"+uIDSegnalazione+"'";
             try {
-                proxyID = new Proxy();
-                tmpID = proxyID.getSingleValues(getIDquery, "idsegnalazione");
+                proxy = new Proxy();
+                tmpID = proxy.riceviValoriIndividuali(getIDquery, "idsegnalazione");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println("Tentativo numero " + counter + ": " + uIDSegnalazione);
 
             if (tmpID.isEmpty())
                 break;
-
-            counter++;
         }
 
         return uIDSegnalazione;

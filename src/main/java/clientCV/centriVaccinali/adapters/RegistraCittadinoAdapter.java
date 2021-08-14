@@ -93,14 +93,14 @@ public class RegistraCittadinoAdapter extends Adapter{
 
         String insertAsUtente = "INSERT INTO utenti VALUES('"+user+"','"+password+"','"+CF+"','"+nome+"','"+cognome+"')";
         Proxy proxyUtenti = new Proxy();
-        proxyUtenti.insertDb(insertAsUtente);
+        proxyUtenti.inserireInDb(insertAsUtente);
 
         Thread.sleep(100);
 
         int IDvaccinazione = Integer.parseInt(id);
         String insertAsCittadino = "INSERT INTO cittadinivaccinati VALUES('"+user+"','"+email+"','"+IDvaccinazione+"')";
         Proxy proxyCittadini = new Proxy();
-        proxyCittadini.insertDb(insertAsCittadino);
+        proxyCittadini.inserireInDb(insertAsCittadino);
 
         mostraWarning("Sei registrato!", "Adesso puoi accedere");
 
@@ -118,7 +118,7 @@ public class RegistraCittadinoAdapter extends Adapter{
 
 
         Proxy proxy = new Proxy();
-        ids = proxy.getSingleValues(query, "idvaccinazione");
+        ids = proxy.riceviValoriIndividuali(query, "idvaccinazione");
 
             return !ids.isEmpty();
 

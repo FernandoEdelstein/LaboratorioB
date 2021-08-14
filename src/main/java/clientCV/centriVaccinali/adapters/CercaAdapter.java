@@ -4,25 +4,17 @@ import clientCV.centriVaccinali.models.CentroVaccinale;
 import clientCV.centriVaccinali.models.Tipologia;
 import clientCV.shared.Check;
 import clientCV.shared.Utente;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import serverCV.Proxy;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -92,12 +84,12 @@ public class CercaAdapter extends Adapter implements Initializable {
                 return;
             }
 
-            //ricerca per nome
+            //Cerca centro per nome
             proxy = new Proxy();
             String query = "SELECT * " +
                     "FROM centrivaccinali " +
                     "WHERE nome LIKE '%" + nome.toLowerCase() + "%'";
-            centrivaccinali = proxy.filter(query);
+            centrivaccinali = proxy.filtra(query);
 
             if(centrivaccinali.size() == 0)
                 mostraWarning("Nessun centro trovato", "Non ci sono centri vaccinali registrati con questo nome");
@@ -123,7 +115,7 @@ public class CercaAdapter extends Adapter implements Initializable {
 
         }
         else if(radComuneTipologia.isSelected()) {
-            String comune = check.lowercaseNotFirst(comuneField.getText().trim());
+            String comune = check.primaMaiuscola(comuneField.getText().trim());
             String tipologia = tipologiaCBox.getValue();
 
             if(comune.isBlank() || tipologia == null) {
@@ -139,7 +131,7 @@ public class CercaAdapter extends Adapter implements Initializable {
                     "WHERE comune LIKE '%" + comune + "%' " +
                     "AND tipologia='" + tipologia + "'";
 
-            centrivaccinali = proxy.filter(query);
+            centrivaccinali = proxy.filtra(query);
 
             if(centrivaccinali.size() == 0)
                 mostraWarning("Nessun centro trovato", "Non esistono centri vaccinali registrati \n corrispondenti ai criteri di ricerca");
@@ -200,7 +192,7 @@ public class CercaAdapter extends Adapter implements Initializable {
 
         try {
             proxy = new Proxy();
-            centrivaccinali = proxy.filter(query);
+            centrivaccinali = proxy.filtra(query);
             for (int i = 0; i<centrivaccinali.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass()
                         .getClassLoader()

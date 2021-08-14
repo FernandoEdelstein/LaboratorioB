@@ -5,6 +5,8 @@ import clientCV.centriVaccinali.models.Qualificatore;
 import clientCV.centriVaccinali.models.Tipologia;
 import clientCV.shared.Check;
 import clientCV.shared.Utente;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import serverCV.Proxy;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -31,6 +34,10 @@ public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializ
 
     public void vaiARegistraVaccinatoScene(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraVaccinato.fxml", utente, event);
+    }
+
+    public void vaiAHome(ActionEvent event) throws IOException {
+        cambiaSchermataConUtente("HomeCentri.fxml", utente, event);
     }
 
     public void logoutBtnImpl(ActionEvent event){
@@ -62,17 +69,18 @@ public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializ
         benvenutoText.setText("Ciao, " + utente.getUsername());
     }
 
-    public void registraCentro() throws IOException, SQLException {
+    public void registraCentro(ActionEvent event) throws IOException, SQLException {
         String nomeCentro = nomeField.getText().trim();
         String tipologia = tipologiaCombo.getValue();
         String qualificatore = qualificatoreCombo.getValue();
-        String strada = check.lowercaseNotFirst(stradaField.getText());
+        String strada = check.primaMaiuscola(stradaField.getText());
         String civico = civicoField.getText();
-        String comune = check.lowercaseNotFirst(comuneField.getText());
+        String comune = check.primaMaiuscola(comuneField.getText());
         String cap = capField.getText();
         String provincia = provField.getText();
 
         // Controllo dei campi
+        //Nome Centro
         if(nomeCentro.isBlank() || qualificatore == null || strada.isBlank() ||
                 civico.isBlank() || comune.isBlank() || provincia.isBlank()
                 || tipologia == null) {
@@ -117,9 +125,13 @@ public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializ
         if (controlaCentro())
             mostraWarning("Centro già registrato", "Questo centro è già stato registrato");
         else {
-            proxy.insertDb(query);
-            proxy1.populateCentriVaccinali(nomeCentro);
+            //Se il centro e stato registrato correttamente
+
+            proxy.inserireInDb(query);
+            proxy1.registraNuovoCentro(nomeCentro);
             mostraWarning("Successo", "Centro registrato correttamente!");
+
+            vaiAHome(event);
         }
 
     }
@@ -130,11 +142,11 @@ public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializ
         String centro = nomeField.getText().trim().toLowerCase();
 
         String query = "SELECT * FROM centrivaccinali " +
-                "WHERE nome = '" + centro + "'";
+                        "WHERE nome = '" + centro + "'";
 
         try {
             proxy = new Proxy();
-            centriVaccinali = proxy.filter(query);
+            centriVaccinali = proxy.filtra(query);
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
@@ -159,11 +171,35 @@ public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializ
         qualificatoreCombo.getItems().addAll(qualificatore);
 
         //Imposta limiti di caratteri
+        nomeField.setTextFormatter(new TextFormatter<String>(change ->
+                change.getControlNewText().length() <= 50 ? change : null));
+
+        stradaField.setTextFormatter(new TextFormatter<String>(change ->
+                change.getControlNewText().length() <= 30 ? change : null));
+
+        comuneField.setTextFormatter(new TextFormatter<String>(change ->
+                change.getControlNewText().length() <= 40 ? change : null));
+
         provField.setTextFormatter(new TextFormatter<String>(change ->
                 change.getControlNewText().length() <= 2 ? change : null));
+        provField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\sa-zA-Z*")) {
+                provField.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+            }
+        });
+
 
         capField.setTextFormatter(new TextFormatter<String>(change ->
                 change.getControlNewText().length() <= 5 ? change : null));
+        capField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    capField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
 
         civicoField.setTextFormatter(new TextFormatter<String>(change ->
                 change.getControlNewText().length() <= 4 ? change : null));

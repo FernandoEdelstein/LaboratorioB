@@ -5,18 +5,13 @@ import clientCV.shared.Check;
 import clientCV.shared.Utente;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
-import org.apache.maven.project.artifact.DefaultMavenMetadataCache;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class CentroSearchItemAdapter {
     private CentroVaccinale centro;
@@ -38,7 +33,7 @@ public class CentroSearchItemAdapter {
     public void setData(CentroVaccinale c, Utente u){
         this.centro = c;
 
-        nomeCentroText.setText(check.lowercaseNotFirst(centro.getNome()));
+        nomeCentroText.setText(check.primaMaiuscola(centro.getNome()));
         tipoText.setText(String.valueOf(centro.getTipologia()));
         indirizzoText.setText("Indirizzo: " + centro.getIndirizzo().toString());
 

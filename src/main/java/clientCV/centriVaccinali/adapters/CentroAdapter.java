@@ -21,7 +21,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import serverCV.Proxy;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -111,10 +110,10 @@ public class CentroAdapter extends Adapter{
         Proxy proxy, proxy2;
         Check check = new Check();
 
-        String query = "SELECT * FROM centrivaccinali WHERE nome = '" + centro.toLowerCase() + "'";
+        String query = "SELECT * FROM centrivaccinali WHERE nome = '" + centro + "'";
         String querySegnalazione = "SELECT * " +
-                                    "FROM segnalazioni JOIN eventiavversi ON (eventiavversi.idevento = segnalazioni.idevento)" +
-                                    "WHERE centrovaccinale = '" + centro.toLowerCase() + "'";
+                                    "FROM segnalazioni JOIN sintomi ON (sintomi.idsintomo = segnalazioni.idsintomo)" +
+                                    "WHERE centrovaccinale = '" + centro + "'";
         StringBuilder severita = new StringBuilder();
 
         int totaleSegnalazioni = 0;
@@ -123,8 +122,8 @@ public class CentroAdapter extends Adapter{
         try {
             proxy = new Proxy();
             proxy2 = new Proxy();
-            centroVaccinale = proxy.filter(query).get(0);
-            segnalazioni = proxy2.getSegnalazione(querySegnalazione);
+            centroVaccinale = proxy.filtra(query).get(0);
+            segnalazioni = proxy2.riceviSegnalazione(querySegnalazione);
 
         } catch (IOException | SQLException e) {
             e.printStackTrace();
@@ -154,7 +153,7 @@ public class CentroAdapter extends Adapter{
                 severita.delete(0, severita.length());
             }
 
-        nomeText.setText(check.lowercaseNotFirst(centroVaccinale.getNome()));
+        nomeText.setText(check.primaMaiuscola(centroVaccinale.getNome()));
         tipologiaText.setText("Tipologia: " + centroVaccinale.getTipologia().toString());
         indirizzoText.setText("Indirizzo: " + centroVaccinale.getIndirizzo().toString());
 
@@ -172,11 +171,11 @@ public class CentroAdapter extends Adapter{
         Proxy proxy;
         Check check = new Check();
         Cittadino cittadino = (Cittadino)utente;
-        String query = "SELECT * FROM vaccinati_" + check.formatTableName(centroVaccinale.getNome()) + " WHERE idvaccinazione = " + cittadino.getIdVaccinazione();
+        String query = "SELECT * FROM vaccinati_" + check.nomeTabella(centroVaccinale.getNome()) + " WHERE idvaccinazione = " + cittadino.getIdVaccinazione();
 
         try {
             proxy = new Proxy();
-            ArrayList<Vaccinato> vaccinati = proxy.getVaccinati(query);
+            ArrayList<Vaccinato> vaccinati = proxy.riceviVaccinati(query);
 
             if(vaccinati.isEmpty()) {
                 mostraWarning("Non sei registrato a questo centro vaccinale", "Puoi segnalare eventi avversi solo presso il centro \nvaccinale in cui ti è stato somministrato il vaccino");

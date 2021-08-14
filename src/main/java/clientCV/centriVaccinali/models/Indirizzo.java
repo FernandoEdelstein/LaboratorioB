@@ -55,7 +55,7 @@ public class Indirizzo {
     //To String
     @Override
     public String toString() {
-        return check.lowercaseNotFirst(qualificatore.toString()) +
+        return check.primaMaiuscola(qualificatore.toString()) +
                 " " +
                 strada +
                 " " +

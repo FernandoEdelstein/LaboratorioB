@@ -24,6 +24,37 @@ public class ServerConnection extends Thread{
         start();
     }
 
+    private void fetchFromDb(BufferedReader in, PrintWriter out, Connection c) throws IOException, SQLException {
+        String richiesta;
+
+        ServerResourcesImpl serverResources = new ServerResourcesImpl(in, out, c);
+
+        while((richiesta = in.readLine())!= null) {
+
+            switch (richiesta) {
+                case "login" : serverResources.login();
+                    break;
+                case "inserireInDb" : serverResources.inserireInDb();
+                    break;
+                case "filtra" : serverResources.filtra();
+                    break;
+                case "riceviVaccinati" : serverResources.riceviVaccinati();
+                    break;
+                case "riceviValoriIndividuali" : serverResources.riceviValoriIndividuali();
+                    break;
+                case "registraNuovoCentro" : serverResources.registraNuovoCentro();
+                    break;
+                case "riceviSintomi" : serverResources.riceviSintomi();
+                    break;
+                case "riceviSegnalazione" : serverResources.riceviSegnalazione();
+                    break;
+                default: break;
+            }
+            serverResources.close(socket);
+        }
+        sem.release();
+    }
+
     public void run(){
         try {
             sem.acquire();
@@ -36,17 +67,17 @@ public class ServerConnection extends Thread{
             e.printStackTrace();
         }
         try {
-            Connection c = DriverManager.getConnection("jdbc:postgresql://" + ServerInfo.getIPSERVER()
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://" + ServerInfo.getIPSERVER()
                             + ":" + ServerInfo.getDBPORT() + "/"
                             + ServerInfo.getDBNAME(),
-                    ServerInfo.getPGUSERNAME(),
-                    ServerInfo.getPGPASSWORD());
+                            ServerInfo.getPGUSERNAME(),
+                            ServerInfo.getPGPASSWORD());
+
             try {
-                in = new BufferedReader(
-                        new InputStreamReader(socket.getInputStream()));
-                out = new PrintWriter(
-                        new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-                                    serveClient(in, out, c);
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+
+                            fetchFromDb(in, out, connection);
                                 } catch(IOException e) {
                                     if (out != null) {
                                         out.close();
@@ -65,36 +96,6 @@ public class ServerConnection extends Thread{
         }
     }
 
-    private void serveClient(BufferedReader in, PrintWriter out, Connection c) throws IOException, SQLException {
-        String richiesta;
-        ServerResourcesImpl resources = new ServerResourcesImpl(in, out, c);
-
-        while((richiesta = in.readLine())!= null) {
-
-            switch (richiesta) {
-                case "insertDb" : resources.insertDb();
-                    break;
-                case "populateCentriVaccinali" : resources.populateCentriVaccinali();
-                    break;
-                case "filter" : resources.filter();
-                    break;
-                case "searchSintomi" : resources.getSintomi();
-                    break;
-                case "getSingleValues" : resources.getSingleValues();
-                    break;
-                case "login" : resources.login();
-                    break;
-                case "getSegnalazione" : resources.getSegnalazione();
-                    break;
-                case "getVaccinati" : resources.getVaccinati();
-                    break;
-                default: break;
-            }
-            resources.close(socket);
-        }
-        sem.release();
-    }
-
-    }
+}
 
 
