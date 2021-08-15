@@ -21,6 +21,12 @@ import java.util.Date;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+/**
+ * RegistraVaccinatoAdapter
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
 
     private Utente utente;
@@ -44,14 +50,31 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
     private DatePicker dataField;
 
 
+    /**
+     * Vai alla schermata Registra Centro
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiARegistraCentroScene(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCentroVaccinale.fxml", utente, event);
     }
 
+    /**
+     * Vai alla schermata Home
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiAHome(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("HomeCentri.fxml", utente, event);
     }
 
+    /**
+     * Implementazione del bottone LogOut
+     * Chiede conferma prima di tornare alla Home e settare l'user a null
+     * @param event
+     */
     public void logoutBtnImpl(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma LogOut");
@@ -76,12 +99,26 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
     }
 
 
+    /**
+     * Imposta l'utente corrente
+     *
+     * @param utente
+     */
     @Override
     public void setUtente(Utente utente) {
         this.utente = utente;
         benvenutoText.setText("Ciao, " + utente.getUsername());
     }
 
+    /**
+     * Controlla i dati ed esegue la query per registrare un vaccinato
+     *
+     * @param event
+     * @throws ParseException
+     * @throws IOException
+     * @throws SQLException
+     * @throws InterruptedException
+     */
     public void registraVaccinato(ActionEvent event) throws ParseException, IOException, SQLException, InterruptedException {
         String nome = nomeField.getText();
         String cognome = cognomeField.getText();
@@ -140,6 +177,12 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
             mostraWarning("Errore", "Questo cittadino è già stato registrato");
     }
 
+    /**
+     * Verifica che il vaccinato non sia presente nel db
+     *
+     * @param codfisc
+     * @return boolean
+     */
     private boolean nuovoVaccinato(String codfisc) {
 
         String getCF = "SELECT codicefiscale " +
@@ -158,6 +201,10 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
         return tmpCF.isEmpty();
     }
 
+    /**
+     * Genera un UID, verifica che non sia presente nel db
+     * @return
+     */
     private int generaUID() {
         ArrayList<String> tmpID = new ArrayList<>();
         Random rand = new Random();
@@ -186,6 +233,12 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
         return idvacc;
     }
 
+    /**
+     * Impostazioni dei parametri al momenti di inizializzazione
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Proxy proxy;

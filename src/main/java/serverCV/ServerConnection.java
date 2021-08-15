@@ -7,6 +7,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.concurrent.Semaphore;
 
+/**
+ * ServerConnection
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
+
 public class ServerConnection extends Thread{
 
     private Semaphore sem;
@@ -15,7 +22,16 @@ public class ServerConnection extends Thread{
     private PrintWriter out = null;
     private String username, password;
 
-    public ServerConnection(Socket socket, Semaphore sem, String username, String password) throws IOException {
+    /**
+     * ServerConnection Constructor
+     *
+     * @param socket
+     * @param sem
+     * @param username
+     * @param password
+     */
+
+    public ServerConnection(Socket socket, Semaphore sem, String username, String password) {
         this.username = username;
         this.password = password;
         this.socket=socket;
@@ -23,6 +39,16 @@ public class ServerConnection extends Thread{
 
         start();
     }
+
+    /**
+     * Metodo fetchFromDb, si interfaccia con ServerResourcesImpl per eseguire la operazione richiesta
+     *
+     * @param in
+     * @param out
+     * @param c
+     * @throws IOException
+     * @throws SQLException
+     */
 
     private void fetchFromDb(BufferedReader in, PrintWriter out, Connection c) throws IOException, SQLException {
         String richiesta;
@@ -67,9 +93,11 @@ public class ServerConnection extends Thread{
             e.printStackTrace();
         }
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://" + ServerInfo.getIPSERVER()
-                            + ":" + ServerInfo.getDBPORT() + "/"
-                            + ServerInfo.getDBNAME(),
+            String connectionAddress = "jdbc:postgresql://" + ServerInfo.getIPSERVER()
+                    + ":" + ServerInfo.getDBPORT() + "/"
+                    + ServerInfo.getDBNAME();
+
+            Connection connection = DriverManager.getConnection(connectionAddress,
                             ServerInfo.getPGUSERNAME(),
                             ServerInfo.getPGPASSWORD());
 

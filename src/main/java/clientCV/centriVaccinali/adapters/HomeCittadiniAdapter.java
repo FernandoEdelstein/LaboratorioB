@@ -11,6 +11,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.text.Text;
 import java.io.IOException;
 
+/**
+ * HomeCittadiniAdapter
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class HomeCittadiniAdapter extends Adapter {
 
     @FXML
@@ -20,18 +26,41 @@ public class HomeCittadiniAdapter extends Adapter {
 
     private Utente utente;
 
+    /**
+     * Vai alla schermata Cerca
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiACercaScene(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("Cerca.fxml", utente, event);
     }
 
+    /**
+     * Vai alla schermata Registrati
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiARegistratiScene(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCittadino.fxml",utente, event);
     }
 
+    /**
+     * Vai alla schermata LogIn
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiALogIn(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("Login.fxml", utente, event);
     }
 
+    /**
+     * Implementazione del bottone LogOut
+     * Chiede conferma prima di tornare alla Home e settare l'user a null
+     * @param event
+     */
     public void logoutBtnImpl(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma LogOut");
@@ -55,7 +84,12 @@ public class HomeCittadiniAdapter extends Adapter {
         });
     }
 
-
+    /**
+     * Imposta l'utente corrente
+     * Nel caso sia nullo, attiva il bottone Accedi
+     *
+     * @param utente
+     */
     @Override
     public void setUtente(Utente utente) {
         this.utente = utente;

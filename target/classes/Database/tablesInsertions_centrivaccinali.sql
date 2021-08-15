@@ -13,11 +13,11 @@ CREATE TABLE vaccinati_rancio_valcuvia (nomecittadino varchar(50), cognomecittad
 INSERT INTO centrivaccinali VALUES('vaccination center', 'AZIENDALE', 'VIA', 'Giuseppe Pecchio', '19', 'Milano', 'MI', 20131);
 CREATE TABLE vaccinati_vaccination_center (nomecittadino varchar(50), cognomecittadino varchar(50), codicefiscale varchar(50), data DATE, vaccino varchar(20), idvaccinazione SMALLINT, PRIMARY KEY(codicefiscale), FOREIGN KEY(idvaccinazione) REFERENCES idunivoci(idvaccinazione), FOREIGN KEY(codicefiscale) REFERENCES idunivoci(codicefiscale));
 
-INSERT INTO eventiavversi VALUES(0, 'Mal di testa', 'Dolori, giramenti di testa e cefalee costanti nella giornata');
-INSERT INTO eventiavversi VALUES(1, 'Dolori intestinali', 'Forti dolori nella zona dell''addome e/o dell''intestino');
-INSERT INTO eventiavversi VALUES(2, 'Forte spossatezza', 'Debolezza, fatica e sonnolenza durante tutta la giornata');
-INSERT INTO eventiavversi VALUES(3, 'Mancamenti', 'Mancamenti avvenuti dopo la somministrazione del vaccino');
-INSERT INTO eventiavversi VALUES(4, 'Nausea', 'Nausea forte e costante durante tutta la giornata, necessità di rimettere');
+INSERT INTO sintomi VALUES(0, 'Mal di testa', 'Dolori, giramenti di testa e cefalee costanti nella giornata');
+INSERT INTO sintomi VALUES(1, 'Dolori intestinali', 'Forti dolori nella zona dell''addome e/o dell''intestino');
+INSERT INTO sintomi VALUES(2, 'Forte spossatezza', 'Debolezza, fatica e sonnolenza durante tutta la giornata');
+INSERT INTO sintomi VALUES(3, 'Mancamenti', 'Mancamenti avvenuti dopo la somministrazione del vaccino');
+INSERT INTO sintomi VALUES(4, 'Nausea', 'Nausea forte e costante durante tutta la giornata, necessità di rimettere');
 
 INSERT INTO idunivoci VALUES(3782, 'GLKMRL32F02F423Y');
 INSERT INTO idunivoci VALUES(437, 'GTFTTPN56R34L642L');

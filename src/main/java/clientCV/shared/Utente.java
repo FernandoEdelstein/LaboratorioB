@@ -1,7 +1,24 @@
 package clientCV.shared;
 
+/**
+ * Utente
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
+
 public class Utente extends Persona{
     private String username, password;
+
+    /**
+     * Costruttore Utente
+     *
+     * @param nome
+     * @param cognome
+     * @param username
+     * @param password
+     * @param CF
+     */
 
     public Utente(String nome,
                   String cognome,
@@ -13,19 +30,39 @@ public class Utente extends Persona{
         this.password = password;
     }
 
+    /**
+     * Get Username
+     *
+     * @return username
+     */
     //Getters & Setters
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Set Username
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * Get Password
+     *
+     * @return username
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Set Password
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }

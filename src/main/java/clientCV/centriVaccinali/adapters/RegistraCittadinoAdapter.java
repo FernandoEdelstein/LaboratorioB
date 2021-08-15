@@ -3,15 +3,19 @@ package clientCV.centriVaccinali.adapters;
 import clientCV.shared.Check;
 import clientCV.shared.Utente;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import serverCV.Proxy;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * RegistraCittadinoAdapter
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class RegistraCittadinoAdapter extends Adapter{
     @FXML
     private TextField fieldNome, fieldCognome, fieldCodiceFiscale,
@@ -22,14 +26,31 @@ public class RegistraCittadinoAdapter extends Adapter{
     private Utente utente;
     private Check check = new Check();
 
+    /**
+     * Vai alla schermata Cerca
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiACerca(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("Cerca.fxml", utente, event);
     }
 
+    /**
+     * Vai alla schermata LogIn
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiALogin(ActionEvent event) throws IOException {
         cambiaSchermata("Login.fxml", event);
     }
 
+    /**
+     * Implementazione del bottone LogOut
+     * Chiede conferma prima di tornare alla Home e settare l'user a null
+     * @param event
+     */
     public void logoutBtnImpl(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma LogOut");
@@ -53,11 +74,22 @@ public class RegistraCittadinoAdapter extends Adapter{
         });
     }
 
+    /**
+     * Imposta l'utente corrente
+     *
+     * @param utente
+     */
     @Override
     public void setUtente(Utente utente) {
         this.utente = utente;
     }
 
+    /**
+     * Controlla i parametri e salva nel DB il cittadino
+     * @throws IOException
+     * @throws SQLException
+     * @throws InterruptedException
+     */
     public void registraCittadino() throws IOException, SQLException, InterruptedException {
         String nome = fieldNome.getText();
         String cognome = fieldCognome.getText();
@@ -107,6 +139,12 @@ public class RegistraCittadinoAdapter extends Adapter{
 
     }
 
+    /**
+     * Controlla che l'ID non sia presente nel DB
+     * @param id
+     * @return
+     * @throws IOException
+     */
     private boolean controllaID(String id) throws IOException {
 
         if(id.matches("^[a-zA-Z]+$"))

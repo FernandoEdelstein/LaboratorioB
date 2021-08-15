@@ -11,15 +11,32 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Check
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class Check {
 
-
+    /**
+     * Verifica se il CF è valido
+     *
+     * @param CF
+     * @return boolean
+     */
     public boolean cfValido(String CF) {
         return CF.matches("^(?:[A-Z][AEIOU][AEIOUX]|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]" +
                 "|[15MR][\\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|" +
                 "[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]+$");
     }
 
+    /**
+     * Converte la prima lettera della String passata come argomento in maiuscola
+     *
+     * @param str
+     * @return String
+     */
     public String primaMaiuscola(String str) {
         if (str.isBlank())
             return "";
@@ -27,6 +44,12 @@ public class Check {
         return str.substring(0, 1).toUpperCase() + str.substring(1, str.length()).toLowerCase();
     }
 
+    /**
+     * Verifica se l'email è un indirizzo valido
+     *
+     * @param email
+     * @return boolean
+     */
     public boolean emailValido(String email) {
 
         String EMAIL_PATTERN = ("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -38,6 +61,12 @@ public class Check {
         return matcher.matches();
     }
 
+    /**
+     * Stabilisce il nome della tabella
+     *
+     * @param tableName
+     * @return String
+     */
     public String nomeTabella(String tableName) {
         StringBuilder name = new StringBuilder();
         for (int i = 0; i < tableName.length(); i++) {
@@ -50,7 +79,13 @@ public class Check {
     }
 
 
-
+    /**
+     * Generazione di data di default se il database è vuoto
+     *
+     * @return boolean
+     * @throws IOException
+     * @throws SQLException
+     */
     public boolean databaseVuoto() throws IOException, SQLException {
         Proxy proxyCheck = new Proxy();
         Proxy proxyPopulate = new Proxy();
@@ -74,9 +109,9 @@ public class Check {
             e.printStackTrace();
         }
 
-            proxyPopulate.inserireInDb(query.toString());
+        proxyPopulate.inserireInDb(query.toString());
 
-        System.out.println("> First launch: default data generated.");
+                System.out.println("Database vuoti -> Data di default generata");
         return true;
     }
 

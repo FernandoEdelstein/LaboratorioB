@@ -6,8 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Objects;
-
+/**
+ * classe Main dei Clienti
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class CentriVaccinali extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -21,6 +25,11 @@ public class CentriVaccinali extends Application {
 
     }
 
+    /**
+     * Launcher dell'applicazione
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         launch();
     }

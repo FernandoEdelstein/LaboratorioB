@@ -24,6 +24,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * SegnalazioneAdapter
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class SegnalazioneAdapter extends Adapter implements Initializable {
     private CentroVaccinale centroVaccinale;
     private Utente utente;
@@ -43,14 +49,31 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
     @FXML
     private Label descrizioneText;
 
+    /**
+     * Vai alla schermata Cerca
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiACerca(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("Cerca.fxml", utente, event);
     }
 
+    /**
+     * Vai alla schermata Registrati
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiARegistrati(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCittadino.fxml", utente, event);
     }
 
+    /**
+     * Implementazione del bottone LogOut
+     * Chiede conferma prima di tornare alla Home e settare l'user a null
+     * @param event
+     */
     public void logoutBtnImpl(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma LogOut");
@@ -74,6 +97,12 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         });
     }
 
+    /**
+     * Vai alla schermata Centro
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiAVisualizzaCentro(ActionEvent event) throws IOException {
         FXMLLoader loader = new
                 FXMLLoader(CentriVaccinali.class.getClassLoader().getResource(path + "Centro.fxml"));
@@ -90,6 +119,15 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         stage.show();
     }
 
+    /**
+     * Invia Segnalazione
+     * Controlla i campi vuoti ed esegue la query per inserirla sul db
+     *
+     * Nel caso ci sia già una segnalazione, viene aggiornata
+     *
+     * @param event
+     * @throws IOException
+     */
     public void inviaSegnalazione(ActionEvent event) throws IOException {
         String nomeCentro = centroVaccinale.getNome();
         String descrizione = noteAggiuntiveTextArea.getText().trim();
@@ -128,12 +166,22 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         vaiAVisualizzaCentro(event);
     }
 
+    /**
+     * Imposta il centro corrente
+     * @param centroVaccinale
+     */
+
     public void setCentro(CentroVaccinale centroVaccinale) {
         Check check = new Check();
         this.centroVaccinale = centroVaccinale;
         nomeCentroText.setText(check.primaMaiuscola(centroVaccinale.getNome()));
     }
 
+    /**
+     * Imposta l'utente corrente
+     * Imposta i sintomi sulla comboBox
+     * @param utente
+     */
     @Override
     public void setUtente(Utente utente) {
         this.utente = utente;
@@ -165,6 +213,9 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         }
     }
 
+    /**
+     * Stampa la descrizione del sintomo
+     */
     public void stampaDescrizioneSintomo() {
         String sintomoComboTxt = sintomoCombo.getValue();
         String query = "SELECT * FROM sintomi WHERE sintomo = '" + sintomoComboTxt + "'";
@@ -182,6 +233,12 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         }
     }
 
+    /**
+     * Impostazione al momento di inizializzare la schermata
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -218,6 +275,10 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         });
     }
 
+    /**
+     * Genera un UID della segnalazione, verifica che non sia presente nel db
+     * @return
+     */
     private int generaIdSegnalazione() {
         ArrayList<String> tmpID = new ArrayList<>();
         Random rand = new Random();

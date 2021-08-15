@@ -13,14 +13,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import serverCV.Proxy;
-
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * RegistraCentroVaccinaleAdapter
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializable {
     private Utente utente;
     private Check check = new Check();
@@ -32,14 +36,31 @@ public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializ
     @FXML
     private Text benvenutoText;
 
+    /**
+     * Vai alla schermata Registra Vaccinato
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiARegistraVaccinatoScene(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraVaccinato.fxml", utente, event);
     }
 
+    /**
+     * Vai alla schermata Home
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiAHome(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("HomeCentri.fxml", utente, event);
     }
 
+    /**
+     * Implementazione del bottone LogOut
+     * Chiede conferma prima di tornare alla Home e settare l'user a null
+     * @param event
+     */
     public void logoutBtnImpl(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma LogOut");
@@ -63,12 +84,23 @@ public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializ
         });
     }
 
+    /**
+     * Imposta l'utente corrente
+     *
+     * @param utente
+     */
     @Override
     public void setUtente(Utente utente) {
         this.utente = utente;
         benvenutoText.setText("Ciao, " + utente.getUsername());
     }
 
+    /**
+     * Controlla i campi e registra il centro
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     public void registraCentro(ActionEvent event) throws IOException, SQLException {
         String nomeCentro = nomeField.getText().trim();
         String tipologia = tipologiaCombo.getValue();
@@ -136,6 +168,10 @@ public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializ
 
     }
 
+    /**
+     * Controlla che il centro non esista già
+     * @return boolean
+     */
     private boolean controlaCentro() {
         Proxy proxy;
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
@@ -154,6 +190,13 @@ public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializ
         return !centriVaccinali.isEmpty();
     }
 
+    /**
+     * Imposta parametri di inizializzazione
+     * Limita la quantità e tipologia dei caratteri
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] tipologia = {

@@ -10,6 +10,12 @@ import clientCV.cittadini.Cittadino;
 import clientCV.shared.Check;
 import clientCV.shared.Utente;
 
+/**
+ * Proxy
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 
 public class Proxy {
 
@@ -19,7 +25,11 @@ public class Proxy {
     private BufferedReader in = null;
     private PrintWriter out = null;
 
-
+    /**
+     * Proxy Constructor
+     *
+     * @throws IOException
+     */
 
     public Proxy() throws IOException {
 
@@ -43,11 +53,26 @@ public class Proxy {
         }
     }
 
+    /**
+     * Close, chiude il collegamento col proxy
+     *
+     * @throws IOException
+     */
+
     public void close() throws IOException {
         out.close();
         in.close();
         socket.close();
     }
+
+    /**
+     * Metodo Login, prende una query che richiede un utente e costruisce un oggetto Utente o Cittadino
+     *
+     * @param query
+     * @param User
+     * @return Utente
+     * @throws IOException
+     */
 
     public Utente login(String query, String User) throws IOException {
         out.println("login");
@@ -99,6 +124,15 @@ public class Proxy {
         }
     }
 
+    /**
+     * Metodo filtra
+     *
+     * @param query
+     * @return ArrayList Centro Vaccinale
+     * @throws IOException
+     * @throws SQLException
+     */
+
     public ArrayList<CentroVaccinale> filtra(String query) throws IOException, SQLException {
         out.println("filtra");
         out.println(query);
@@ -137,6 +171,14 @@ public class Proxy {
         return centrivaccinali;
     }
 
+    /**
+     * Metodo registraNuovoCentro, registra un nuovo centro e crea la tabella per i suoi vaccinati
+     *
+     * @param nomeCentro
+     * @throws IOException
+     * @throws SQLException
+     */
+
     public void registraNuovoCentro(String nomeCentro) throws IOException, SQLException {
         Check check = new Check();
         out.println("registraNuovoCentro");
@@ -154,10 +196,27 @@ public class Proxy {
                 ")");
     }
 
+    /**
+     * Metodo inserireInDb, inserisce i dati passati come argomento sul db
+     *
+     * @param query
+     * @throws IOException
+     * @throws SQLException
+     */
+
     public void inserireInDb(String query) throws IOException, SQLException {
         out.println("inserireInDb");
         out.println(query);
     }
+
+    /**
+     * Metodo riceviVaccinati, restituisce i un ArrayList con i vaccinati
+     *
+     * @param query
+     * @return ArrayList Vaccinato
+     * @throws IOException
+     * @throws SQLException
+     */
 
     public ArrayList<Vaccinato> riceviVaccinati(String query) throws IOException, SQLException {
         ArrayList<Vaccinato> vaccinati = new ArrayList<>();
@@ -190,6 +249,15 @@ public class Proxy {
         return vaccinati;
     }
 
+    /**
+     * Metodo riceviSintomo, genera un ArrayList pieno dei sintomi
+     *
+     * @param query
+     * @return ArrayList Sintomo
+     * @throws IOException
+     * @throws SQLException
+     */
+
     public ArrayList<Sintomo> riceviSintomi(String query) throws IOException, SQLException {
 
         ArrayList<Sintomo> sintomi = new ArrayList<>();
@@ -204,10 +272,10 @@ public class Proxy {
             if (nomeSintomo.equals("exit"))
                 break;
             else {
-                int idevento = Integer.parseInt(in.readLine());
+                int idsintomo = Integer.parseInt(in.readLine());
                 String descrizione = in.readLine();
                 sintomi.add(new Sintomo(
-                        idevento,
+                        idsintomo,
                         nomeSintomo,
                         descrizione
                 ));
@@ -217,11 +285,19 @@ public class Proxy {
         return sintomi;
     }
 
+    /**
+     * Metodo riceviSegnalazione, restituisce un ArrayList con tutte le segnalazioni fatte
+     *
+     * @param query
+     * @return
+     * @throws IOException
+     */
+
     public ArrayList<Segnalazione> riceviSegnalazione(String query) throws IOException {
         ArrayList<Segnalazione> segnalazioni = new ArrayList<>();
 
-        out.println("riceviSegnalazione");
-        out.println(query);
+            out.println("riceviSegnalazione");
+            out.println(query);
 
         while (true) {
             String centroVaccinale = in.readLine();
@@ -246,19 +322,28 @@ public class Proxy {
         return segnalazioni;
     }
 
-    public ArrayList<String> riceviValoriIndividuali(String query, String columnLabel) throws IOException {
+    /**
+     * Metodo riceviValoriIndividuali, crea un ArrayList con tutti i valori individuali
+     *
+     * @param query
+     * @param colonna
+     * @return ArrayList String
+     * @throws IOException
+     */
+
+    public ArrayList<String> riceviValoriIndividuali(String query, String colonna) throws IOException {
         ArrayList<String> values = new ArrayList<>();
 
         out.println("riceviValoriIndividuali");
         out.println(query);
-        out.println(columnLabel);
+        out.println(colonna);
 
         while (true) {
-            String value = in.readLine();
-            if (value.equals("exit"))
-                break;
+            String valore = in.readLine();
+
+            if (valore.equals("exit")) break;
             else {
-                values.add(value);
+                values.add(valore);
             }
         }
         return values;

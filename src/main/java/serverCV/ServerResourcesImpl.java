@@ -6,10 +6,26 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.*;
 
+/**
+ * ServerResourcesImpl implementa tutte le funzionalità del database
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
+
 public class ServerResourcesImpl{
     private BufferedReader in;
     private PrintWriter out;
     private Connection connection;
+
+    /**
+     * Costruttore ServerResourcesImpl
+     * Prende un parametro in, out e connection
+     *
+     * @param in
+     * @param out
+     * @param connection
+     */
 
     public ServerResourcesImpl (BufferedReader in, PrintWriter out, Connection connection) {
         this.in = in;
@@ -17,6 +33,12 @@ public class ServerResourcesImpl{
         this.connection = connection;
     }
 
+    /**
+     * Metodo LogIn, prende un utente dal database e determina se è un vaccinato o un operatore
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
 
     public void login() throws IOException, SQLException {
         String query = in.readLine();
@@ -66,6 +88,12 @@ public class ServerResourcesImpl{
             out.println("false");
     }
 
+    /**
+     * Metodo Close, chiude il collegamento
+     *
+     * @param socket
+     * @throws IOException
+     */
 
     public void close(Socket socket) throws IOException {
         in.close();
@@ -73,7 +101,12 @@ public class ServerResourcesImpl{
         socket.close();
     }
 
-
+    /**
+     * Metodo riceviSintomi, prelieva i sintomi dal database
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
 
     public void riceviSintomi() throws IOException, SQLException {
         String query= in.readLine();
@@ -93,6 +126,12 @@ public class ServerResourcesImpl{
         }
     }
 
+    /**
+     * Metodo inserireInDb, Inserisce nel db un commando specifico
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
 
     public void inserireInDb() throws IOException, SQLException {
         String query = in.readLine();
@@ -105,6 +144,13 @@ public class ServerResourcesImpl{
             e.printStackTrace();
         }
     }
+
+    /**
+     * Metodo registraNuovoCentro, registra un Centro Vaccinale
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
 
     public void registraNuovoCentro() throws IOException, SQLException {
         String nomeCentro = in.readLine();
@@ -125,6 +171,13 @@ public class ServerResourcesImpl{
         }
     }
 
+    /**
+     * Metodo riceviValoriIndividuali, prelieva valori individuali dal db
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
+
     public void riceviValoriIndividuali() throws IOException, SQLException {
         String query= in.readLine();
         String columnLabel = in.readLine();
@@ -142,6 +195,13 @@ public class ServerResourcesImpl{
         }
 
     }
+
+    /**
+     * Metodo riceviVaccinati, prende i cittadini vaccinati dal DB
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
 
     public void riceviVaccinati() throws IOException, SQLException {
         String query = in.readLine();
@@ -162,6 +222,13 @@ public class ServerResourcesImpl{
             e.printStackTrace();
         }
     }
+
+    /**
+     * Metodo filtra
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
 
     public void filtra() throws IOException, SQLException {
         String query= in.readLine();
@@ -184,8 +251,15 @@ public class ServerResourcesImpl{
         catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
+    /**
+     * Metodo riceviSegnalazione, prende segnalazioni dal db
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
+
     public void riceviSegnalazione() throws IOException, SQLException {
         String query = in.readLine();
         Statement statement= connection.createStatement();

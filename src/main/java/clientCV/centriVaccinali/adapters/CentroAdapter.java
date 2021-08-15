@@ -41,18 +41,41 @@ public class CentroAdapter extends Adapter{
     private ScrollPane segnalazioniScroll;
 
 
+    /**
+     * Vai alla schermata Registrati
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiARegistrati(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCittadino.fxml", utente, event);
     }
 
+    /**
+     * Vai alla schermata LogIn
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiALogin(ActionEvent event) throws IOException {
         cambiaSchermata("Login.fxml", event);
     }
 
+    /**
+     * Vai alla schermata Cerca
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiACerca(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("Cerca.fxml", utente, event);
     }
 
+    /**
+     * Implementazione del bottone LogOut
+     * Chiede conferma prima di tornare alla Home e settare l'user a null
+     * @param event
+     */
     public void logoutBtnImpl(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma LogOut");
@@ -76,6 +99,12 @@ public class CentroAdapter extends Adapter{
         });
     }
 
+    /**
+     * Imposta l'utente corrente
+     * Nel caso sia nullo, attiva il bottone Accedi
+     *
+     * @param utente
+     */
     @Override
     public void setUtente(Utente utente) {
         this.utente = utente;
@@ -102,6 +131,10 @@ public class CentroAdapter extends Adapter{
         }
     }
 
+    /**
+     * Imposta il centro richiesto
+     * @param centro
+     */
     public void setCentro(String centro){
         //Imposta il background dello Scroll Pane
         segnalazioniScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
@@ -167,6 +200,13 @@ public class CentroAdapter extends Adapter{
 
     }
 
+    /**
+     * Vai alla schermata per inserire una segnalazione
+     * Controlla che l'utente corrente sia presente nella tabella del centro selezionato
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiASegnalazione(ActionEvent event) throws IOException {
         Proxy proxy;
         Check check = new Check();

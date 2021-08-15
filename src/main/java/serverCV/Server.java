@@ -1,19 +1,25 @@
 package serverCV;
 
-import java.io.BufferedReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.concurrent.Semaphore;
 
-import serverCV.ServerConnection;
+/**
+ * Server Class
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 
 public class Server {
+    /**
+     * First Runnable Program
+     * @param args
+     */
+
     public static void main(String[] args) {
         try{
             Semaphore sem= new Semaphore(100);
@@ -31,7 +37,7 @@ public class Server {
                     ServerInfo.getDBNAME(),
                     ServerInfo.getIPSERVER(),
                     ServerInfo.getDBPORT())){
-                System.out.println("Errore nel inserimento di credenziali, riprova");
+                System.out.println("Errore nel inserimento di credenziali, riprova!");
 
                 System.out.println("DB Username: ");
                     ServerInfo.setPGUSERNAME(scan.nextLine());
@@ -40,6 +46,7 @@ public class Server {
             }
 
             System.out.println("Connesso!");
+
             try {
                 System.out.println("Server: " + server);
 

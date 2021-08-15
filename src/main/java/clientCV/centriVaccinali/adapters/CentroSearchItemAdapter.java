@@ -13,6 +13,12 @@ import javafx.scene.text.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * CentroSearchItemAdapter
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class CentroSearchItemAdapter {
     private CentroVaccinale centro;
 
@@ -30,6 +36,11 @@ public class CentroSearchItemAdapter {
     @FXML
     private Text indirizzoText;
 
+    /**
+     * Imposta il file fxml con i dati del centro
+     * @param c
+     * @param u
+     */
     public void setData(CentroVaccinale c, Utente u){
         this.centro = c;
 

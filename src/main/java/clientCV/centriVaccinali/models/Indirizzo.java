@@ -2,12 +2,28 @@ package clientCV.centriVaccinali.models;
 
 import clientCV.shared.Check;
 
+/**
+ * Indirizzo
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class Indirizzo {
     private String strada, civico, comune, provincia, CAP;
     private Qualificatore qualificatore;
 
         private Check check = new Check();
 
+    /**
+     * Costruttore Indirizzo
+     *
+     * @param qualificatore
+     * @param strada
+     * @param civico
+     * @param comune
+     * @param provincia
+     * @param CAP
+     */
     public Indirizzo(Qualificatore qualificatore,
                      String strada,
                      String civico,
@@ -28,31 +44,60 @@ public class Indirizzo {
     }
 
     //Getters
+
+    /**
+     * Get Strada
+     * @return Strada
+     */
     public String getStrada() {
         return strada;
     }
 
+    /**
+     * Get Civico
+     * @return civico
+     */
     public String getCivico() {
         return civico;
     }
 
+    /**
+     * Get Comune
+     * @return comune
+     */
     public String getComune() {
         return comune;
     }
 
+    /**
+     * Get Provincia
+     * @return provincia
+     */
     public String getProvincia() {
         return provincia;
     }
 
+    /**
+     * Get CAP
+     * @return CAP
+     */
     public String getCAP() {
         return CAP;
     }
 
+    /**
+     * Get Qualificatore
+     * @return Qualificatore
+     */
     public Qualificatore getQualificatore() {
         return qualificatore;
     }
 
     //To String
+    /**
+     * ToString
+     * @return String
+     */
     @Override
     public String toString() {
         return check.primaMaiuscola(qualificatore.toString()) +

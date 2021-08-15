@@ -21,6 +21,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * CercaAdapter
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class CercaAdapter extends Adapter implements Initializable {
     private Utente utente;
     private Check check = new Check();
@@ -43,14 +49,31 @@ public class CercaAdapter extends Adapter implements Initializable {
     @FXML
     private GridPane centriGrid;
 
+    /**
+     * Vai alla schermata Registrati
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiARegistrati(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCittadino.fxml", utente, event);
     }
 
+    /**
+     * Vai alla schermata LogIn
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiALogIn(ActionEvent event) throws IOException {
         cambiaSchermata("Login.fxml", event);
     }
 
+    /**
+     * Implementazione del bottone LogOut
+     * Chiede conferma prima di tornare alla Home e settare l'user a null
+     * @param event
+     */
     public void logoutBtnImpl(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma LogOut");
@@ -74,6 +97,15 @@ public class CercaAdapter extends Adapter implements Initializable {
         });
     }
 
+
+    /**
+     * Mostra Centri Vaccinali
+     * Verifica se ci sono errori nel inserimento dei campi
+     * Invia la query al Proxy
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
     public void mostraCentriVaccinali() throws IOException, SQLException {
 
         if(radNome.isSelected()) {
@@ -155,12 +187,21 @@ public class CercaAdapter extends Adapter implements Initializable {
         }
     }
 
+    /**
+     * Cambia il tipo di ricerca
+     */
     public void enableFiltering () {
         nomeField.setDisable(radComuneTipologia.isSelected());
         comuneField.setDisable(radNome.isSelected());
         tipologiaCBox.setDisable(radNome.isSelected());
     }
 
+    /**
+     * Imposta l'utente corrente
+     * Nel caso sia nullo, attiva il bottone Accedi
+     *
+     * @param utente
+     */
     @Override
     public void setUtente(Utente utente) {
         this.utente = utente;
@@ -187,6 +228,9 @@ public class CercaAdapter extends Adapter implements Initializable {
         fillGridPane();
     }
 
+    /**
+     * Riempi il grid pane con tutti i centri vaccinali
+     */
     private void fillGridPane() {
         String query = "SELECT * FROM centrivaccinali";
 
@@ -215,6 +259,12 @@ public class CercaAdapter extends Adapter implements Initializable {
 
     }
 
+    /**
+     * Impostazioni stetiche
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] tipo = {Tipologia.OSPEDALIERO.toString(), Tipologia.HUB.toString(), Tipologia.AZIENDALE.toString()};

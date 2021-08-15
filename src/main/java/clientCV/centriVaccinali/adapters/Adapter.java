@@ -13,11 +13,31 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Adapter
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public abstract class Adapter {
+    /**
+     * Path
+     */
     public static final String path = "Layout/";
 
+    /**
+     * Imposta l'utente corrente
+     * @param utente
+     */
     public abstract void setUtente(Utente utente);
 
+    /**
+     * Cambia schermata fxml
+     *
+     * @param fxml
+     * @param event
+     * @throws IOException
+     */
     public void cambiaSchermata(String fxml, ActionEvent event) throws IOException {
         Parent root = FXMLLoader
                 .load(Objects.requireNonNull(CentriVaccinali.class.getClassLoader()
@@ -28,6 +48,14 @@ public abstract class Adapter {
         stage.show();
     }
 
+    /**
+     * Cambia schermata passando come argomento l'utente corrente
+     *
+     * @param fxml
+     * @param utente
+     * @param event
+     * @throws IOException
+     */
     public void cambiaSchermataConUtente(String fxml, Utente utente, ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getClassLoader()
                 .getResource( path + fxml));
@@ -43,6 +71,12 @@ public abstract class Adapter {
         stage.show();
     }
 
+    /**
+     * Impostazione di alerta
+     *
+     * @param title
+     * @param body
+     */
     public void mostraWarning(String title, String body) {
         Alert warning = new Alert(Alert.AlertType.WARNING, "", ButtonType.CLOSE);
         warning.setHeaderText(title);

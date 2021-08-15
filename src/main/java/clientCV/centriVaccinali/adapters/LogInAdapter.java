@@ -20,6 +20,12 @@ import java.net.Socket;
 import java.sql.SQLException;
 import java.util.Objects;
 
+/**
+ * LogInAdapter
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class LogInAdapter extends Adapter {
     @FXML
     private TextField usernameField;
@@ -28,6 +34,11 @@ public class LogInAdapter extends Adapter {
 
     private Utente utente;
 
+    /**
+     * Vai alla schermata Impostazioni
+     *
+     * @throws IOException
+     */
     public void vaiAImpostazioni() throws IOException {
         Parent root = FXMLLoader.load(
                 Objects.requireNonNull(CentriVaccinali.class.getClassLoader().getResource(
@@ -42,6 +53,12 @@ public class LogInAdapter extends Adapter {
         stage.show();
     }
 
+    /**
+     * Vai alla schermata Registrati
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiARegistra(ActionEvent event) throws IOException, SQLException {
 
         if(!tryConnection())
@@ -50,6 +67,12 @@ public class LogInAdapter extends Adapter {
         cambiaSchermataConUtente("RegistraCittadino.fxml", null, event);
     }
 
+    /**
+     * Vai alla schermata HomeCittadini come ospite
+     *
+     * @param event
+     * @throws IOException
+     */
     public void logInOspite(ActionEvent event) throws IOException, SQLException {
 
         if(!tryConnection())
@@ -58,6 +81,13 @@ public class LogInAdapter extends Adapter {
         cambiaSchermataConUtente("HomeCittadini.fxml", null, event);
     }
 
+    /**
+     * Controlla il collegamento col proxy ed esegue il log in basandosi sul tipo di utente
+     *
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     public void controllaLogIn(ActionEvent event) throws IOException, SQLException {
 
         if(!tryConnection())
@@ -92,11 +122,23 @@ public class LogInAdapter extends Adapter {
         }
     }
 
+    /**
+     * Imposta l'utente corrente
+     *
+     * @param utente
+     */
     @Override
     public void setUtente(Utente utente) {
         this.utente = utente;
     }
 
+    /**
+     * Controlla la connessione
+     *
+     * @return boolean
+     * @throws IOException
+     * @throws SQLException
+     */
     public boolean tryConnection() throws IOException, SQLException {
         boolean connected;
 
@@ -114,6 +156,13 @@ public class LogInAdapter extends Adapter {
         return true;
     }
 
+    /**
+     * Ping Host
+     *
+     * @param host
+     * @param port
+     * @return boolean
+     */
     private static boolean pingHost(String host, int port) {
         try (Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress(host, port), 2000);

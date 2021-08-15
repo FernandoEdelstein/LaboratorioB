@@ -10,6 +10,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.text.Text;
 import java.io.IOException;
 
+/**
+ * HomeCentriAdapter
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class HomeCentriAdapter extends Adapter {
     public Button logoutBtn;
     private Utente utente;
@@ -19,14 +25,31 @@ public class HomeCentriAdapter extends Adapter {
     @FXML
     private Button registraCentroBtn, registraVaccinatoBtn;
 
+    /**
+     * Vai alla schermata Registra Centro
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiARegistraCentroScene(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCentroVaccinale.fxml", utente, event);
     }
 
+    /**
+     * Vai alla schermata Registra Vaccinato
+     *
+     * @param event
+     * @throws IOException
+     */
     public void vaiARegistraVaccinatoScene(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraVaccinato.fxml", utente, event);
     }
 
+    /**
+     * Implementazione del bottone LogOut
+     * Chiede conferma prima di tornare alla Home e settare l'user a null
+     * @param event
+     */
     public void logoutBtnImpl(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma LogOut");
@@ -50,6 +73,11 @@ public class HomeCentriAdapter extends Adapter {
         });
     }
 
+    /**
+     * Imposta l'utente corrente
+     *
+     * @param utente
+     */
     public void setUtente(Utente utente) {
         this.utente = utente;
         benvenutoText.setText("Ciao, " + utente.getUsername());
