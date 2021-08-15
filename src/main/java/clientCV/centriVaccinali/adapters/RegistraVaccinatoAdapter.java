@@ -56,7 +56,7 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
      * @param event
      * @throws IOException
      */
-    public void vaiARegistraCentroScene(ActionEvent event) throws IOException {
+    public void vaiARegistraCentro(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCentroVaccinale.fxml", utente, event);
     }
 
