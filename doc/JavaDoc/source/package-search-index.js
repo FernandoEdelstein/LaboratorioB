@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"clientCV"},{"l":"clientCV.centriVaccinali.adapters"},{"l":"clientCV.centriVaccinali.models"},{"l":"clientCV.cittadini"},{"l":"clientCV.shared"},{"l":"serverCV"}];updateSearchResults();
