@@ -32,7 +32,7 @@ public class HomeCittadiniAdapter extends Adapter {
      * @param event
      * @throws IOException
      */
-    public void vaiACercaScene(ActionEvent event) throws IOException {
+    public void vaiACerca(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("Cerca.fxml", utente, event);
     }
 
@@ -42,7 +42,7 @@ public class HomeCittadiniAdapter extends Adapter {
      * @param event
      * @throws IOException
      */
-    public void vaiARegistratiScene(ActionEvent event) throws IOException {
+    public void vaiARegistrati(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCittadino.fxml",utente, event);
     }
 

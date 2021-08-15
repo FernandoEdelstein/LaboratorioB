@@ -17,9 +17,10 @@ import java.io.IOException;
  * @author Eliana Monteleone 741025 VA
  */
 public class HomeCentriAdapter extends Adapter {
-    public Button logoutBtn;
     private Utente utente;
 
+    @FXML
+    private Button logoutBtn;
     @FXML
     private Text benvenutoText;
     @FXML
@@ -31,7 +32,7 @@ public class HomeCentriAdapter extends Adapter {
      * @param event
      * @throws IOException
      */
-    public void vaiARegistraCentroScene(ActionEvent event) throws IOException {
+    public void vaiARegistraCentro(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCentroVaccinale.fxml", utente, event);
     }
 
@@ -41,7 +42,7 @@ public class HomeCentriAdapter extends Adapter {
      * @param event
      * @throws IOException
      */
-    public void vaiARegistraVaccinatoScene(ActionEvent event) throws IOException {
+    public void vaiARegistraVaccinato(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraVaccinato.fxml", utente, event);
     }
 

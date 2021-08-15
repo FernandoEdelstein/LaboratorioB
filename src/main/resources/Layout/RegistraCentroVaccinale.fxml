@@ -36,7 +36,7 @@
                 <Cursor fx:constant="CLOSED_HAND" />
             </cursor>
         </Button>
-        <Button fx:id="registraVaccinatoBtn" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiARegistraVaccinatoScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Registra Vaccinato" textFill="#53b0bd">
+        <Button fx:id="registraVaccinatoBtn" alignment="CENTER" layoutX="468.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiARegistraVaccinato" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Registra Vaccinato" textFill="#53b0bd">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
