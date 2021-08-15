@@ -25,6 +25,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * CentroAdapter
+ *
+ * @author Fernando Edelstein 740403 VA
+ * @author Eliana Monteleone 741025 VA
+ */
 public class CentroAdapter extends Adapter{
     private Utente utente;
     private CentroVaccinale centroVaccinale;
