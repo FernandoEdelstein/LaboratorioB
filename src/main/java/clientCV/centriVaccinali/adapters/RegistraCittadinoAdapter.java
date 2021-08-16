@@ -5,7 +5,7 @@ import clientCV.shared.Utente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import serverCV.Proxy;
+import clientCV.Proxy;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;

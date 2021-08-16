@@ -26,7 +26,7 @@
                 <Font name="Montserrat Regular" size="18.0" />
             </font>
         </Text>
-        <Button id="btnRegistraCentro" fx:id="registraCentroBtn" alignment="CENTER" layoutX="223.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiARegistraCentroScene" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Registra Centro" textFill="#53b0bd">
+        <Button id="btnRegistraCentro" fx:id="registraCentroBtn" alignment="CENTER" layoutX="223.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiARegistraCentro" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Registra Centro" textFill="#53b0bd">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>

@@ -1,4 +1,4 @@
-package serverCV;
+package clientCV;
 
 
 import java.io.*;
@@ -9,6 +9,7 @@ import clientCV.centriVaccinali.models.*;
 import clientCV.cittadini.Cittadino;
 import clientCV.shared.Check;
 import clientCV.shared.Utente;
+import serverCV.ServerInfo;
 
 /**
  * Proxy
@@ -17,7 +18,7 @@ import clientCV.shared.Utente;
  * @author Eliana Monteleone 741025 VA
  */
 
-public class Proxy {
+public class Proxy implements OperazioniClient{
 
     private final Socket socket;
     private boolean operatore = false;

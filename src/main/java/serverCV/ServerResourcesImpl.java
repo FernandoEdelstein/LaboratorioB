@@ -13,7 +13,7 @@ import java.sql.*;
  * @author Eliana Monteleone 741025 VA
  */
 
-public class ServerResourcesImpl{
+public class ServerResourcesImpl implements OperazioniServer{
     private BufferedReader in;
     private PrintWriter out;
     private Connection connection;

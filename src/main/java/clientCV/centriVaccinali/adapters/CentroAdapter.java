@@ -20,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import serverCV.Proxy;
+import clientCV.Proxy;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;

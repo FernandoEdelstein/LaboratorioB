@@ -1,6 +1,6 @@
 package clientCV.shared;
 
-import serverCV.Proxy;
+import clientCV.Proxy;
 
 import java.io.File;
 import java.io.FileNotFoundException;
