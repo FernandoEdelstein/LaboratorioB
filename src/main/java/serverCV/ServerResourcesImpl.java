@@ -39,7 +39,6 @@ public class ServerResourcesImpl implements OperazioniServer{
      * @throws IOException
      * @throws SQLException
      */
-
     public void login() throws IOException, SQLException {
         String query = in.readLine();
         String userid = in.readLine();
@@ -94,7 +93,6 @@ public class ServerResourcesImpl implements OperazioniServer{
      * @param socket
      * @throws IOException
      */
-
     public void close(Socket socket) throws IOException {
         in.close();
         out.close();
@@ -107,7 +105,6 @@ public class ServerResourcesImpl implements OperazioniServer{
      * @throws IOException
      * @throws SQLException
      */
-
     public void riceviSintomi() throws IOException, SQLException {
         String query= in.readLine();
         Statement statement= connection.createStatement();
@@ -132,7 +129,6 @@ public class ServerResourcesImpl implements OperazioniServer{
      * @throws IOException
      * @throws SQLException
      */
-
     public void inserireInDb() throws IOException, SQLException {
         String query = in.readLine();
 
@@ -151,7 +147,6 @@ public class ServerResourcesImpl implements OperazioniServer{
      * @throws IOException
      * @throws SQLException
      */
-
     public void registraNuovoCentro() throws IOException, SQLException {
         String nomeCentro = in.readLine();
         String createTableQuery= in.readLine();
@@ -177,7 +172,6 @@ public class ServerResourcesImpl implements OperazioniServer{
      * @throws IOException
      * @throws SQLException
      */
-
     public void riceviValoriIndividuali() throws IOException, SQLException {
         String query= in.readLine();
         String columnLabel = in.readLine();
@@ -202,7 +196,6 @@ public class ServerResourcesImpl implements OperazioniServer{
      * @throws IOException
      * @throws SQLException
      */
-
     public void riceviVaccinati() throws IOException, SQLException {
         String query = in.readLine();
         Statement statement = connection.createStatement();
@@ -229,7 +222,6 @@ public class ServerResourcesImpl implements OperazioniServer{
      * @throws IOException
      * @throws SQLException
      */
-
     public void filtra() throws IOException, SQLException {
         String query= in.readLine();
         Statement statement= connection.createStatement();
@@ -259,7 +251,6 @@ public class ServerResourcesImpl implements OperazioniServer{
      * @throws IOException
      * @throws SQLException
      */
-
     public void riceviSegnalazione() throws IOException, SQLException {
         String query = in.readLine();
         Statement statement= connection.createStatement();
@@ -278,7 +269,5 @@ public class ServerResourcesImpl implements OperazioniServer{
         catch(Exception e) {
             e.printStackTrace();
         }
-
     }
-
 }
