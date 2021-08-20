@@ -20,7 +20,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="LaboratorioB" target="15" />
+      <module name="LaboratorioB" target="11" />
+      <module name="ServerCV" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
