@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="67.0" prefWidth="780.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapters.segnalazioneItemAdapter">
+<AnchorPane prefHeight="67.0" prefWidth="780.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapters.segnalazioneItemAdapter">
    <children>
       <Text fx:id="sintomoText" fill="#12646f" layoutX="17.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Sintomo" wrappingWidth="295.0000305175781">
          <font>

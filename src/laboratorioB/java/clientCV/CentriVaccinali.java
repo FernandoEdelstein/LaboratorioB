@@ -18,7 +18,10 @@ public class CentriVaccinali extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("../Layout/Login.fxml"));
 
-        primaryStage.setScene(new Scene(root, 900, 600));
+        Scene scene = new Scene(root, 900, 600);
+        scene.getRoot().setStyle("-fx-font-family: 'serif'");
+
+        primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.setTitle("Centri Vaccinali");
         primaryStage.show();

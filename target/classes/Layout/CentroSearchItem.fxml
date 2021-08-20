@@ -10,7 +10,7 @@
 <!--ScrollPane Size:
     799 x 232-->
 
-<AnchorPane prefHeight="64.0" prefWidth="764.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapters.CentroSearchItemAdapter">
+<AnchorPane prefHeight="64.0" prefWidth="764.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapters.CentroSearchItemAdapter">
    <children>
       <Button fx:id="entraBtn" alignment="CENTER" layoutX="656.0" layoutY="15.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="86.0" style="-fx-background-color: #53B0BD; -fx-background-radius: 10;" text="Entra" textFill="WHITE">
          <font>
