@@ -16,7 +16,7 @@ public class CentriVaccinali extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("../Layout/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Layout/Login.fxml"));
 
         Scene scene = new Scene(root, 900, 600);
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
