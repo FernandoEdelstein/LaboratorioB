@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Main-Class: clientCV.Launcher
+Class-Path: aether-api-1.7.jar maven-archiver-3.5.0.jar plexus-interpola
+ tion-1.14.jar src.zip javafx-swt.jar javafx.web.jar javafx.base.jar jav
+ afx.fxml.jar javafx.media.jar javafx.swing.jar javafx.controls.jar java
+ fx.graphics.jar plexus-classworlds-2.2.3.jar plexus-cipher-1.4.jar aeth
+ er-util-1.7.jar maven-artifact-3.0.jar maven-jar-plugin-3.2.0.jar plexu
+ s-io-3.2.0.jar javafx-base-16-mac.jar aether-spi-1.7.jar javafx-control
+ s-16-mac.jar maven-model-builder-3.0.jar sisu-inject-bean-1.4.2.jar mav
+ en-plugin-api-3.0.jar maven-model-3.0.jar sisu-inject-plexus-1.4.2.jar 
+ maven-compat-3.0.jar src.zip javafx-swt.jar javafx.web.jar javafx.base.
+ jar javafx.fxml.jar javafx.media.jar javafx.swing.jar javafx.controls.j
+ ar javafx.graphics.jar wagon-provider-api-2.10.jar maven-shared-utils-3
+ .2.1.jar javafx-controls-16.jar snappy-0.4.jar javafx-fxml-16.jar maven
+ -settings-3.0.jar plexus-sec-dispatcher-1.3.jar maven-repository-metada
+ ta-3.0.jar plexus-utils-3.3.0.jar maven-core-3.0.jar aether-impl-1.7.ja
+ r postgresql-42.2.20.jar javafx-base-16.jar maven-aether-provider-3.0.j
+ ar plexus-archiver-4.2.1.jar commons-io-2.5.jar file-management-3.0.0.j
+ ar javafx-fxml-16-mac.jar sisu-guice-2.1.7-noaop.jar checker-qual-3.5.0
+ .jar maven-settings-builder-3.0.jar xz-1.8.jar plexus-component-annotat
+ ions-1.5.5.jar maven-shared-io-3.0.0.jar commons-compress-1.19.jar
+
