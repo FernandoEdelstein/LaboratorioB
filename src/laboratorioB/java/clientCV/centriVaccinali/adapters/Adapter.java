@@ -67,6 +67,8 @@ public abstract class Adapter {
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
+
+
         stage.setScene(scene);
         stage.show();
     }
@@ -79,6 +81,8 @@ public abstract class Adapter {
      */
     public void mostraWarning(String title, String body) {
         Alert warning = new Alert(Alert.AlertType.WARNING, "", ButtonType.CLOSE);
+        warning.getDialogPane().getStylesheets().add(getClass().getResource("../resources/Style/style.css").toExternalForm());
+
         warning.setHeaderText(title);
         warning.setContentText(body);
         warning.show();
