@@ -109,6 +109,7 @@ public class LogInAdapter extends Adapter {
         utente = proxy.login(query, username);
 
         if(utente == null) {
+
             mostraWarning("Utente non trovato", "Username e Password non corrispondono a nessun utente");
         } else {
             if(utente instanceof Cittadino) {

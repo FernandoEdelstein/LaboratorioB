@@ -81,7 +81,7 @@ public abstract class Adapter {
      */
     public void mostraWarning(String title, String body) {
         Alert warning = new Alert(Alert.AlertType.WARNING, "", ButtonType.CLOSE);
-        warning.getDialogPane().getStylesheets().add(getClass().getResource("../resources/Style/style.css").toExternalForm());
+        warning.getDialogPane().getStylesheets();
 
         warning.setHeaderText(title);
         warning.setContentText(body);
