@@ -1,7 +1,7 @@
 package clientCV.centriVaccinali.adapters;
 
 import clientCV.shared.ServerInfo;
-import clientCV.shared.Utente;
+import clientCV.cittadini.Utente;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

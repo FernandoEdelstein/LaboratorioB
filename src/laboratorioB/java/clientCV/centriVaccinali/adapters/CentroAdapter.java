@@ -6,7 +6,7 @@ import clientCV.centriVaccinali.models.Segnalazione;
 import clientCV.centriVaccinali.models.Vaccinato;
 import clientCV.cittadini.Cittadino;
 import clientCV.shared.Check;
-import clientCV.shared.Utente;
+import clientCV.cittadini.Utente;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

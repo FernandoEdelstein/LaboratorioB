@@ -1,6 +1,6 @@
 package clientCV.centriVaccinali.models;
 
-import clientCV.shared.Persona;
+import clientCV.cittadini.Persona;
 
 import java.sql.Date;
 

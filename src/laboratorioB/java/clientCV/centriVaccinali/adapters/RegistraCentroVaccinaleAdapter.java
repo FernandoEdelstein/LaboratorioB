@@ -4,7 +4,7 @@ import clientCV.centriVaccinali.models.CentroVaccinale;
 import clientCV.centriVaccinali.models.Qualificatore;
 import clientCV.centriVaccinali.models.Tipologia;
 import clientCV.shared.Check;
-import clientCV.shared.Utente;
+import clientCV.cittadini.Utente;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;

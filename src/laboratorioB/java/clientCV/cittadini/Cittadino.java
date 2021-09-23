@@ -1,6 +1,5 @@
 package clientCV.cittadini;
 
-import clientCV.shared.Utente;
 /**
  * Cittadino
  *

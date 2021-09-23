@@ -1,4 +1,4 @@
-package clientCV.shared;
+package clientCV.cittadini;
 
 /**
  * Persona

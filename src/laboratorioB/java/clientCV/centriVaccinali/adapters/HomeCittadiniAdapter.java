@@ -1,6 +1,6 @@
 package clientCV.centriVaccinali.adapters;
 
-import clientCV.shared.Utente;
+import clientCV.cittadini.Utente;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

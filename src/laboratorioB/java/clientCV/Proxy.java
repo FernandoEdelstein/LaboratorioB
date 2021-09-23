@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import clientCV.centriVaccinali.models.*;
 import clientCV.cittadini.Cittadino;
 import clientCV.shared.Check;
-import clientCV.shared.Utente;
+import clientCV.cittadini.Utente;
 import serverCV.ServerInfo;
 
 /**

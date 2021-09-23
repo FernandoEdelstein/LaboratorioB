@@ -2,7 +2,7 @@ package clientCV.centriVaccinali.adapters;
 
 import clientCV.centriVaccinali.models.Vaccino;
 import clientCV.shared.Check;
-import clientCV.shared.Utente;
+import clientCV.cittadini.Utente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

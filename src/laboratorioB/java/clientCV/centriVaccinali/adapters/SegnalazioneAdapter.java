@@ -5,7 +5,7 @@ import clientCV.centriVaccinali.models.CentroVaccinale;
 import clientCV.centriVaccinali.models.Segnalazione;
 import clientCV.centriVaccinali.models.Sintomo;
 import clientCV.shared.Check;
-import clientCV.shared.Utente;
+import clientCV.cittadini.Utente;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;

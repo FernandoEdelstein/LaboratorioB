@@ -4,7 +4,7 @@ import clientCV.centriVaccinali.models.CentroVaccinale;
 import clientCV.centriVaccinali.models.Segnalazione;
 import clientCV.centriVaccinali.models.Sintomo;
 import clientCV.centriVaccinali.models.Vaccinato;
-import clientCV.shared.Utente;
+import clientCV.cittadini.Utente;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
