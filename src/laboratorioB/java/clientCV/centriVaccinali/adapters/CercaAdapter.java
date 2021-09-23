@@ -59,6 +59,10 @@ public class CercaAdapter extends Adapter implements Initializable {
         cambiaSchermataConUtente("RegistraCittadino.fxml", utente, event);
     }
 
+    public void vaiAHome(ActionEvent event) throws IOException {
+        cambiaSchermataConUtente("HomeCittadini.fxml", utente, event);
+    }
+
     /**
      * Vai alla schermata LogIn
      *
