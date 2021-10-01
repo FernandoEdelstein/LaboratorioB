@@ -20,7 +20,9 @@ CREATE TABLE utenti (
 
 CREATE TABLE idunivoci (
 	  idvaccinazione SMALLINT PRIMARY KEY,
-	  codicefiscale varchar UNIQUE
+	  codicefiscale varchar UNIQUE,
+	  centrovaccinale varchar NOT NULL,
+	    FOREIGN KEY(centrovaccinale) REFERENCES centrivaccinali(nome)
 );
 
 CREATE TABLE cittadinivaccinati (

@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapters.HomeCittadiniAdapter">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientCV.centriVaccinali.adapters.HomeCittadiniAdapter">
     <children>
         <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -50,7 +50,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button id="btnLogout" fx:id="logoutBtn" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" onAction="#logoutBtnImpl" prefWidth="126.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Logout" textFill="#12646f">
+        <Button id="btnLogout" fx:id="logoutBtn" alignment="CENTER" layoutX="751.0" layoutY="23.0" mnemonicParsing="false" onAction="#logoutBtnImpl" prefHeight="53.0" prefWidth="117.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Logout" textFill="#12646f">
             <font>
                 <Font name="Montserrat Regular" size="18.0" />
             </font>

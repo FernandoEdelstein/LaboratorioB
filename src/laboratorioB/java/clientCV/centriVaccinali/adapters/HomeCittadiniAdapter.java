@@ -1,12 +1,27 @@
 package clientCV.centriVaccinali.adapters;
 
+import clientCV.CentriVaccinali;
+import clientCV.Proxy;
+import clientCV.centriVaccinali.models.CentroVaccinale;
+import clientCV.centriVaccinali.models.Segnalazione;
+import clientCV.centriVaccinali.models.Vaccinato;
+import clientCV.cittadini.Cittadino;
 import clientCV.cittadini.Utente;
+import clientCV.shared.Check;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * HomeCittadiniAdapter
@@ -15,7 +30,7 @@ import java.io.IOException;
  * @author Eliana Monteleone 741025 VA
  */
 public class HomeCittadiniAdapter extends Adapter {
-
+    CentroVaccinale centroVaccinale;
     @FXML
     private Text benvenutoText;
     @FXML
@@ -42,6 +57,53 @@ public class HomeCittadiniAdapter extends Adapter {
     public void vaiARegistrati(ActionEvent event) throws IOException {
         cambiaSchermataConUtente("RegistraCittadino.fxml",utente, event);
     }
+
+    public void saltaASegnalazione(ActionEvent event) throws IOException {
+        Proxy proxy, proxy2;
+
+
+        String query = "SELECT * FROM centrivaccinali WHERE nome = (SELECT centrovaccinale FROM idunivoci WHERE codicefiscale = '"+ utente.getCF() +"')";
+
+        try {
+            proxy = new Proxy();
+            centroVaccinale = proxy.filtra(query).get(0);
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        Check check = new Check();
+        Cittadino cittadino = (Cittadino)utente;
+        String query2 = "SELECT * FROM vaccinati_" + check.nomeTabella(centroVaccinale.getNome()) + " WHERE idvaccinazione = " + cittadino.getIdVaccinazione();
+
+        try {
+            proxy2 = new Proxy();
+            ArrayList<Vaccinato> vaccinati = proxy2.riceviVaccinati(query2);
+
+            if(vaccinati.isEmpty()) {
+                mostraWarning("Non sei registrato a questo centro vaccinale", "Puoi segnalare eventi avversi solo presso il centro \nvaccinale in cui ti è stato somministrato il vaccino");
+                return;
+            }
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        FXMLLoader loader = new
+                FXMLLoader(CentriVaccinali.class.getClassLoader().getResource(path + "Segnalazione.fxml"));
+        Parent root = loader.load();
+
+        Adapter mAdapter = loader.getController();
+        SegnalazioneAdapter segnalaAdapter = loader.getController();
+
+        mAdapter.setUtente(utente);
+        segnalaAdapter.setCentro(centroVaccinale);
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     /**
      * Vai alla schermata LogIn
@@ -108,7 +170,18 @@ public class HomeCittadiniAdapter extends Adapter {
         else {
             benvenutoText.setText("Ciao, " + utente.getUsername());
             logoutBtn.setText("Logout");
-            registratiBtn.setVisible(false);
+            registratiBtn.setText("Invia Segnalazione");
+
+            registratiBtn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    try{
+                        saltaASegnalazione(actionEvent);
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
 
 

@@ -3,9 +3,12 @@ package clientCV.centriVaccinali.adapters;
 import clientCV.shared.Check;
 import clientCV.cittadini.Utente;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import clientCV.Proxy;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;

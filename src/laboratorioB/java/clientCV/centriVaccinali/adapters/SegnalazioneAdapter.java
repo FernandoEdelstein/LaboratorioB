@@ -186,7 +186,7 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
     public void setUtente(Utente utente) {
         this.utente = utente;
         benvenutoText.setText("Ciao, " + utente.getUsername());
-        registratiBtn.setVisible(false);
+        registratiBtn.setText("Invia Segnalazione");
 
         Proxy proxy;
         ArrayList<Segnalazione> segnalazione;

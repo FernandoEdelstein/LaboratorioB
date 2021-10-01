@@ -159,7 +159,7 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
         int idvaccino = generaUID();
 
         if(nuovoVaccinato(CF)) {
-            String insertIntoIdunivoci = "INSERT INTO idunivoci VALUES('"+idvaccino+"', '"+CF+"')";
+            String insertIntoIdunivoci = "INSERT INTO idunivoci VALUES('"+idvaccino+"', '"+CF+"', '" + centrovaccinale.toLowerCase() + "')";
             Proxy proxy1 = new Proxy();
             proxy1.inserireInDb(insertIntoIdunivoci);
 
