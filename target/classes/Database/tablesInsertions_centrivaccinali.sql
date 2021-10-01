@@ -19,16 +19,16 @@ INSERT INTO sintomi VALUES(2, 'Forte spossatezza', 'Debolezza, fatica e sonnolen
 INSERT INTO sintomi VALUES(3, 'Mancamenti', 'Mancamenti avvenuti dopo la somministrazione del vaccino');
 INSERT INTO sintomi VALUES(4, 'Nausea', 'Nausea forte e costante durante tutta la giornata, necessità di rimettere');
 
-INSERT INTO idunivoci VALUES(3782, 'GLKMRL32F02F423Y');
-INSERT INTO idunivoci VALUES(437, 'GTFTTPN56R34L642L');
-INSERT INTO idunivoci VALUES(394, 'TLRFEF76E93L243N');
-INSERT INTO idunivoci VALUES(2387, 'BNNTLP43F11N584P');
-INSERT INTO idunivoci VALUES(821, 'MDRLPP52W31B903L');
-INSERT INTO idunivoci VALUES(1324, 'FNERNE21L49W039Y');
-INSERT INTO idunivoci VALUES(742, 'PLRNDS90L21N342P');
-INSERT INTO idunivoci VALUES(4521, 'POMMRE33N82G349M');
-INSERT INTO idunivoci VALUES(643, 'HRDGNH23Y73C938U');
-INSERT INTO idunivoci VALUES(8421, 'FEPWRH88K00O302J');
+INSERT INTO idunivoci VALUES(3782, 'GLKMRL32F02F423Y', 'malpensa fiere');
+INSERT INTO idunivoci VALUES(437, 'GTFTTPN56R34L642L', 'malpensa fiere');
+INSERT INTO idunivoci VALUES(394, 'TLRFEF76E93L243N', 'lariofiere');
+INSERT INTO idunivoci VALUES(2387, 'BNNTLP43F11N584P', 'asst sette laghi');
+INSERT INTO idunivoci VALUES(821, 'MDRLPP52W31B903L', 'rancio valcuvia');
+INSERT INTO idunivoci VALUES(1324, 'FNERNE21L49W039Y', 'rancio valcuvia');
+INSERT INTO idunivoci VALUES(742, 'PLRNDS90L21N342P', 'rancio valcuvia');
+INSERT INTO idunivoci VALUES(4521, 'POMMRE33N82G349M', 'vaccination center');
+INSERT INTO idunivoci VALUES(643, 'HRDGNH23Y73C938U', 'vaccination center');
+INSERT INTO idunivoci VALUES(8421, 'FEPWRH88K00O302J', 'vaccination center');
 
 INSERT INTO utenti VALUES('ferna', 'f', 'DLSFNN99E02Z600X', 'fernando', 'edelstein');
 INSERT INTO utenti VALUES('eli', 'e', 'MTDDFF39A05U192U', 'eliana', 'monteleone');
