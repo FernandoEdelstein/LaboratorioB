@@ -1,6 +1,7 @@
 package clientCV.shared;
 
 import clientCV.Proxy;
+import clientCV.centriVaccinali.models.CentroVaccinale;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -77,7 +78,6 @@ public class Check {
         }
         return name.toString();
     }
-
 
     /**
      * Generazione di data di default se il database è vuoto

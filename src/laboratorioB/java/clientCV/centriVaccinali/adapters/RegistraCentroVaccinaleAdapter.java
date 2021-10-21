@@ -157,15 +157,38 @@ public class RegistraCentroVaccinaleAdapter extends Adapter implements Initializ
         if (controlaCentro())
             mostraWarning("Centro già registrato", "Questo centro è già stato registrato");
         else {
+            if(provinciaValida())
+                mostraWarning("Provincia non valida", "Inserisci una provincia valida");
             //Se il centro e stato registrato correttamente
-
-            proxy.inserireInDb(query);
-            proxy1.registraNuovoCentro(nomeCentro);
-            mostraWarning("Successo", "Centro registrato correttamente!");
-
-            vaiAHome(event);
+            else{
+                proxy.inserireInDb(query);
+                proxy1.registraNuovoCentro(nomeCentro);
+                mostraWarning("Successo", "Centro registrato correttamente!");
+                vaiAHome(event);
+            }
         }
 
+    }
+
+    /**
+     * Controlla che la provincia inserita sia una provincia valida
+     * @return boolean
+     */
+    private boolean provinciaValida() {
+        Proxy proxy;
+        ArrayList<String> province = new ArrayList<>();
+        String prov = provField.getText().trim().toUpperCase();
+
+        String query = "SELECT * FROM province " +
+                "WHERE sigla = '" + prov + "'";
+        try {
+            proxy = new Proxy();
+            province = proxy.riceviValoriIndividuali(query,"sigla");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return province.isEmpty();
     }
 
     /**

@@ -1,3 +1,9 @@
+CREATE TABLE province (
+  nome varchar(20) NOT NULL,
+  idregione SMALLINT NOT NULL,
+  sigla varchar(2) PRIMARY KEY
+);
+
 CREATE TABLE centrivaccinali (
 	  nome varchar PRIMARY KEY,
 	  tipologia varchar NOT NULL,
@@ -6,7 +12,8 @@ CREATE TABLE centrivaccinali (
 	  civico varchar NOT NULL,
 	  comune varchar NOT NULL,
 	  provincia varchar NOT NULL,
-	  cap varchar NOT NULL
+	  cap varchar NOT NULL,
+	    FOREIGN KEY(provincia) REFERENCES province(sigla)
 );
 
 
@@ -52,7 +59,5 @@ CREATE TABLE segnalazioni (
            FOREIGN KEY(userid) REFERENCES cittadinivaccinati(userid),
 	       FOREIGN KEY(centrovaccinale) REFERENCES centrivaccinali(nome)
 );
-
-
 
 

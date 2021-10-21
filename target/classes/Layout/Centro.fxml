@@ -24,7 +24,7 @@
             <Font name="Montserrat Regular" size="18.0" />
         </font>
     </Text>
-    <Button id="btnCerca" fx:id="cercaBtn" alignment="CENTER" layoutX="222.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiACerca" prefWidth="220.0" style="-fx-background-color: #53B0BD; -fx-background-radius: 10;" text="Cerca" textFill="#ffffff">
+    <Button id="btnCerca" fx:id="cercaBtn" alignment="CENTER" layoutX="222.0" layoutY="23.0" mnemonicParsing="false" onAction="#vaiACerca" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Cerca" textFill="#53b0bd">
         <font>
             <Font name="Montserrat Regular" size="18.0" />
         </font>
