@@ -126,6 +126,11 @@ public class RegistraCittadinoAdapter extends Adapter{
             return;
         }
 
+        if(controllaCodiceFiscale(CF)){
+            mostraWarning("CF errato", "Il codice fiscale inserito non è corretto");
+            return;
+        }
+
         String insertAsUtente = "INSERT INTO utenti VALUES('"+user+"','"+password+"','"+CF+"','"+nome+"','"+cognome+"')";
         Proxy proxyUtenti = new Proxy();
         proxyUtenti.inserireInDb(insertAsUtente);
@@ -164,5 +169,22 @@ public class RegistraCittadinoAdapter extends Adapter{
             return !ids.isEmpty();
 
         }
+
+    /**
+     * Controlla che il codice fiscale inserito sia corretto
+     * @param cf
+     * @return
+     * @throws IOException
+     */
+    private boolean controllaCodiceFiscale(String cf) throws IOException {
+        ArrayList<String> cfs;
+        String query = "SELECT * FROM idunivoci WHERE codicefiscale = '"+cf+"'";
+
+
+        Proxy proxy = new Proxy();
+        cfs = proxy.riceviValoriIndividuali(query, "codicefiscale");
+
+        return cfs.isEmpty();
+    }
 
 }
