@@ -135,8 +135,10 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
         int severita = Integer.parseInt(severitaCombo.getValue());
         String query;
 
+
+
         if(descrizione.isBlank() || sintomoCombo.getValue() == null) {
-            mostraWarning("Campi vuoti", "Inserire una nota aggiuntiva");
+            mostraWarning("Campi vuoti", "Compilare tutti i campi per procedere");
             return;
         }
 
@@ -241,6 +243,7 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        severitaCombo.setValue("1");
 
         String query = "SELECT * " +
                         "FROM sintomi";
@@ -273,6 +276,7 @@ public class SegnalazioneAdapter extends Adapter implements Initializable {
                 stampaDescrizioneSintomo();
             }
         });
+
     }
 
     /**

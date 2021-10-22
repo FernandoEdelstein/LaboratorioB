@@ -169,6 +169,7 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
             Proxy proxy = new Proxy();
             proxy.inserireInDb(query);
 
+            System.out.println("Vaccinato Registrato! Id Vaccinazione: " + ": " + idvaccino);
             mostraWarning("Cittadino registrato", "Cittadino si è registrato con ID: " + idvaccino);
 
                 vaiAHome(event);
@@ -223,7 +224,7 @@ public class RegistraVaccinatoAdapter extends Adapter implements Initializable {
                 e.printStackTrace();
             }
 
-            System.out.println("Vaccinato Registrato! Id Vaccinazione: " + ": " + idvacc);
+
 
             if (tmpID.isEmpty())
                 break;
