@@ -59,5 +59,3 @@ CREATE TABLE segnalazioni (
            FOREIGN KEY(userid) REFERENCES cittadinivaccinati(userid),
 	       FOREIGN KEY(centrovaccinale) REFERENCES centrivaccinali(nome)
 );
-
-
